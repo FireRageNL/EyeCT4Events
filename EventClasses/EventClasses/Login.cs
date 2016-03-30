@@ -10,6 +10,12 @@ namespace EventClasses
     {
         public int AccessLevel { get; private set; }
         
-        public int
+        public bool LoggedIn { get; private set; }
+
+
+        public bool ValidateUser(string email, string password)
+        {
+            return false;
+        }
     }
 }
