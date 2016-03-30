@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Adres.cs" />
+    <Compile Include="CheckIn.cs" />
     <Compile Include="Reservation.cs" />
     <Compile Include="RFID.cs" />
     <Compile Include="User.cs" />
