@@ -24,5 +24,11 @@ namespace EventClasses
                 this.CheckedIn = true;
             }
         }
+
+        public CheckIn(RFID tag)
+        {
+            RfidTag = tag;
+            CheckedIn = true;
+        }
     }
 }
