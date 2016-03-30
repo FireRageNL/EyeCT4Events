@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EventClasses
 {
-    class Object
+    public class Object
     {
         public int ObjectID { get; private set; }
 
