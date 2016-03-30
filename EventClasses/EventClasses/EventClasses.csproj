@@ -43,6 +43,8 @@
     <Compile Include="Adress.cs" />
     <Compile Include="CheckIn.cs" />
     <Compile Include="Login.cs" />
+    <Compile Include="Media.cs" />
+    <Compile Include="Message.cs" />
     <Compile Include="Object.cs" />
     <Compile Include="ObjectReservation.cs" />
     <Compile Include="RFID.cs" />
