@@ -26,6 +26,7 @@ namespace EventClasses
         {
             User returnuser = null;
             return returnuser;
+            int i = 0;
         }
 
         public static void UpdateUser(User usrupdate)
