@@ -18,7 +18,7 @@ namespace EventClasses
         public void UpdateFunds(decimal update)
         {
             Funds += update;
-            int i = 0;
+            int i = 1;
         }
 
 
