@@ -40,9 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Adres.cs" />
+    <Compile Include="Adress.cs" />
     <Compile Include="CheckIn.cs" />
-    <Compile Include="Reservation.cs" />
+    <Compile Include="Object.cs" />
+    <Compile Include="ObjectReservation.cs" />
     <Compile Include="RFID.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

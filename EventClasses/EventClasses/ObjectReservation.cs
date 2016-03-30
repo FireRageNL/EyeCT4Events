@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EventClasses
 {
-    public class Reservation
+    public class ObjectReservation
     {
     }
 }
