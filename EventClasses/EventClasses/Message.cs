@@ -20,13 +20,8 @@ namespace EventClasses
 
         public Message ParentMessage { get; private set; }
 
-        private int mcounter = 1; 
-
-
         public Message(string mContent, User mUser, string mTags, Message mParent = null)
         {
-            MessageID = mcounter;
-            mcounter++;
             Content = mContent;
             UserMessage = mUser;
             Tags = mTags;
@@ -35,6 +30,18 @@ namespace EventClasses
                 ParentMessage = mParent;
             }
             TimeStamp = DateTime.Now;
+        }
+        public Message(string mContent, User mUser, string mTags, DateTime timestamp, int sMessageId, Message mParent = null)
+        {
+            MessageID = sMessageId;
+            Content = mContent;
+            UserMessage = mUser;
+            Tags = mTags;
+            if (mParent != null)
+            {
+                ParentMessage = mParent;
+            }
+            TimeStamp = timestamp;
         }
 
         public List<Message> GetMessages(int Mid)
@@ -47,6 +54,7 @@ namespace EventClasses
         {
             //format data to put into database, then send data over and insert it into the db and return true or false on failure or success
             //Also add in function to see if message is a new message or a reply, this can be handled in the same function.
+            //Set returned messageID as message ID in the system; 
             return false;
         }
 
