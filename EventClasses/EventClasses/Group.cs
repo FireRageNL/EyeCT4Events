@@ -28,5 +28,25 @@ namespace EventClasses
             Users.Add(usr);
         }
 
+        public void RemoveUserFromGroup(User usr)
+        {
+            foreach (User search in Users)
+            {
+                if (search.UserID == usr.UserID)
+                {
+                    Users.Remove(search);
+                }
+            }
+        }
+
+        public void ChangeLocation(Location l)
+        {
+            Loc = l;
+        }
+
+        public void DeleteLocation()
+        {
+            Loc = null;
+        }
     }
 }
