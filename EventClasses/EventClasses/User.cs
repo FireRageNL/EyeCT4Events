@@ -40,12 +40,12 @@ namespace EventClasses
         {
             if (uname == null)
             {
-                //code for searching by email
+                //DB send command to find users by e-mail, build a new user var with the returned data and return this var
                 return null;
             }
             if (uemail == null)
             {
-                //code for searching by name
+                //DB send command to find users by name, build a new user var with the returned data and return this var
                 return null;
             }
             return null;

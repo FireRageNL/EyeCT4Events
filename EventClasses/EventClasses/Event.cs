@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EventClasses
 {
-    class Event
+    public class Event
     {
         public Adress EventAddress { get; private set; }
 
