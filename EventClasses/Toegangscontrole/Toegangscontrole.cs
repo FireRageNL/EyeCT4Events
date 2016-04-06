@@ -8,13 +8,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace BeheerSysteem
+namespace Toegangscontrole
 {
-    public partial class Form1 : Form
+    public partial class Toegangscontrole : Form
     {
-        public Form1()
+        public Toegangscontrole()
         {
             InitializeComponent();
         }
+
     }
 }
