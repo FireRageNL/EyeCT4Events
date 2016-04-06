@@ -7,6 +7,7 @@ using Oracle.ManagedDataAccess.Types;
 using Oracle.ManagedDataAccess.Client;
 
 
+
 namespace EventClasses
 {
     class DAL
