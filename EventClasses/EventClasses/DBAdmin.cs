@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EventClasses
 {
-    class DBAdmin
+    public class DBAdmin
     {
         public DAL Dal { get; private set; }
 
