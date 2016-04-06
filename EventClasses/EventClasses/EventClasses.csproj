@@ -42,6 +42,8 @@
   <ItemGroup>
     <Compile Include="Adress.cs" />
     <Compile Include="CheckIn.cs" />
+    <Compile Include="Group.cs" />
+    <Compile Include="Location.cs" />
     <Compile Include="Login.cs" />
     <Compile Include="Media.cs" />
     <Compile Include="Message.cs" />
