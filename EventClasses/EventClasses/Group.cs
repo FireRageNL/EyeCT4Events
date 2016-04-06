@@ -27,5 +27,6 @@ namespace EventClasses
         {
             Users.Add(usr);
         }
+
     }
 }
