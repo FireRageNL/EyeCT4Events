@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,15 +19,28 @@ namespace EventClasses
         {
             conn = new OracleConnection();
             conn.ConnectionString =
-                "Data Source = (DESCRIPTION = (ADDRESS_LIST = (ADDRESS = (PROTOCOL = TCP)(HOST = fhictora01.fhict.local)(PORT = 1521)))(CONNECT_DATA = (SERVER = DEDICATED)(SERVICE_NAME = fhictora))); User ID = <OracleUsername>; PASSWORD = <OraclePass>";
+                "Data Source = (DESCRIPTION = (ADDRESS_LIST = (ADDRESS = (PROTOCOL = TCP)(HOST = fhictora01.fhict.local)(PORT = 1521)))(CONNECT_DATA = (SERVER = DEDICATED)(SERVICE_NAME = fhictora))); User ID = dbi347373; PASSWORD = Testpassword1234";
         }
 
-        public bool ExecuteDbCommand(string command)
+        public DataSet ExecuteDbCommand(string command)
         {
-            conn.Open();
-            //do stuff
-            conn.Close();
-            return false;
+            try
+            {
+                conn.Open();
+                OracleCommand cmd = conn.CreateCommand();
+                cmd.CommandText = command;
+                OracleDataAdapter da = new OracleDataAdapter(cmd);
+                OracleCommandBuilder cb = new OracleCommandBuilder(da);
+                DataSet ds = new DataSet();
+                da.Fill(ds);
+                conn.Close();
+                return ds;
+            }
+            catch (OracleException e)
+            {
+                Console.WriteLine("Message: " + e.Message);
+                return null;
+            }
         }
     }
 }

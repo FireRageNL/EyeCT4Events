@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,13 +13,14 @@ namespace EventClasses
 
         public DBAdmin(DAL dal)
         {
+            
             Dal = dal;
         }
 
-        public bool SendDbCommand(string command)
+        public DataSet SendDbCommand(string command)
         {
-            bool test = Dal.ExecuteDbCommand(command);
-            return test;
+            DataSet returnval = Dal.ExecuteDbCommand(command);
+            return returnval;
         }
     }
 }

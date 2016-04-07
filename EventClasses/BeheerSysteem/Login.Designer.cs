@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.BtnInloggen = new System.Windows.Forms.Button();
+            this.TbPassword = new System.Windows.Forms.TextBox();
             this.TbEmail = new System.Windows.Forms.TextBox();
-            this.TbNaam = new System.Windows.Forms.TextBox();
             this.LbLEmail = new System.Windows.Forms.Label();
             this.LblWachtwoord = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -45,22 +45,23 @@
             this.BtnInloggen.TabIndex = 22;
             this.BtnInloggen.Text = "Inloggen";
             this.BtnInloggen.UseVisualStyleBackColor = true;
+            this.BtnInloggen.Click += new System.EventHandler(this.BtnInloggen_Click);
+            // 
+            // TbPassword
+            // 
+            this.TbPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TbPassword.Location = new System.Drawing.Point(310, 224);
+            this.TbPassword.Name = "TbPassword";
+            this.TbPassword.Size = new System.Drawing.Size(139, 22);
+            this.TbPassword.TabIndex = 20;
             // 
             // TbEmail
             // 
             this.TbEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TbEmail.Location = new System.Drawing.Point(310, 224);
+            this.TbEmail.Location = new System.Drawing.Point(310, 192);
             this.TbEmail.Name = "TbEmail";
             this.TbEmail.Size = new System.Drawing.Size(139, 22);
-            this.TbEmail.TabIndex = 20;
-            // 
-            // TbNaam
-            // 
-            this.TbNaam.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TbNaam.Location = new System.Drawing.Point(310, 192);
-            this.TbNaam.Name = "TbNaam";
-            this.TbNaam.Size = new System.Drawing.Size(139, 22);
-            this.TbNaam.TabIndex = 19;
+            this.TbEmail.TabIndex = 19;
             // 
             // LbLEmail
             // 
@@ -89,8 +90,8 @@
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(774, 559);
             this.Controls.Add(this.BtnInloggen);
+            this.Controls.Add(this.TbPassword);
             this.Controls.Add(this.TbEmail);
-            this.Controls.Add(this.TbNaam);
             this.Controls.Add(this.LbLEmail);
             this.Controls.Add(this.LblWachtwoord);
             this.Name = "Login";
@@ -103,8 +104,8 @@
         #endregion
 
         private System.Windows.Forms.Button BtnInloggen;
+        private System.Windows.Forms.TextBox TbPassword;
         private System.Windows.Forms.TextBox TbEmail;
-        private System.Windows.Forms.TextBox TbNaam;
         private System.Windows.Forms.Label LbLEmail;
         private System.Windows.Forms.Label LblWachtwoord;
     }

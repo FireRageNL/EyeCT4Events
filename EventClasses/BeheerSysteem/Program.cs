@@ -16,7 +16,7 @@ namespace BeheerSysteem
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormGebruikersBeheer());
+            Application.Run(new Login());
         }
     }
 }
