@@ -16,7 +16,7 @@ namespace Toegangscontrole
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Toegangscontrole());
+            Application.Run(new Login());
         }
     }
 }
