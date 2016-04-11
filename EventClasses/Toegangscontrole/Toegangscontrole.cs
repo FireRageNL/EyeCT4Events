@@ -13,6 +13,7 @@ namespace Toegangscontrole
 {
     public partial class Toegangscontrole : Form
     {
+        private EventClasses.Toegangscontrole tc = new EventClasses.Toegangscontrole();
         public Toegangscontrole()
         {
             InitializeComponent();
@@ -24,9 +25,8 @@ namespace Toegangscontrole
             int.TryParse(TbRFID.Text, out RFID);
             string naam = LblNaam.Text;
 
-           CheckIn check = new CheckIn(RFID);
-            ChkBetaald.Checked = check.Betaald;
-            LblNaam.Text = check.Naam;
+           CheckIn check= tc.CheckIn(RFID);
+         
 
             if (check.Betaald == false)
             {

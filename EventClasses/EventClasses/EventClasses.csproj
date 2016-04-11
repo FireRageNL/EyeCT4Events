@@ -55,6 +55,7 @@
     <Compile Include="ObjectReservation.cs" />
     <Compile Include="RFID.cs" />
     <Compile Include="TicketReservation.cs" />
+    <Compile Include="Toegangscontrole.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

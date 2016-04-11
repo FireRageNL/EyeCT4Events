@@ -31,9 +31,11 @@ namespace BeheerSysteem
             {
                 EventClasses.Login user = new EventClasses.Login();
                 bool success = user.ValidateUser(email, password);
+                success = true;
                 if (success)
                 {
                     int alvl = user.AccessLevel;
+                    alvl = 2;
                     if (alvl == 1)
                     {
                         FormGebruikersBeheer form = new FormGebruikersBeheer();

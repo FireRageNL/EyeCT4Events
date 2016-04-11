@@ -36,6 +36,8 @@
             this.LblType = new System.Windows.Forms.Label();
             this.LblMerk = new System.Windows.Forms.Label();
             this.LblProductnaam = new System.Windows.Forms.Label();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // BtnWissen
@@ -47,6 +49,7 @@
             this.BtnWissen.TabIndex = 23;
             this.BtnWissen.Text = "Wissen";
             this.BtnWissen.UseVisualStyleBackColor = true;
+            this.BtnWissen.Click += new System.EventHandler(this.BtnWissen_Click);
             // 
             // BtnZoeken
             // 
@@ -57,6 +60,7 @@
             this.BtnZoeken.TabIndex = 22;
             this.BtnZoeken.Text = "Zoeken";
             this.BtnZoeken.UseVisualStyleBackColor = true;
+            this.BtnZoeken.Click += new System.EventHandler(this.BtnZoeken_Click);
             // 
             // TbType
             // 
@@ -112,12 +116,22 @@
             this.LblProductnaam.TabIndex = 16;
             this.LblProductnaam.Text = "Productnaam:";
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(53, 358);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(240, 150);
+            this.dataGridView1.TabIndex = 24;
+            // 
             // Materiaalbeheer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(734, 538);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.BtnWissen);
             this.Controls.Add(this.BtnZoeken);
             this.Controls.Add(this.TbType);
@@ -128,6 +142,7 @@
             this.Controls.Add(this.LblProductnaam);
             this.Name = "Materiaalbeheer";
             this.Text = "Materiaalbeheer";
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -143,5 +158,6 @@
         private System.Windows.Forms.Label LblType;
         private System.Windows.Forms.Label LblMerk;
         private System.Windows.Forms.Label LblProductnaam;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }
