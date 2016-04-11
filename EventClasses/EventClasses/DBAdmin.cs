@@ -22,5 +22,10 @@ namespace EventClasses
             DataSet returnval = Dal.ExecuteDbCommand(command);
             return returnval;
         }
+
+        public void SendDbCommandvoid(string command)
+        {
+            Dal.ExecuteDbCommand(command);
+        }
     }
 }
