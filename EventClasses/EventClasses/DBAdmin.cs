@@ -4,6 +4,9 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Oracle.ManagedDataAccess.Types;
+using Oracle.ManagedDataAccess.Client;
+
 
 namespace EventClasses
 {
@@ -26,6 +29,11 @@ namespace EventClasses
         public void SendDbCommandvoid(string command)
         {
             Dal.ExecuteDbCommand(command);
+        }
+
+        public string CheckLogin(string uname)
+        {
+            Dal.
         }
     }
 }

@@ -9,33 +9,20 @@ namespace EventClasses
 {
     public class Login
     {
-        static DAL Start = new DAL();
-        DBAdmin DatabaseAdmin = new DBAdmin(Start);
         public int AccessLevel { get; private set; }
         
         public bool LoggedIn { get; private set; }
 
-        public bool ValidateUser(string email, string password)
+        public Login(int level, bool login)
         {
-            DataTable dt = new DataTable();
-            string dbcommand = "SELECT Wachtwoord, Beheerder FROM Gebruiker WHERE \"E-mail\"='" + email+ "'";
-            DataSet stuff = DatabaseAdmin.SendDbCommand(dbcommand);
-            if (stuff.Tables.Count != 0)
-            {
-                dt = stuff.Tables[0];
-                if (dt.Rows.Count >= 1)
-                {
-                    string dbpass = dt.Rows[0][0].ToString();
-                    int level = Convert.ToInt32(dt.Rows[0][1].ToString());
-                    if (dbpass == password)
-                    {
-                        AccessLevel = level;
-                        LoggedIn = true;
-                        return true;
-                    }
-                }
-            }
-            return false;
+            AccessLevel = level;
+            LoggedIn = login;
+        }
+
+        public static Login ValidateUser(string email, string password)
+        {
+            string check = DBAdmin.CheckLogin(email);
+            return null;
         }
     }
 }
