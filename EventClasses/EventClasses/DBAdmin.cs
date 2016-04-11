@@ -12,14 +12,13 @@ namespace EventClasses
 {
     public class DBAdmin
     {
-        public DAL Dal { get; private set; }
-        static DAL Start = new DAL();
-        DBAdmin DatabaseAdmin = new DBAdmin(Start);
-
-        public DBAdmin(DAL dal)
+        private OracleConnection conn = new OracleConnection();
+        
+        public DBAdmin()
         {
-            
-            Dal = dal;
+            conn.ConnectionString =
+                            "Data Source = (DESCRIPTION = (ADDRESS_LIST = (ADDRESS = (PROTOCOL = TCP)(HOST = fhictora01.fhict.local)(PORT = 1521)))(CONNECT_DATA = (SERVER = DEDICATED)(SERVICE_NAME = fhictora))); User ID = dbi347373; PASSWORD = Testpassword1234";
+
         }
 
         public DataSet SendDbCommand(string command)
@@ -35,13 +34,14 @@ namespace EventClasses
 
         public string CheckLogin(string uname)
         {
-            Dal.
+            return null;
         }
 
         public CheckIn CheckIn(int rfidtag)
         {
-
-    }
+            CheckIn check = new CheckIn(1,1,"aaaaa");
+            return check;
+        }
 
         //Checkin
         public string checkname()

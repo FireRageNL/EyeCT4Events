@@ -8,7 +8,7 @@ namespace EventClasses
 {
    public class Toegangscontrole
     {
-        private DBAdmin db = new DBAdmin(new DAL());
+        private DBAdmin db = new DBAdmin();
         public CheckIn CheckIn(int rfidTag)
         {
             return db.CheckIn(rfidTag);

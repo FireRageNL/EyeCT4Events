@@ -17,8 +17,10 @@ namespace EventClasses
         public string Naam { get; private set; }
         public Boolean Betaald { get; private set; }
 
-        public CheckIn(int tag)
+        public CheckIn(int tag, int aanwezig, string naam)
         {
+            Aanwezig = aanwezig;
+            Naam = naam;
             //Naam = DatabaseAdmin.checkname();
             //Aanwezig = DatabaseAdmin.checkaanwezig();
 
