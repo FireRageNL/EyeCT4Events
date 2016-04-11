@@ -35,6 +35,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.TbRFID = new System.Windows.Forms.TextBox();
             this.ChkBetaald = new System.Windows.Forms.CheckBox();
+            this.BtnCheck = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // LblTitel
@@ -104,12 +105,24 @@
             this.ChkBetaald.TabIndex = 6;
             this.ChkBetaald.UseVisualStyleBackColor = true;
             // 
-            // Form1
+            // BtnCheck
+            // 
+            this.BtnCheck.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnCheck.Location = new System.Drawing.Point(320, 281);
+            this.BtnCheck.Name = "BtnCheck";
+            this.BtnCheck.Size = new System.Drawing.Size(75, 23);
+            this.BtnCheck.TabIndex = 7;
+            this.BtnCheck.Text = "Check";
+            this.BtnCheck.UseVisualStyleBackColor = true;
+            this.BtnCheck.Click += new System.EventHandler(this.BtnCheck_Click);
+            // 
+            // Toegangscontrole
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(725, 386);
+            this.Controls.Add(this.BtnCheck);
             this.Controls.Add(this.ChkBetaald);
             this.Controls.Add(this.TbRFID);
             this.Controls.Add(this.label4);
@@ -117,7 +130,7 @@
             this.Controls.Add(this.LbLstaticnaam);
             this.Controls.Add(this.LblRFID);
             this.Controls.Add(this.LblTitel);
-            this.Name = "Form1";
+            this.Name = "Toegangscontrole";
             this.Text = "Toegangscontrole";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -133,6 +146,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox TbRFID;
         private System.Windows.Forms.CheckBox ChkBetaald;
+        private System.Windows.Forms.Button BtnCheck;
     }
 }
 

@@ -17,5 +17,21 @@ namespace Toegangscontrole
         {
             InitializeComponent();
         }
+
+        private void BtnCheck_Click(object sender, EventArgs e)
+        {
+            int RFID;
+            int.TryParse(TbRFID.Text, out RFID);
+            string naam = LblNaam.Text;
+
+           CheckIn check = new CheckIn(RFID);
+            ChkBetaald.Checked = check.Betaald;
+            LblNaam.Text = check.Naam;
+
+            if (check.Betaald == false)
+            {
+                MessageBox.Show("Bezoeker heeft nog niet betaald");
+            }
+        }
     }
 }
