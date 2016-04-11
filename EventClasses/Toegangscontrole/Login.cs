@@ -32,6 +32,9 @@ namespace Toegangscontrole
                 if (success)
                 {
                     int alvl = user.AccessLevel;
+                    Toegangscontrole check = new Toegangscontrole();
+                    this.Hide();
+                    check.Show();
                 }
                 else
                 {

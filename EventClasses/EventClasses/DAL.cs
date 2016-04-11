@@ -7,8 +7,6 @@ using System.Threading.Tasks;
 using Oracle.ManagedDataAccess.Types;
 using Oracle.ManagedDataAccess.Client;
 
-
-
 namespace EventClasses
 {
     public class DAL
@@ -39,6 +37,7 @@ namespace EventClasses
             catch (OracleException e)
             {
                 Console.WriteLine("Message: " + e.Message);
+                conn.Close();
                 return null;
             }
         }
