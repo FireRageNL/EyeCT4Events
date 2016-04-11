@@ -13,6 +13,8 @@ namespace BeheerSysteem
 {
     public partial class Login : Form
     {
+        LoginControl lg = new LoginControl();
+
         public Login()
         {
             InitializeComponent();
@@ -29,30 +31,31 @@ namespace BeheerSysteem
             }
             else
             {
-                EventClasses.Login user = new EventClasses.Login();
-                bool success = user.ValidateUser(email, password);
-                success = true;
-                if (success)
+                EventClasses.Login val = lg.ValidateUser(email, password);
+                if (val != null)
                 {
-                    int alvl = user.AccessLevel;
-                    alvl = 2;
-                    if (alvl == 1)
+                    if (val.AccessLevel == 1)
                     {
-                        FormGebruikersBeheer form = new FormGebruikersBeheer();
+                        Materiaalbeheer form1 = new Materiaalbeheer(val);
+                        form1.Show();
+                        this.Hide();
+                    }
+                    if (val.AccessLevel == 2)
+                    {
+                        FormGebruikersBeheer form = new FormGebruikersBeheer(val);
                         form.Show();
                         this.Hide();
                     }
-                    else if (alvl == 2)
+                    else
                     {
-                        Materiaalbeheer form1 = new Materiaalbeheer();
-                        form1.Show();
-                        this.Hide();
+                        MessageBox.Show("Niet genoeg rechten om in te loggen!");
+                        TbPassword.Clear();
                     }
                 }
                 else
                 {
-                    MessageBox.Show("Verkeerde gebruikersnaam en/of wachtwoord ingevuld!");
-                    TbPassword.Text = "";
+                    MessageBox.Show("Verkeerd wachtwoord/email in gevoerd!");
+                    TbPassword.Clear();
                 }
             }
         }

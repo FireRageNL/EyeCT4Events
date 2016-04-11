@@ -18,11 +18,5 @@ namespace EventClasses
             AccessLevel = level;
             LoggedIn = login;
         }
-
-        public static Login ValidateUser(string email, string password)
-        {
-            string check = DBAdmin.CheckLogin(email);
-            return null;
-        }
     }
 }

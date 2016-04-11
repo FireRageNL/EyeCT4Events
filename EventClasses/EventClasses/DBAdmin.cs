@@ -21,20 +21,31 @@ namespace EventClasses
 
         }
 
-        public DataSet SendDbCommand(string command)
-        {
-            DataSet returnval = Dal.ExecuteDbCommand(command);
-            return returnval;
-        }
-
-        public void SendDbCommandvoid(string command)
-        {
-            Dal.ExecuteDbCommand(command);
-        }
-
         public string CheckLogin(string uname)
         {
-            return null;
+            try
+            {
+                conn.Open();
+                OracleCommand cmd = new OracleCommand();
+                cmd.Connection = conn;
+                cmd.CommandText = "SELECT Wachtwoord, Beheerder FROM Gebruiker WHERE Email='" + uname + "'";
+                cmd.CommandType = CommandType.Text;
+                OracleDataReader dr = cmd.ExecuteReader();
+                dr.Read();
+                string li = null;
+                if (dr.HasRows)
+                {
+                    li = dr.GetString(0) + "," + dr.GetInt32(1);
+                }
+                conn.Close();
+                return li;
+            }
+            catch (OracleException e)
+            {
+                Console.WriteLine("Message: " + e.Message);
+                conn.Close();
+                return null;
+            }
         }
 
         public CheckIn CheckIn(int rfidtag)
@@ -44,7 +55,7 @@ namespace EventClasses
         }
 
         //Checkin
-        public string checkname()
+      /*  public string checkname()
         {
             //Naam bezoeker checken
             DataTable dtnaam = new DataTable();
@@ -88,7 +99,7 @@ namespace EventClasses
             dtbetaald = betaald.Tables[0];
             int payment = Convert.ToInt32(dtbetaald.Rows[0][0].ToString());
             return payment;
-        }
+        }*/
     }
 }
 
