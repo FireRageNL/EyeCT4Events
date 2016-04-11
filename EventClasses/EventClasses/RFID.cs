@@ -19,5 +19,6 @@ namespace EventClasses
         {
             Funds += update;
         }
+        
     }
 }

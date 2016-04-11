@@ -18,18 +18,21 @@ namespace EventClasses
         public bool ValidateUser(string email, string password)
         {
             DataTable dt = new DataTable();
-            string dbcommand = "SELECT Wachtwoord, Beheerder FROM Gebruiker WHERE E-mail=" + email;
+            string dbcommand = "SELECT Wachtwoord, Beheerder FROM Gebruiker WHERE \"E-mail\"='" + email+ "'";
             DataSet stuff = DatabaseAdmin.SendDbCommand(dbcommand);
-            if (stuff != null)
+            if (stuff.Tables.Count != 0)
             {
                 dt = stuff.Tables[0];
-                string dbpass = dt.Rows[0][0].ToString();
-                int level = Convert.ToInt32(dt.Rows[0][1].ToString());
-                if (dbpass == password)
+                if (dt.Rows.Count >= 1)
                 {
-                    AccessLevel = level;
-                    LoggedIn = true;
-                    return true;
+                    string dbpass = dt.Rows[0][0].ToString();
+                    int level = Convert.ToInt32(dt.Rows[0][1].ToString());
+                    if (dbpass == password)
+                    {
+                        AccessLevel = level;
+                        LoggedIn = true;
+                        return true;
+                    }
                 }
             }
             return false;
