@@ -38,6 +38,7 @@
             this.LbOverview.Name = "LbOverview";
             this.LbOverview.Size = new System.Drawing.Size(279, 251);
             this.LbOverview.TabIndex = 0;
+            this.LbOverview.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.LbOverview_MouseDoubleClick);
             // 
             // PostOverview
             // 
@@ -47,6 +48,7 @@
             this.Controls.Add(this.LbOverview);
             this.Name = "PostOverview";
             this.Text = "PostOverview";
+            this.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.LbOverview_MouseDoubleClick);
             this.ResumeLayout(false);
 
         }

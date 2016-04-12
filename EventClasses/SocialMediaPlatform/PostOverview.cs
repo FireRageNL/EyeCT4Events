@@ -29,5 +29,12 @@ namespace SocialMediaPlatform
             list = sc.GetPosts();
             LbOverview.DataSource = list;
         }
+
+        private void LbOverview_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            int postid = Convert.ToInt32(LbOverview.SelectedItem.ToString());
+            Form1 form = new Form1(val,postid);
+            form.Show();
+        }
     }
 }

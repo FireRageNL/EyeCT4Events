@@ -47,7 +47,69 @@ namespace EventClasses
                 return null;
             }
         }
-        
+
+        public User GetUser(string uemail, bool intrnl = false)
+        {
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                OracleCommand cmd = new OracleCommand();
+                cmd.BindByName = true;
+                cmd.Connection = conn;
+                cmd.CommandText = "SELECT GebruikerID, Voornaam, Achternaam FROM Gebruiker WHERE Email= :param";
+                cmd.Parameters.Add("param", uemail);
+                OracleDataReader dr = cmd.ExecuteReader();
+                dr.Read();
+                int uid = dr.GetInt32(0);
+                string name = dr.GetString(1) + " " + dr.GetString(2);
+                if (!intrnl)
+                {
+                    conn.Close();
+                }
+                User rtn = new User(uid,name,uemail);
+                return rtn;
+            }
+            catch (OracleException e)
+            {
+                Console.WriteLine("Message: " + e.Message);
+                conn.Close();
+                return null;
+            }
+        }
+        public User GetUser(int uid, bool intrnl = false)
+        {
+            try
+            {
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                }
+                OracleCommand cmd = new OracleCommand();
+                cmd.BindByName = true;
+                cmd.Connection = conn;
+                cmd.CommandText = "SELECT email, Voornaam, Achternaam FROM Gebruiker WHERE Gebruikerid= :param";
+                cmd.Parameters.Add("param", uid);
+                OracleDataReader dr = cmd.ExecuteReader();
+                dr.Read();
+                string email = dr.GetString(0);
+                string name = dr.GetString(1) + " " + dr.GetString(2);
+                if (!intrnl)
+                {
+                    conn.Close();
+                }
+                User rtn = new User(uid, name, email);
+                return rtn;
+            }
+            catch (OracleException e)
+            {
+                Console.WriteLine("Message: " + e.Message);
+                conn.Close();
+                return null;
+            }
+        }
         public List<string> GetEvents()
         {
             List<string> rtn = new List<string>();
@@ -496,6 +558,52 @@ namespace EventClasses
             catch (OracleException e)
             {
                 Console.WriteLine("Message: "+ e.Message);
+                conn.Close();
+                return null;
+            }
+        }
+
+        public List<Message> GetContents(int postid)
+        {
+            List<Message> rtn = new List<Message>();
+
+            try
+            {
+                conn.Open();
+                OracleCommand cmd = new OracleCommand();
+                cmd.Connection = conn;
+                cmd.BindByName = true;
+                cmd.CommandText = "SELECT Gebruikerid, mediaid, inhoud FROM bericht WHERE berichtid =:par";
+                cmd.Parameters.Add("par", postid);
+                OracleDataReader dr = cmd.ExecuteReader();
+                dr.Read();
+                int puid = dr.GetInt32(0);
+                int mediaid = dr.GetInt32(1);
+                string cont = dr.GetString(2);
+                cmd.CommandText = "SELECT Bestandslocatie FROM media WHERE mediaid=" + mediaid;
+                OracleDataReader dr2 = cmd.ExecuteReader();
+                dr2.Read();
+                string floc = dr2.GetString(0);
+                Message parent = new Media(cont, GetUser(puid,true), postid, floc);
+                rtn.Add(parent);
+                cmd.CommandText = "Select Berichtid, gebruikerid, inhoud FROM Bericht WHERE ParentID = :par";
+                cmd.Parameters.Add("par", postid);
+                OracleDataReader dr3 = cmd.ExecuteReader();
+                while (dr3.Read())
+                {
+                    int mid = dr3.GetInt32(0);
+                    int uid = dr3.GetInt32(1);
+                    string inh = dr3.GetString(2);
+                    User usr = GetUser(uid,true);
+                    Message msg = new Message(inh,usr,mid,parent);
+                    rtn.Add(msg);
+                }
+                conn.Close();
+                return rtn;
+            }
+            catch (OracleException e)
+            {
+                Console.WriteLine("Message: " + e.Message);
                 conn.Close();
                 return null;
             }

@@ -31,13 +31,13 @@
             this.PbGebruiker = new System.Windows.Forms.PictureBox();
             this.LblNaam = new System.Windows.Forms.Label();
             this.LblDatum = new System.Windows.Forms.Label();
-            this.RTbBericht = new System.Windows.Forms.RichTextBox();
             this.PbMedia = new System.Windows.Forms.PictureBox();
             this.Lblstaticreactie = new System.Windows.Forms.Label();
             this.LblReacties = new System.Windows.Forms.Label();
             this.PbGebruiker2 = new System.Windows.Forms.PictureBox();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.Lblstaticreactie2 = new System.Windows.Forms.Label();
+            this.listBox1 = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.PbGebruiker)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PbMedia)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PbGebruiker2)).BeginInit();
@@ -71,19 +71,11 @@
             this.LblDatum.TabIndex = 2;
             this.LblDatum.Text = "Datum";
             // 
-            // RTbBericht
-            // 
-            this.RTbBericht.Location = new System.Drawing.Point(12, 68);
-            this.RTbBericht.Name = "RTbBericht";
-            this.RTbBericht.Size = new System.Drawing.Size(457, 91);
-            this.RTbBericht.TabIndex = 3;
-            this.RTbBericht.Text = "";
-            // 
             // PbMedia
             // 
-            this.PbMedia.Location = new System.Drawing.Point(13, 166);
+            this.PbMedia.Location = new System.Drawing.Point(13, 190);
             this.PbMedia.Name = "PbMedia";
-            this.PbMedia.Size = new System.Drawing.Size(456, 295);
+            this.PbMedia.Size = new System.Drawing.Size(456, 271);
             this.PbMedia.TabIndex = 4;
             this.PbMedia.TabStop = false;
             // 
@@ -133,19 +125,27 @@
             this.Lblstaticreactie2.TabIndex = 9;
             this.Lblstaticreactie2.Text = "Plaats een reactie";
             // 
+            // listBox1
+            // 
+            this.listBox1.FormattingEnabled = true;
+            this.listBox1.Location = new System.Drawing.Point(13, 65);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(456, 121);
+            this.listBox1.TabIndex = 10;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(487, 608);
+            this.Controls.Add(this.listBox1);
             this.Controls.Add(this.Lblstaticreactie2);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.PbGebruiker2);
             this.Controls.Add(this.LblReacties);
             this.Controls.Add(this.Lblstaticreactie);
             this.Controls.Add(this.PbMedia);
-            this.Controls.Add(this.RTbBericht);
             this.Controls.Add(this.LblDatum);
             this.Controls.Add(this.LblNaam);
             this.Controls.Add(this.PbGebruiker);
@@ -164,13 +164,13 @@
         private System.Windows.Forms.PictureBox PbGebruiker;
         private System.Windows.Forms.Label LblNaam;
         private System.Windows.Forms.Label LblDatum;
-        private System.Windows.Forms.RichTextBox RTbBericht;
         private System.Windows.Forms.PictureBox PbMedia;
         private System.Windows.Forms.Label Lblstaticreactie;
         private System.Windows.Forms.Label LblReacties;
         private System.Windows.Forms.PictureBox PbGebruiker2;
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.Label Lblstaticreactie2;
+        private System.Windows.Forms.ListBox listBox1;
     }
 }
 

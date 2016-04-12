@@ -20,7 +20,8 @@ namespace EventClasses
                 {
                     if (password == split[0])
                     {
-                        Login log = new Login(val, true);
+                        User usr = db.GetUser(email);
+                        Login log = new Login(val, true, usr);
                         return log;
                     }
                 }

@@ -13,10 +13,13 @@ namespace EventClasses
         
         public bool LoggedIn { get; private set; }
 
-        public Login(int level, bool login)
+        public User User { get; private set; }
+
+        public Login(int level, bool login, User usr)
         {
             AccessLevel = level;
             LoggedIn = login;
+            User = usr;
         }
     }
 }
