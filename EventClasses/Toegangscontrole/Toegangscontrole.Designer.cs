@@ -29,13 +29,17 @@
         private void InitializeComponent()
         {
             this.LblTitel = new System.Windows.Forms.Label();
-            this.LblRFID = new System.Windows.Forms.Label();
+            this.LblstaticRFID = new System.Windows.Forms.Label();
             this.LbLstaticnaam = new System.Windows.Forms.Label();
             this.LblNaam = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.TbRFID = new System.Windows.Forms.TextBox();
             this.ChkBetaald = new System.Windows.Forms.CheckBox();
             this.BtnCheck = new System.Windows.Forms.Button();
+            this.BtnBetaald = new System.Windows.Forms.Button();
+            this.BtnReset = new System.Windows.Forms.Button();
+            this.Lblstaticevent = new System.Windows.Forms.Label();
+            this.CbEvent = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // LblTitel
@@ -48,15 +52,15 @@
             this.LblTitel.TabIndex = 0;
             this.LblTitel.Text = "EyeCT4Events";
             // 
-            // LblRFID
+            // LblstaticRFID
             // 
-            this.LblRFID.AutoSize = true;
-            this.LblRFID.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblRFID.Location = new System.Drawing.Point(272, 212);
-            this.LblRFID.Name = "LblRFID";
-            this.LblRFID.Size = new System.Drawing.Size(42, 16);
-            this.LblRFID.TabIndex = 1;
-            this.LblRFID.Text = "RFID:";
+            this.LblstaticRFID.AutoSize = true;
+            this.LblstaticRFID.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblstaticRFID.Location = new System.Drawing.Point(272, 212);
+            this.LblstaticRFID.Name = "LblstaticRFID";
+            this.LblstaticRFID.Size = new System.Drawing.Size(42, 16);
+            this.LblstaticRFID.TabIndex = 1;
+            this.LblstaticRFID.Text = "RFID:";
             // 
             // LbLstaticnaam
             // 
@@ -74,9 +78,8 @@
             this.LblNaam.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.LblNaam.Location = new System.Drawing.Point(317, 236);
             this.LblNaam.Name = "LblNaam";
-            this.LblNaam.Size = new System.Drawing.Size(45, 16);
+            this.LblNaam.Size = new System.Drawing.Size(0, 16);
             this.LblNaam.TabIndex = 3;
-            this.LblNaam.Text = "Naam";
             // 
             // label4
             // 
@@ -108,7 +111,7 @@
             // BtnCheck
             // 
             this.BtnCheck.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnCheck.Location = new System.Drawing.Point(320, 281);
+            this.BtnCheck.Location = new System.Drawing.Point(260, 281);
             this.BtnCheck.Name = "BtnCheck";
             this.BtnCheck.Size = new System.Drawing.Size(75, 23);
             this.BtnCheck.TabIndex = 7;
@@ -116,19 +119,64 @@
             this.BtnCheck.UseVisualStyleBackColor = true;
             this.BtnCheck.Click += new System.EventHandler(this.BtnCheck_Click);
             // 
+            // BtnBetaald
+            // 
+            this.BtnBetaald.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnBetaald.Location = new System.Drawing.Point(345, 281);
+            this.BtnBetaald.Name = "BtnBetaald";
+            this.BtnBetaald.Size = new System.Drawing.Size(75, 23);
+            this.BtnBetaald.TabIndex = 8;
+            this.BtnBetaald.Text = "Betaald";
+            this.BtnBetaald.UseVisualStyleBackColor = true;
+            this.BtnBetaald.Click += new System.EventHandler(this.BtnBetaald_Click);
+            // 
+            // BtnReset
+            // 
+            this.BtnReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnReset.Location = new System.Drawing.Point(304, 310);
+            this.BtnReset.Name = "BtnReset";
+            this.BtnReset.Size = new System.Drawing.Size(75, 23);
+            this.BtnReset.TabIndex = 9;
+            this.BtnReset.Text = "Reset";
+            this.BtnReset.UseVisualStyleBackColor = true;
+            this.BtnReset.Click += new System.EventHandler(this.BtnReset_Click);
+            // 
+            // Lblstaticevent
+            // 
+            this.Lblstaticevent.AutoSize = true;
+            this.Lblstaticevent.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Lblstaticevent.Location = new System.Drawing.Point(272, 187);
+            this.Lblstaticevent.Name = "Lblstaticevent";
+            this.Lblstaticevent.Size = new System.Drawing.Size(45, 16);
+            this.Lblstaticevent.TabIndex = 10;
+            this.Lblstaticevent.Text = "Event:";
+            // 
+            // CbEvent
+            // 
+            this.CbEvent.FormattingEnabled = true;
+            this.CbEvent.Location = new System.Drawing.Point(320, 187);
+            this.CbEvent.Name = "CbEvent";
+            this.CbEvent.Size = new System.Drawing.Size(121, 21);
+            this.CbEvent.TabIndex = 11;
+            this.CbEvent.SelectedIndexChanged += new System.EventHandler(this.CbEvent_SelectedIndexChanged);
+            // 
             // Toegangscontrole
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(725, 386);
+            this.Controls.Add(this.CbEvent);
+            this.Controls.Add(this.Lblstaticevent);
+            this.Controls.Add(this.BtnReset);
+            this.Controls.Add(this.BtnBetaald);
             this.Controls.Add(this.BtnCheck);
             this.Controls.Add(this.ChkBetaald);
             this.Controls.Add(this.TbRFID);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.LblNaam);
             this.Controls.Add(this.LbLstaticnaam);
-            this.Controls.Add(this.LblRFID);
+            this.Controls.Add(this.LblstaticRFID);
             this.Controls.Add(this.LblTitel);
             this.Name = "Toegangscontrole";
             this.Text = "Toegangscontrole";
@@ -140,13 +188,17 @@
         #endregion
 
         private System.Windows.Forms.Label LblTitel;
-        private System.Windows.Forms.Label LblRFID;
+        private System.Windows.Forms.Label LblstaticRFID;
         private System.Windows.Forms.Label LbLstaticnaam;
         private System.Windows.Forms.Label LblNaam;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox TbRFID;
         private System.Windows.Forms.CheckBox ChkBetaald;
         private System.Windows.Forms.Button BtnCheck;
+        private System.Windows.Forms.Button BtnBetaald;
+        private System.Windows.Forms.Button BtnReset;
+        private System.Windows.Forms.Label Lblstaticevent;
+        private System.Windows.Forms.ComboBox CbEvent;
     }
 }
 
