@@ -46,7 +46,8 @@ namespace BeheerSysteem
                     }
                     if (val.AccessLevel == 2)
                     {
-                        FormGebruikersBeheer form = new FormGebruikersBeheer(val);
+                        //FormGebruikersBeheer form = new FormGebruikersBeheer(val);
+                        Materiaalbeheer form = new Materiaalbeheer(val);
                         form.Show();
                         this.Hide();
                         form.Closed += (sender1, args) =>
