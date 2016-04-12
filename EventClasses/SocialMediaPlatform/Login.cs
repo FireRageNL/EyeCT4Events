@@ -33,7 +33,13 @@ namespace SocialMediaPlatform
                 EventClasses.Login val = lg.ValidateUser(email, password);
                 if (val != null)
                 {
-                    Form1 form = new Form1(val);
+                    PostOverview form = new PostOverview(val);
+                    this.Hide();
+                    form.Closed += (sender1, args) =>
+                    {
+                        this.Close();
+                    };
+                    form.Show();
                 }
                 else
                 {
@@ -41,6 +47,6 @@ namespace SocialMediaPlatform
                     TbPassword.Clear();
                 }
             }
-        }               
+        }
     }
 }

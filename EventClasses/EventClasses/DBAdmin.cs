@@ -213,6 +213,32 @@ namespace EventClasses
 
             return true;
         }
+
+        public List<string> GetPosts()
+        {
+            List<string> rtn = new List<string>();
+
+            try
+            {
+                conn.Open();
+                OracleCommand cmd = new OracleCommand();
+                cmd.Connection = conn;
+                cmd.CommandText = "Select Berichtid FROM Bericht WHERE ParentID IS NULL";
+                OracleDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    rtn.Add(dr.GetInt32(0).ToString());
+                }
+                conn.Close();
+                return rtn;
+            }
+            catch (OracleException e)
+            {
+                Console.WriteLine("Message: "+ e.Message);
+                conn.Close();
+                return null;
+            }
+        }
     }
 }
 

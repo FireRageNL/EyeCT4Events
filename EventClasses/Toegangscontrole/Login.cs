@@ -38,6 +38,11 @@ namespace Toegangscontrole
                         Toegangscontrole form1 = new Toegangscontrole(val);
                         form1.Show();
                         this.Hide();
+                        form1.Closed += (sender1, args) =>
+                        {
+                            this.Close();
+                        };
+                        this.Hide();
                     }
                     else
                     {
