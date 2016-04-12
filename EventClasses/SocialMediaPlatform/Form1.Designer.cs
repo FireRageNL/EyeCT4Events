@@ -28,28 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.PbGebruiker = new System.Windows.Forms.PictureBox();
             this.LblNaam = new System.Windows.Forms.Label();
             this.LblDatum = new System.Windows.Forms.Label();
             this.PbMedia = new System.Windows.Forms.PictureBox();
             this.Lblstaticreactie = new System.Windows.Forms.Label();
             this.LblReacties = new System.Windows.Forms.Label();
-            this.PbGebruiker2 = new System.Windows.Forms.PictureBox();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.RtbReactie = new System.Windows.Forms.RichTextBox();
             this.Lblstaticreactie2 = new System.Windows.Forms.Label();
             this.listBox1 = new System.Windows.Forms.ListBox();
-            ((System.ComponentModel.ISupportInitialize)(this.PbGebruiker)).BeginInit();
+            this.LblPost = new System.Windows.Forms.Label();
+            this.BtnPlaats = new System.Windows.Forms.Button();
+            this.BtnDownload = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.PbMedia)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PbGebruiker2)).BeginInit();
             this.SuspendLayout();
-            // 
-            // PbGebruiker
-            // 
-            this.PbGebruiker.Location = new System.Drawing.Point(12, 12);
-            this.PbGebruiker.Name = "PbGebruiker";
-            this.PbGebruiker.Size = new System.Drawing.Size(50, 50);
-            this.PbGebruiker.TabIndex = 0;
-            this.PbGebruiker.TabStop = false;
             // 
             // LblNaam
             // 
@@ -73,9 +64,9 @@
             // 
             // PbMedia
             // 
-            this.PbMedia.Location = new System.Drawing.Point(13, 190);
+            this.PbMedia.Location = new System.Drawing.Point(13, 237);
             this.PbMedia.Name = "PbMedia";
-            this.PbMedia.Size = new System.Drawing.Size(456, 271);
+            this.PbMedia.Size = new System.Drawing.Size(456, 224);
             this.PbMedia.TabIndex = 4;
             this.PbMedia.TabStop = false;
             // 
@@ -99,21 +90,13 @@
             this.LblReacties.TabIndex = 6;
             this.LblReacties.Text = "0";
             // 
-            // PbGebruiker2
+            // RtbReactie
             // 
-            this.PbGebruiker2.Location = new System.Drawing.Point(13, 500);
-            this.PbGebruiker2.Name = "PbGebruiker2";
-            this.PbGebruiker2.Size = new System.Drawing.Size(50, 50);
-            this.PbGebruiker2.TabIndex = 7;
-            this.PbGebruiker2.TabStop = false;
-            // 
-            // richTextBox1
-            // 
-            this.richTextBox1.Location = new System.Drawing.Point(72, 500);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(397, 50);
-            this.richTextBox1.TabIndex = 8;
-            this.richTextBox1.Text = "";
+            this.RtbReactie.Location = new System.Drawing.Point(72, 500);
+            this.RtbReactie.Name = "RtbReactie";
+            this.RtbReactie.Size = new System.Drawing.Size(397, 50);
+            this.RtbReactie.TabIndex = 8;
+            this.RtbReactie.Text = "";
             // 
             // Lblstaticreactie2
             // 
@@ -128,10 +111,39 @@
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(13, 65);
+            this.listBox1.Location = new System.Drawing.Point(13, 110);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(456, 121);
             this.listBox1.TabIndex = 10;
+            // 
+            // LblPost
+            // 
+            this.LblPost.AutoSize = true;
+            this.LblPost.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblPost.Location = new System.Drawing.Point(69, 78);
+            this.LblPost.Name = "LblPost";
+            this.LblPost.Size = new System.Drawing.Size(0, 20);
+            this.LblPost.TabIndex = 11;
+            // 
+            // BtnPlaats
+            // 
+            this.BtnPlaats.Location = new System.Drawing.Point(3, 500);
+            this.BtnPlaats.Name = "BtnPlaats";
+            this.BtnPlaats.Size = new System.Drawing.Size(63, 50);
+            this.BtnPlaats.TabIndex = 12;
+            this.BtnPlaats.Text = "Plaats";
+            this.BtnPlaats.UseVisualStyleBackColor = true;
+            this.BtnPlaats.Click += new System.EventHandler(this.BtnPlaats_Click);
+            // 
+            // BtnDownload
+            // 
+            this.BtnDownload.Location = new System.Drawing.Point(3, 556);
+            this.BtnDownload.Name = "BtnDownload";
+            this.BtnDownload.Size = new System.Drawing.Size(63, 50);
+            this.BtnDownload.TabIndex = 13;
+            this.BtnDownload.Text = "Download image";
+            this.BtnDownload.UseVisualStyleBackColor = true;
+            this.BtnDownload.Click += new System.EventHandler(this.BtnDownload_Click);
             // 
             // Form1
             // 
@@ -139,38 +151,37 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(487, 608);
+            this.Controls.Add(this.BtnDownload);
+            this.Controls.Add(this.BtnPlaats);
+            this.Controls.Add(this.LblPost);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.Lblstaticreactie2);
-            this.Controls.Add(this.richTextBox1);
-            this.Controls.Add(this.PbGebruiker2);
+            this.Controls.Add(this.RtbReactie);
             this.Controls.Add(this.LblReacties);
             this.Controls.Add(this.Lblstaticreactie);
             this.Controls.Add(this.PbMedia);
             this.Controls.Add(this.LblDatum);
             this.Controls.Add(this.LblNaam);
-            this.Controls.Add(this.PbGebruiker);
             this.Name = "Form1";
             this.Text = "Form1";
-            ((System.ComponentModel.ISupportInitialize)(this.PbGebruiker)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PbMedia)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PbGebruiker2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.PictureBox PbGebruiker;
         private System.Windows.Forms.Label LblNaam;
         private System.Windows.Forms.Label LblDatum;
         private System.Windows.Forms.PictureBox PbMedia;
         private System.Windows.Forms.Label Lblstaticreactie;
         private System.Windows.Forms.Label LblReacties;
-        private System.Windows.Forms.PictureBox PbGebruiker2;
-        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox RtbReactie;
         private System.Windows.Forms.Label Lblstaticreactie2;
         private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.Label LblPost;
+        private System.Windows.Forms.Button BtnPlaats;
+        private System.Windows.Forms.Button BtnDownload;
     }
 }
 

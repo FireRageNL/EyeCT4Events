@@ -35,5 +35,15 @@ namespace EventClasses
             //Update the message with the updated content, return true or false depeinding on outcome.
             return false;
         }
+
+        public void PostReply(string message, Media parent, int userid)
+        {
+            db.PostReply(message, parent, userid);
+        }
+
+        public void NewPost(string message, string url,string type, Login val)
+        {
+            db.NewPost(message, url, type, val);
+        }
     }
 }

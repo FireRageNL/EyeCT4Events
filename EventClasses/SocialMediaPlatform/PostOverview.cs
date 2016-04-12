@@ -36,5 +36,14 @@ namespace SocialMediaPlatform
             Form1 form = new Form1(val,postid);
             form.Show();
         }
+
+        private void BtnAddPost_Click(object sender, EventArgs e)
+        {
+            NewPost post = new NewPost(val);
+            post.ShowDialog();
+            List<string> list = new List<string>();
+            list = sc.GetPosts();
+            LbOverview.DataSource = list;
+        }
     }
 }
