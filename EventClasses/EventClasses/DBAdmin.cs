@@ -27,9 +27,10 @@ namespace EventClasses
             {
                 conn.Open();
                 OracleCommand cmd = new OracleCommand();
+                cmd.BindByName = true;
                 cmd.Connection = conn;
-                cmd.CommandText = "SELECT Wachtwoord, Beheerder FROM Gebruiker WHERE Email='" + uname + "'";
-                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "SELECT Wachtwoord, Beheerder FROM Gebruiker WHERE Email= :param";
+                cmd.Parameters.Add("param", uname);
                 OracleDataReader dr = cmd.ExecuteReader();
                 dr.Read();
                 string li = null;
