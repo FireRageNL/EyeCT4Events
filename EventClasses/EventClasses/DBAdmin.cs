@@ -48,9 +48,9 @@ namespace EventClasses
             }
         }
         
-        public string[] GetEvents()
+        public List<string> GetEvents()
         {
-            string[] rtn = null;
+            List<string> rtn = new List<string>();
 
             try
             {
@@ -59,11 +59,9 @@ namespace EventClasses
                 cmd.Connection = conn;
                 cmd.CommandText = "Select Eventnaam from Event";
                 OracleDataReader dr = cmd.ExecuteReader();
-                int i = 0;
                 while (dr.Read())
                 {
-                        rtn[i] = dr.GetString(0);
-                        i++;
+                        rtn.Add(dr.GetString(0));
                 }
                 conn.Close();
                 return rtn;
@@ -77,7 +75,7 @@ namespace EventClasses
 
         }
         //Checkin
-        public CheckIn CheckIn(int rfidtag)
+        public CheckIn CheckIn(int rfidtag, int eventid)
         {
             string Naam = null;
             int Aanwezig = 0;
@@ -90,8 +88,9 @@ namespace EventClasses
                 OracleCommand cmd = new OracleCommand();
                 cmd.Connection = conn;
                 cmd.BindByName = true;
-                cmd.CommandText = "Select g.Voornaam , g.Achternaam from gebruiker g inner join bandje b on g.gebruikerid = b.gebruikerid inner join Toegangsreservering t on g.gebruikerid = t.gebruikerid where b.RFIDcode = :param";
-                cmd.Parameters.Add(new OracleParameter("param", rfidtag));
+                cmd.CommandText = "Select g.Voornaam , g.Achternaam from gebruiker g inner join bandje b on g.gebruikerid = b.gebruikerid inner join Toegangsreservering t on g.gebruikerid = t.gebruikerid where b.RFIDcode = :param and t.eventid = :par";
+                cmd.Parameters.Add("param", rfidtag);
+                cmd.Parameters.Add("par", eventid);
                 OracleDataReader dr = cmd.ExecuteReader();
                 dr.Read();
                 if (dr.HasRows)
@@ -115,8 +114,9 @@ namespace EventClasses
                 OracleCommand cmd = new OracleCommand();
                 cmd.Connection = conn;
                 cmd.BindByName = true;
-                cmd.CommandText = "Select a.Aanwezigheid from Aanwezig a inner join gebruiker g on a.gebruikerid = g.gebruikerid inner join bandje b on g.gebruikerid = b.gebruikerid where b.RFIDcode = :param";
+                cmd.CommandText = "Select a.Aanwezigheid from Aanwezig a inner join gebruiker g on a.gebruikerid = g.gebruikerid inner join bandje b on g.gebruikerid = b.gebruikerid where b.RFIDcode = :param and a.eventid = :par";
                 cmd.Parameters.Add("param", rfidtag);
+                cmd.Parameters.Add("par", eventid);
                 OracleDataReader dr = cmd.ExecuteReader();
                 dr.Read();
                 if (dr.HasRows)
@@ -125,15 +125,17 @@ namespace EventClasses
                     if (Aanwezig == 1)
                     {
                         Aanwezig = 0;
-                        cmd.CommandText = "update Aanwezig SET Aanwezigheid = 0 where gebruikerid = (select gebruikerid from bandje where RFIDcode = :param)";
+                        cmd.CommandText = "update Aanwezig SET Aanwezigheid = 0 where gebruikerid = (select gebruikerid from bandje where RFIDcode = :param)and eventid = :par";
                         cmd.Parameters.Add("param", rfidtag);
+                        cmd.Parameters.Add("par", eventid);
                         cmd.ExecuteNonQuery();
                     }
                     else if (Aanwezig == 0)
                     {
                         Aanwezig = 1;
-                        cmd.CommandText = "update Aanwezig SET Aanwezigheid = 1 where gebruikerid = (select gebruikerid from bandje where RFIDcode = :param)";
+                        cmd.CommandText = "update Aanwezig SET Aanwezigheid = 1 where gebruikerid = (select gebruikerid from bandje where RFIDcode = :param) and eventid = :par";
                         cmd.Parameters.Add("param", rfidtag);
+                        cmd.Parameters.Add("par", eventid);
                         cmd.ExecuteNonQuery();
                     }
                 }
@@ -154,8 +156,9 @@ namespace EventClasses
                 OracleCommand cmd = new OracleCommand();
                 cmd.Connection = conn;
                 cmd.BindByName = true;
-                cmd.CommandText = "Select t.Betaald from Toegangsreservering t inner join gebruiker g on t.gebruikerid = g.gebruikerid inner join bandje b on g.gebruikerid = b.gebruikerid where b.RFIDcode = :param";
+                cmd.CommandText = "Select t.Betaald from Toegangsreservering t inner join gebruiker g on t.gebruikerid = g.gebruikerid inner join bandje b on g.gebruikerid = b.gebruikerid where b.RFIDcode = :param and eventid = :par";
                 cmd.Parameters.Add("param", rfidtag);
+                cmd.Parameters.Add("par", eventid);
                 OracleDataReader dr = cmd.ExecuteReader();
                 dr.Read();
                 if (dr.HasRows)
@@ -185,7 +188,7 @@ namespace EventClasses
             return rtrn;
         }
 
-        public Boolean Betaald(int rfidtag)
+        public Boolean Betaald(int rfidtag , int eventid)
         {
             // gebruiker op heeft betaald zetten
             try
@@ -194,8 +197,9 @@ namespace EventClasses
                 OracleCommand cmd = new OracleCommand();
                 cmd.Connection = conn;
                 cmd.BindByName = true;
-                cmd.CommandText = "update Toegangsreservering SET Betaald = 1 where gebruikerid = (select gebruikerid from bandje where RFIDcode = :param)";
+                cmd.CommandText = "update Toegangsreservering SET Betaald = 1 where gebruikerid = (select gebruikerid from bandje where RFIDcode = :param)and eventid = :par";
                 cmd.Parameters.Add("param", rfidtag);
+                cmd.Parameters.Add("par", eventid);
                 OracleDataReader dr = cmd.ExecuteReader();
                 dr.Read();
                 if (dr.HasRows)

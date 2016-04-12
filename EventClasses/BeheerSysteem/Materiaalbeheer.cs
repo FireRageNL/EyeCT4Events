@@ -38,7 +38,6 @@ namespace BeheerSysteem
             if (TbMerk.Text == "")
             {
                 string dbcommandzoeken = "select * from Materiaal where Productnaam ='" + Productnaam + "'" + "and Type ='" + Type + "'";
-                DatabaseAdmin.SendDbCommandvoid(dbcommandzoeken);
             }
 
             else if (TbProductnaam.Text == "")

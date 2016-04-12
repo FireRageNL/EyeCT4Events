@@ -24,13 +24,9 @@ namespace Toegangscontrole
         public Toegangscontrole(EventClasses.Login val)
         {
             InitializeComponent();
-            string[] eventnaam = tc.GetEvents();
+            List<string> eventnaam = tc.GetEvents();
 
-            int length = eventnaam.Length - 1;
-            for (int i = 0; i <= length; i++)
-            {
-                CbEvent.Items.Add(eventnaam[i]);
-            }
+            CbEvent.DataSource = eventnaam;
             this.val = val;
         }
 
@@ -39,7 +35,7 @@ namespace Toegangscontrole
             int RFID;
             int.TryParse(TbRFID.Text, out RFID);
 
-           CheckIn check= tc.CheckIn(RFID);
+           CheckIn check= tc.CheckIn(RFID,(CbEvent.SelectedIndex+1));
             LblNaam.Text = check.Naam;
             ChkBetaald.Checked = check.Betaald;
 
@@ -53,7 +49,7 @@ namespace Toegangscontrole
         {
             int RFID;
             int.TryParse(TbRFID.Text, out RFID);
-            Boolean check = tc.Betaald(RFID);
+            Boolean check = tc.Betaald(RFID , CbEvent.SelectedIndex + 1);
             ChkBetaald.Checked = check;
         }
 

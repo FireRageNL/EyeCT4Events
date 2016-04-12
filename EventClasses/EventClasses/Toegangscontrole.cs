@@ -10,17 +10,17 @@ namespace EventClasses
     {
         private DBAdmin db = new DBAdmin();
 
-        public string[] GetEvents()
+        public List<string> GetEvents()
         {
             return db.GetEvents();
         }
-        public CheckIn CheckIn(int rfidTag)
+        public CheckIn CheckIn(int rfidTag, int eventid)
         {
-            return db.CheckIn(rfidTag);
+            return db.CheckIn(rfidTag, eventid);
         }
-        public Boolean Betaald(int rfidtag)
+        public Boolean Betaald(int rfidtag , int eventid)
         {
-            return db.Betaald(rfidtag);
+            return db.Betaald(rfidtag , eventid);
         }
     }
 }

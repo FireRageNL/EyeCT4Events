@@ -50,6 +50,7 @@
     <Compile Include="Location.cs" />
     <Compile Include="Login.cs" />
     <Compile Include="LoginControl.cs" />
+    <Compile Include="Materiaalcontrole.cs" />
     <Compile Include="Media.cs" />
     <Compile Include="Message.cs" />
     <Compile Include="Object.cs" />
