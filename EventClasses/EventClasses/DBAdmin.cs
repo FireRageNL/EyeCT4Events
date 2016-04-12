@@ -4,33 +4,57 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Oracle.ManagedDataAccess.Types;
+using Oracle.ManagedDataAccess.Client;
+
 
 namespace EventClasses
 {
     public class DBAdmin
     {
-        public DAL Dal { get; private set; }
-        static DAL Start = new DAL();
-        DBAdmin DatabaseAdmin = new DBAdmin(Start);
+        private OracleConnection conn = new OracleConnection();
 
-        public DBAdmin(DAL dal)
+        public DBAdmin()
         {
+            conn.ConnectionString =
+                            "Data Source = (DESCRIPTION = (ADDRESS_LIST = (ADDRESS = (PROTOCOL = TCP)(HOST = fhictora01.fhict.local)(PORT = 1521)))(CONNECT_DATA = (SERVER = DEDICATED)(SERVICE_NAME = fhictora))); User ID = dbi347373; PASSWORD = Testpassword1234";
 
-            Dal = dal;
         }
 
-        public DataSet SendDbCommand(string command)
+        public string CheckLogin(string uname)
         {
-            DataSet returnval = Dal.ExecuteDbCommand(command);
-            return returnval;
+            try
+            {
+                conn.Open();
+                OracleCommand cmd = new OracleCommand();
+                cmd.Connection = conn;
+                cmd.CommandText = "SELECT Wachtwoord, Beheerder FROM Gebruiker WHERE Email='" + uname + "'";
+                cmd.CommandType = CommandType.Text;
+                OracleDataReader dr = cmd.ExecuteReader();
+                dr.Read();
+                string li = null;
+                if (dr.HasRows)
+        {
+                    li = dr.GetString(0) + "," + dr.GetInt32(1);
+                }
+                conn.Close();
+                return li;
         }
-
-        public void SendDbCommandvoid(string command)
+            catch (OracleException e)
         {
-            Dal.ExecuteDbCommand(command);
+                Console.WriteLine("Message: " + e.Message);
+                conn.Close();
+                return null;
+            }
         }
 
         public CheckIn CheckIn(int rfidtag)
+        {
+
+        }
+
+        //Checkin
+        public string checkname()
         {
             //Naam bezoeker checken
             DataTable dtnaam = new DataTable();

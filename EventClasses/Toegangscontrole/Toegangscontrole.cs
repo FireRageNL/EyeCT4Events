@@ -14,9 +14,17 @@ namespace Toegangscontrole
     public partial class Toegangscontrole : Form
     {
         private EventClasses.Toegangscontrole tc = new EventClasses.Toegangscontrole();
+        private EventClasses.Login val;
+
         public Toegangscontrole()
         {
             InitializeComponent();
+        }
+
+        public Toegangscontrole(EventClasses.Login val)
+        {
+            InitializeComponent();
+            this.val = val;
         }
 
         private void BtnCheck_Click(object sender, EventArgs e)

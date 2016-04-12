@@ -7,11 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using EventClasses;
 
 namespace SocialMediaPlatform
 {
     public partial class Login : Form
     {
+        LoginControl lg = new LoginControl();
+
         public Login()
         {
             InitializeComponent();
@@ -27,18 +30,17 @@ namespace SocialMediaPlatform
             }
             else
             {
-                EventClasses.Login user = new EventClasses.Login();
-                bool success = user.ValidateUser(email, password);
-                if (success)
+                EventClasses.Login val = lg.ValidateUser(email, password);
+                if (val != null)
                 {
-                    int alvl = user.AccessLevel;
+                    Form1 form = new Form1(val);
                 }
                 else
                 {
-                    MessageBox.Show("Verkeerde gebruikersnaam en/of wachtwoord ingevuld!");
-                    TbPassword.Text = "";
+                    MessageBox.Show("Verkeerde gebruikersnaam/wachtwoord ingevoerd!");
+                    TbPassword.Clear();
                 }
             }
-        }
+        }               
     }
 }

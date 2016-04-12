@@ -13,17 +13,25 @@ namespace BeheerSysteem
 {
     public partial class Materiaalbeheer : Form
     {
-        static DAL Start = new DAL();
-        DBAdmin DatabaseAdmin = new DBAdmin(Start);
+        private EventClasses.Login val;
+
+        //static DAL Start = new DAL();
+        // DBAdmin DatabaseAdmin = new DBAdmin(Start);
 
         public Materiaalbeheer()
         {
             InitializeComponent();
         }
 
+        public Materiaalbeheer(EventClasses.Login val)
+        {
+            InitializeComponent();
+            this.val = val;
+        }
+
         private void BtnZoeken_Click(object sender, EventArgs e)
         {
-            string Merk = TbMerk.Text;
+           /* string Merk = TbMerk.Text;
             string Productnaam = TbProductnaam.Text;
             string Type = TbType.Text;
 
@@ -44,7 +52,7 @@ namespace BeheerSysteem
                 string dbcommandzoeken = "select * from Materiaal where Merk ='" + Merk + "'" + "and Type ='" + Productnaam + "'";
                 DatabaseAdmin.SendDbCommandvoid(dbcommandzoeken);
             }
-
+            */
             //List<EventClasses.Object> materiaal = new List<EventClasses.Object>();
             //EventClasses.Object o = new EventClasses.Object(int objid, string objproductname, string objbrand, string objtype, string objdescription, decimal objrentprice);
             //materiaal.Add(o);

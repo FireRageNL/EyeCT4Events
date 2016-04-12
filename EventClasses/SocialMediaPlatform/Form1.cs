@@ -13,9 +13,17 @@ namespace SocialMediaPlatform
 {
     public partial class Form1 : Form
     {
+        private EventClasses.Login val;
+
         public Form1()
         {
             InitializeComponent();
+        }
+
+        public Form1(EventClasses.Login val)
+        {
+            InitializeComponent();
+            this.val = val;
         }
     }
 }

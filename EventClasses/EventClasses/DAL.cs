@@ -41,5 +41,11 @@ namespace EventClasses
                 return null;
             }
         }
+
+        public string FetchPassword(string email)
+        {
+            string password = null;
+            return password;
+        }
     }
 }

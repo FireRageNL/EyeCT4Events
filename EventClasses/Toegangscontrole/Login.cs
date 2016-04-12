@@ -7,11 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using EventClasses;
 
 namespace Toegangscontrole
 {
     public partial class Login : Form
     {
+        LoginControl lg = new LoginControl();
+
         public Login()
         {
             InitializeComponent();
@@ -27,19 +30,25 @@ namespace Toegangscontrole
             }
             else
             {
-                EventClasses.Login user = new EventClasses.Login();
-                bool success = user.ValidateUser(email, password);
-                if (success)
+                EventClasses.Login val = lg.ValidateUser(email, password);
+                if (val != null)
                 {
-                    int alvl = user.AccessLevel;
-                    Toegangscontrole check = new Toegangscontrole();
-                    this.Hide();
-                    check.Show();
+                    if (val.AccessLevel >= 1)
+                    {
+                        Toegangscontrole form1 = new Toegangscontrole(val);
+                        form1.Show();
+                        this.Hide();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Niet genoeg rechten om in te loggen!");
+                        TbPassword.Clear();
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Verkeerde gebruikersnaam en/of wachtwoord ingevuld!");
-                    TbPassword.Text = "";
+                    MessageBox.Show("Verkeerd wachtwoord/email in gevoerd!");
+                    TbPassword.Clear();
                 }
             }
         }

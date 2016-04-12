@@ -49,6 +49,7 @@
     <Compile Include="Group.cs" />
     <Compile Include="Location.cs" />
     <Compile Include="Login.cs" />
+    <Compile Include="LoginControl.cs" />
     <Compile Include="Media.cs" />
     <Compile Include="Message.cs" />
     <Compile Include="Object.cs" />
