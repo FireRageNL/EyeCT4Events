@@ -14,9 +14,7 @@ namespace BeheerSysteem
     public partial class Materiaalbeheer : Form
     {
         private EventClasses.Login val;
-
-        //static DAL Start = new DAL();
-        // DBAdmin DatabaseAdmin = new DBAdmin(Start);
+        private Materiaalcontrole mc = new Materiaalcontrole();
 
         public Materiaalbeheer()
         {
@@ -31,32 +29,54 @@ namespace BeheerSysteem
 
         private void BtnZoeken_Click(object sender, EventArgs e)
         {
-           /* string Merk = TbMerk.Text;
+            string Merk = TbMerk.Text;
             string Productnaam = TbProductnaam.Text;
-            string Type = TbType.Text;
 
-            if (TbMerk.Text == "")
+            int Type;
+            int.TryParse(TbType.Text, out Type);
+
+            if (TbMerk.Text == "" && TbProductnaam.Text != "" && TbType.Text != "")
             {
-                string dbcommandzoeken = "select * from Materiaal where Productnaam ='" + Productnaam + "'" + "and Type ='" + Type + "'";
+                List<EventClasses.Object> geenmerk = mc.Geenmerk(Productnaam, Type);
+                dataGridView1.DataSource = geenmerk;
             }
 
-            else if (TbProductnaam.Text == "")
+            else if (TbProductnaam.Text == "" && TbType.Text != "" && TbMerk.Text != "")
             {
-                string dbcommandzoeken = "select * from Materiaal where Merk ='" + Merk + "'" + "and Type ='" + Type + "'";
-                DatabaseAdmin.SendDbCommandvoid(dbcommandzoeken);
+            List<EventClasses.Object> Geenproductnaam = mc.Geenproductnaam(Merk, Type);
+            dataGridView1.DataSource = Geenproductnaam;
             }
 
-            else if (TbType.Text == "")
+            else if (TbType.Text == "" && TbProductnaam.Text != "" && TbMerk.Text != "")
             {
-                string dbcommandzoeken = "select * from Materiaal where Merk ='" + Merk + "'" + "and Type ='" + Productnaam + "'";
-                DatabaseAdmin.SendDbCommandvoid(dbcommandzoeken);
+                List<EventClasses.Object> Geentype = mc.Geentype(Merk, Productnaam);
+                dataGridView1.DataSource = Geentype;
             }
-            */
-            //List<EventClasses.Object> materiaal = new List<EventClasses.Object>();
-            //EventClasses.Object o = new EventClasses.Object(int objid, string objproductname, string objbrand, string objtype, string objdescription, decimal objrentprice);
-            //materiaal.Add(o);
-            //dataGridView1.DataSource = materiaal;
-            
+
+            else if (TbProductnaam.Text == "" && TbType.Text == "" && TbMerk.Text != "")
+            {
+                List<EventClasses.Object> Alleenmerk = mc.Alleenmerk(Merk);
+                dataGridView1.DataSource = Alleenmerk;
+            }
+
+            else if (TbProductnaam.Text == "" && TbType.Text != "" && TbMerk.Text == "")
+            {
+                List<EventClasses.Object> Alleentype = mc.Alleentype(Type);
+                dataGridView1.DataSource = Alleentype;
+            }
+
+            else if (TbProductnaam.Text != "" && TbType.Text == "" && TbMerk.Text == "")
+            {
+                List<EventClasses.Object> Alleenproductnaam = mc.Alleenproductnaam(Productnaam);
+                dataGridView1.DataSource = Alleenproductnaam;
+            }
+
+            else if (TbProductnaam.Text != "" && TbType.Text != "" && TbMerk.Text != "")
+            {
+                List<EventClasses.Object> Alles = mc.Alles(Productnaam , Merk , Type);
+                dataGridView1.DataSource = Alles;
+            }
+
         }
 
         private void BtnWissen_Click(object sender, EventArgs e)

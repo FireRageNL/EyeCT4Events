@@ -217,6 +217,263 @@ namespace EventClasses
 
             return true;
         }
+
+        public List<Object> Geenmerk(string productnaam , int type)
+            {
+
+            List<Object> rtn = new List<Object>();
+
+            try
+            {
+                conn.Open();
+                OracleCommand cmd = new OracleCommand();
+                cmd.Connection = conn;
+                cmd.BindByName = true;
+                cmd.CommandText = "select * from Materiaal where Productnaam = :param and TypeNR = :par";
+                cmd.Parameters.Add("param", productnaam);
+                cmd.Parameters.Add("par", type);
+                OracleDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    int id = dr.GetInt32(0);
+                    string merk = (dr.GetString(1));
+                    string Productname = (dr.GetString(2));
+                    int Type = (dr.GetInt32(3));
+                    decimal prijs = (dr.GetDecimal(4));
+                    Object toAdd = new Object(id, merk, Productname, Type, prijs);
+                    rtn.Add(toAdd);
+                }
+                conn.Close();
+                return rtn;
+            }
+            catch (OracleException e)
+            {
+                Console.WriteLine("Message: " + e.Message);
+                conn.Close();
+                return null;
+            }
+
+            }
+
+        public List<Object> Geenproductnaam(string Merk, int type)
+        {
+
+            List<Object> rtn = new List<Object>();
+
+            try
+            {
+                conn.Open();
+                OracleCommand cmd = new OracleCommand();
+                cmd.Connection = conn;
+                cmd.BindByName = true;
+                cmd.CommandText = "select * from Materiaal where Merk = :param and TypeNR = :par";
+                cmd.Parameters.Add("param", Merk);
+                cmd.Parameters.Add("par", type);
+                OracleDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    int id = dr.GetInt32(0);
+                    string merk = (dr.GetString(1));
+                    string Productname = (dr.GetString(2));
+                    int Type = (dr.GetInt32(3));
+                    decimal prijs = (dr.GetDecimal(4));
+                    Object toAdd = new Object(id, merk, Productname, Type, prijs);
+                    rtn.Add(toAdd);
+                }
+                conn.Close();
+                return rtn;
+            }
+            catch (OracleException e)
+            {
+                Console.WriteLine("Message: " + e.Message);
+                conn.Close();
+                return null;
+            }
+
+        }
+
+        public List<Object> Geentype(string Merk, string productnaam)
+        {
+
+            List<Object> rtn = new List<Object>();
+
+            try
+            {
+                conn.Open();
+                OracleCommand cmd = new OracleCommand();
+                cmd.Connection = conn;
+                cmd.BindByName = true;
+                cmd.CommandText = "select * from Materiaal where Merk = :param and Productnaam = :par";
+                cmd.Parameters.Add("param", Merk);
+                cmd.Parameters.Add("par", productnaam);
+                OracleDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    int id = dr.GetInt32(0);
+                    string merk = (dr.GetString(1));
+                    string Productname = (dr.GetString(2));
+                    int Type = (dr.GetInt32(3));
+                    decimal prijs = (dr.GetDecimal(4));
+                    Object toAdd = new Object(id, merk, Productname, Type, prijs);
+                    rtn.Add(toAdd);
+                }
+                conn.Close();
+                return rtn;
+            }
+            catch (OracleException e)
+            {
+                Console.WriteLine("Message: " + e.Message);
+                conn.Close();
+                return null;
+            }
+
+        }
+
+        public List<Object> Alleenmerk (string Merk)
+        {
+
+            List<Object> rtn = new List<Object>();
+
+            try
+            {
+                conn.Open();
+                OracleCommand cmd = new OracleCommand();
+                cmd.Connection = conn;
+                cmd.BindByName = true;
+                cmd.CommandText = "select * from Materiaal where Merk = :param";
+                cmd.Parameters.Add("param", Merk);
+                OracleDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    int id = dr.GetInt32(0);
+                    string merk = (dr.GetString(1));
+                    string Productname = (dr.GetString(2));
+                    int Type = (dr.GetInt32(3));
+                    decimal prijs = (dr.GetDecimal(4));
+                    Object toAdd = new Object(id, merk, Productname, Type, prijs);
+                    rtn.Add(toAdd);
+                }
+                conn.Close();
+                return rtn;
+            }
+            catch (OracleException e)
+            {
+                Console.WriteLine("Message: " + e.Message);
+                conn.Close();
+                return null;
+            }
+
+        }
+
+        public List<Object> Alleentype(int type)
+        {
+
+            List<Object> rtn = new List<Object>();
+
+            try
+            {
+                conn.Open();
+                OracleCommand cmd = new OracleCommand();
+                cmd.Connection = conn;
+                cmd.BindByName = true;
+                cmd.CommandText = "select * from Materiaal where TypeNR = :param";
+                cmd.Parameters.Add("param", type);
+                OracleDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    int id = dr.GetInt32(0);
+                    string merk = (dr.GetString(1));
+                    string Productname = (dr.GetString(2));
+                    int Type = (dr.GetInt32(3));
+                    decimal prijs = (dr.GetDecimal(4));
+                    Object toAdd = new Object(id, merk, Productname, Type, prijs);
+                    rtn.Add(toAdd);
+                }
+                conn.Close();
+                return rtn;
+            }
+            catch (OracleException e)
+            {
+                Console.WriteLine("Message: " + e.Message);
+                conn.Close();
+                return null;
+            }
+
+        }
+
+        public List<Object> Alleenproductnaam(string Alleenproductnaam)
+        {
+
+            List<Object> rtn = new List<Object>();
+
+            try
+            {
+                conn.Open();
+                OracleCommand cmd = new OracleCommand();
+                cmd.Connection = conn;
+                cmd.BindByName = true;
+                cmd.CommandText = "select * from Materiaal where Productnaam = :param";
+                cmd.Parameters.Add("param", Alleenproductnaam);
+                OracleDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    int id = dr.GetInt32(0);
+                    string merk = (dr.GetString(1));
+                    string Productname = (dr.GetString(2));
+                    int Type = (dr.GetInt32(3));
+                    decimal prijs = (dr.GetDecimal(4));
+                    Object toAdd = new Object(id, merk, Productname, Type, prijs);
+                    rtn.Add(toAdd);
+                }
+                conn.Close();
+                return rtn;
+            }
+            catch (OracleException e)
+            {
+                Console.WriteLine("Message: " + e.Message);
+                conn.Close();
+                return null;
+            }
+
+        }
+
+        public List<Object> Alles(string productnaam , string merk , int type)
+        {
+
+            List<Object> rtn = new List<Object>();
+
+            try
+            {
+                conn.Open();
+                OracleCommand cmd = new OracleCommand();
+                cmd.Connection = conn;
+                cmd.BindByName = true;
+                cmd.CommandText = "select * from Materiaal where Productnaam = :param and Merk = :para and TypeNr = :par";
+                cmd.Parameters.Add("param", productnaam);
+                cmd.Parameters.Add("para", merk);
+                cmd.Parameters.Add("par", type);
+                OracleDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    int id = dr.GetInt32(0);
+                    string Merk = (dr.GetString(1));
+                    string Productname = (dr.GetString(2));
+                    int Type = (dr.GetInt32(3));
+                    decimal prijs = (dr.GetDecimal(4));
+                    Object toAdd = new Object(id, Merk, Productname, Type, prijs);
+                    rtn.Add(toAdd);
+                }
+                conn.Close();
+                return rtn;
+            }
+            catch (OracleException e)
+            {
+                Console.WriteLine("Message: " + e.Message);
+                conn.Close();
+                return null;
+            }
+
+        }
     }
 }
 
