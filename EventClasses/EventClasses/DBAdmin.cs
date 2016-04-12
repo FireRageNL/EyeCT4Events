@@ -18,7 +18,6 @@ namespace EventClasses
         {
             conn.ConnectionString =
                             "Data Source = (DESCRIPTION = (ADDRESS_LIST = (ADDRESS = (PROTOCOL = TCP)(HOST = fhictora01.fhict.local)(PORT = 1521)))(CONNECT_DATA = (SERVER = DEDICATED)(SERVICE_NAME = fhictora))); User ID = dbi347373; PASSWORD = Testpassword1234";
-
         }
 
         public string CheckLogin(string uname)
@@ -48,62 +47,171 @@ namespace EventClasses
                 return null;
             }
         }
-
-        public CheckIn CheckIn(int rfidtag)
+        
+        public string[] GetEvents()
         {
+            string[] rtn = null;
+
+            try
+            {
+                conn.Open();
+                OracleCommand cmd = new OracleCommand();
+                cmd.Connection = conn;
+                cmd.CommandText = "Select Eventnaam from Event";
+                OracleDataReader dr = cmd.ExecuteReader();
+                int i = 0;
+                while (dr.Read())
+                {
+                        rtn[i] = dr.GetString(0);
+                        i++;
+                }
+                conn.Close();
+                return rtn;
+            }
+            catch (OracleException e)
+            {
+                Console.WriteLine("Message: " + e.Message);
+                conn.Close();
+                return null;
+            }
 
         }
-
         //Checkin
-        public string checkname()
+        public CheckIn CheckIn(int rfidtag)
         {
-            //Naam bezoeker checken
-            DataTable dtnaam = new DataTable();
-            string dbcommandnaam = "Select g.Naam from gebruiker g inner join bandje b on g.gebruikerid = b.gebruikerid where b.RIFDcode =" + rfidtag;
-            DataSet naam = DatabaseAdmin.SendDbCommand(dbcommandnaam);
-            dtnaam = naam.Tables[0];
-            string Naam = dtnaam.Rows[0][0].ToString();
-
-            //Aanwezigheid Checken/Aanpassen
-            DataTable dtaanwezig = new DataTable();
-            string dbcommandaanwezig = "Select a.Aanwezigheid from Aanwezig a inner join gebruiker g on a.gebruikerid = g.gebruikerid inner join bandje b on g.gebruikerid = b.gebruikerid where b.RIFDcode = RFID";
-            DataSet aanwezig = DatabaseAdmin.SendDbCommand(dbcommandaanwezig);
-            dtaanwezig = aanwezig.Tables[0];
-            int Aanwezig = Convert.ToInt32(dtaanwezig.Rows[0][0].ToString());
-
-            if (Aanwezig == 1)
-            {
-                Aanwezig = 0;
-                string dbchangestatus = "update Aanwezigheid from Aanwezig where Aanwezigheid = 0";
-                DatabaseAdmin.SendDbCommandvoid(dbchangestatus);
-            }
-            else if (Aanwezig == 0)
-            {
-                Aanwezig = 1;
-                string dbchangestatus = "update Aanwezigheid from Aanwezig where Aanwezigheid = 1";
-                DatabaseAdmin.SendDbCommandvoid(dbchangestatus);
-            }
-
-            //Betaaldstatus checken
-            DataTable dtbetaald = new DataTable();
-            string dbcommandbetaald = "Select t.Betaald from Toegangsreservering t inner join gebruiker g on t.gebruikerid = g.gebruikerid inner join bandje b on g.gebruikerid = b.gebruikerid where b.RIFDcode = RFID";
-            DataSet betaald = DatabaseAdmin.SendDbCommand(dbcommandbetaald);
-            dtbetaald = betaald.Tables[0];
-            int Betaald = Convert.ToInt32(dtbetaald.Rows[0][0].ToString());
+            string Naam = null;
+            int Aanwezig = 0;
             Boolean Payment = false;
 
-            if (Betaald == 1)
+            //Naam bezoeker checken
+            try
             {
-                Payment = true;
+                conn.Open();
+                OracleCommand cmd = new OracleCommand();
+                cmd.Connection = conn;
+                cmd.BindByName = true;
+                cmd.CommandText = "Select g.Voornaam , g.Achternaam from gebruiker g inner join bandje b on g.gebruikerid = b.gebruikerid inner join Toegangsreservering t on g.gebruikerid = t.gebruikerid where b.RFIDcode = :param";
+                cmd.Parameters.Add(new OracleParameter("param", rfidtag));
+                OracleDataReader dr = cmd.ExecuteReader();
+                dr.Read();
+                if (dr.HasRows)
+                {
+                    Naam = dr.GetString(0) + " " + dr.GetString(1);
+                }
+                conn.Close();
             }
-            else if (Betaald == 0)
+            catch (OracleException e)
             {
-                Payment = false;
+                Console.WriteLine("Message: " + e.Message);
+                conn.Close();
+                return null;
+            }
+
+
+            // Aanwezigheid checken
+            try
+            {
+                conn.Open();
+                OracleCommand cmd = new OracleCommand();
+                cmd.Connection = conn;
+                cmd.BindByName = true;
+                cmd.CommandText = "Select a.Aanwezigheid from Aanwezig a inner join gebruiker g on a.gebruikerid = g.gebruikerid inner join bandje b on g.gebruikerid = b.gebruikerid where b.RFIDcode = :param";
+                cmd.Parameters.Add("param", rfidtag);
+                OracleDataReader dr = cmd.ExecuteReader();
+                dr.Read();
+                if (dr.HasRows)
+                {
+                    Aanwezig = dr.GetInt32(0);
+                    if (Aanwezig == 1)
+                    {
+                        Aanwezig = 0;
+                        cmd.CommandText = "update Aanwezig SET Aanwezigheid = 0 where gebruikerid = (select gebruikerid from bandje where RFIDcode = :param)";
+                        cmd.Parameters.Add("param", rfidtag);
+                        cmd.ExecuteNonQuery();
+                    }
+                    else if (Aanwezig == 0)
+                    {
+                        Aanwezig = 1;
+                        cmd.CommandText = "update Aanwezig SET Aanwezigheid = 1 where gebruikerid = (select gebruikerid from bandje where RFIDcode = :param)";
+                        cmd.Parameters.Add("param", rfidtag);
+                        cmd.ExecuteNonQuery();
+                    }
+                }
+                conn.Close();
+            }
+            catch (OracleException e)
+            {
+                Console.WriteLine("Message: " + e.Message);
+                conn.Close();
+                return null;
+            }
+
+
+            //Betaaldstatus checken
+            try
+            {
+                conn.Open();
+                OracleCommand cmd = new OracleCommand();
+                cmd.Connection = conn;
+                cmd.BindByName = true;
+                cmd.CommandText = "Select t.Betaald from Toegangsreservering t inner join gebruiker g on t.gebruikerid = g.gebruikerid inner join bandje b on g.gebruikerid = b.gebruikerid where b.RFIDcode = :param";
+                cmd.Parameters.Add("param", rfidtag);
+                OracleDataReader dr = cmd.ExecuteReader();
+                dr.Read();
+                if (dr.HasRows)
+                {
+                    int Betaald = dr.GetInt32(0);
+
+                    if (Betaald == 1)
+                    {
+                        Payment = true;
+                    }
+                    else if (Betaald == 0)
+                    {
+                        Payment = false;
+                    }
+                }
+                conn.Close();
+            }
+            catch (OracleException e)
+            {
+                Console.WriteLine("Message: " + e.Message);
+                conn.Close();
+                return null;
             }
 
             //return
             CheckIn rtrn = new EventClasses.CheckIn(rfidtag, Naam, Aanwezig , Payment);
             return rtrn;
+        }
+
+        public Boolean Betaald(int rfidtag)
+        {
+            // gebruiker op heeft betaald zetten
+            try
+            {
+                conn.Open();
+                OracleCommand cmd = new OracleCommand();
+                cmd.Connection = conn;
+                cmd.BindByName = true;
+                cmd.CommandText = "update Toegangsreservering SET Betaald = 1 where gebruikerid = (select gebruikerid from bandje where RFIDcode = :param)";
+                cmd.Parameters.Add("param", rfidtag);
+                OracleDataReader dr = cmd.ExecuteReader();
+                dr.Read();
+                if (dr.HasRows)
+                {
+                    int Betaald = dr.GetInt32(0);
+                }
+                conn.Close();
+            }
+            catch (OracleException e)
+            {
+                Console.WriteLine("Message: " + e.Message);
+                conn.Close();
+                return false;
+            }
+
+            return true;
         }
     }
 }
