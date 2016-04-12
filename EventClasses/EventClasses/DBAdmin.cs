@@ -32,23 +32,13 @@ namespace EventClasses
 
         public CheckIn CheckIn(int rfidtag)
         {
-
-        }
-
-        //Checkin
-        public string checkname()
-        {
             //Naam bezoeker checken
             DataTable dtnaam = new DataTable();
-            string dbcommandnaam = "Select g.Naam from gebruiker g inner join bandje b on g.gebruikerid = b.gebruikerid where b.RIFDcode = RFID";
+            string dbcommandnaam = "Select g.Naam from gebruiker g inner join bandje b on g.gebruikerid = b.gebruikerid where b.RIFDcode =" + rfidtag;
             DataSet naam = DatabaseAdmin.SendDbCommand(dbcommandnaam);
             dtnaam = naam.Tables[0];
-            String Naam = dtnaam.Rows[0][0].ToString();
-            return Naam;
-        }
+            string Naam = dtnaam.Rows[0][0].ToString();
 
-        public int checkaanwezig()
-        {
             //Aanwezigheid Checken/Aanpassen
             DataTable dtaanwezig = new DataTable();
             string dbcommandaanwezig = "Select a.Aanwezigheid from Aanwezig a inner join gebruiker g on a.gebruikerid = g.gebruikerid inner join bandje b on g.gebruikerid = b.gebruikerid where b.RIFDcode = RFID";
@@ -56,7 +46,7 @@ namespace EventClasses
             dtaanwezig = aanwezig.Tables[0];
             int Aanwezig = Convert.ToInt32(dtaanwezig.Rows[0][0].ToString());
 
-            if (Aanwezig== 1)
+            if (Aanwezig == 1)
             {
                 Aanwezig = 0;
                 string dbchangestatus = "update Aanwezigheid from Aanwezig where Aanwezigheid = 0";
@@ -68,18 +58,27 @@ namespace EventClasses
                 string dbchangestatus = "update Aanwezigheid from Aanwezig where Aanwezigheid = 1";
                 DatabaseAdmin.SendDbCommandvoid(dbchangestatus);
             }
-            return Aanwezig;
-        }
 
-        public int checkbetaald()
-        {
             //Betaaldstatus checken
             DataTable dtbetaald = new DataTable();
             string dbcommandbetaald = "Select t.Betaald from Toegangsreservering t inner join gebruiker g on t.gebruikerid = g.gebruikerid inner join bandje b on g.gebruikerid = b.gebruikerid where b.RIFDcode = RFID";
             DataSet betaald = DatabaseAdmin.SendDbCommand(dbcommandbetaald);
             dtbetaald = betaald.Tables[0];
-            int payment = Convert.ToInt32(dtbetaald.Rows[0][0].ToString());
-            return payment;
+            int Betaald = Convert.ToInt32(dtbetaald.Rows[0][0].ToString());
+            Boolean Payment = false;
+
+            if (Betaald == 1)
+            {
+                Payment = true;
+            }
+            else if (Betaald == 0)
+            {
+                Payment = false;
+            }
+
+            //return
+            CheckIn rtrn = new EventClasses.CheckIn(rfidtag, Naam, Aanwezig , Payment);
+            return rtrn;
         }
     }
 }

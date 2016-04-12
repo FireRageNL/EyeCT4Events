@@ -12,24 +12,17 @@ namespace EventClasses
     {
       ////  static DAL Start = new DAL();
       //  DBAdmin DatabaseAdmin = new DBAdmin(Start);
-        public RFID RfidTag { get; private set; }
+        public int RfidTag { get; private set; }
         public int Aanwezig { get;  set; }
         public string Naam { get; private set; }
         public Boolean Betaald { get; private set; }
 
-        public CheckIn(int tag)
+        public CheckIn(int rfidTag, string naam , int aanwezig , Boolean betaald)
         {
-            //Naam = DatabaseAdmin.checkname();
-            //Aanwezig = DatabaseAdmin.checkaanwezig();
-
-            //if (DatabaseAdmin.checkbetaald() == 0)
-            //{
-            //    Betaald = false;
-            //}
-            //else
-            //{
-            //    Betaald = true;
-            //}
+            RfidTag = rfidTag;
+            Naam = naam;
+            Aanwezig = aanwezig;
+            Betaald = betaald;
         }
 
 
