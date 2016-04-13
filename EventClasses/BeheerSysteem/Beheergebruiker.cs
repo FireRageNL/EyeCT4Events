@@ -31,5 +31,22 @@ namespace BeheerSysteem
             List<EventClasses.User> User= gc.BeheerUser();
             listBox1.DataSource = User;
         }
+
+        private void BtnWijzigen_Click(object sender, EventArgs e)
+        {
+            EventClasses.User UpdateUser = (EventClasses.User)listBox1.SelectedItem;
+            UserDialog dia = new UserDialog(val, false, UpdateUser);
+            dia.ShowDialog();
+            List<EventClasses.User> BeheerUser= gc.BeheerUser();
+            listBox1.DataSource = BeheerUser;
+        }
+
+        private void BtnToevoegen_Click(object sender, EventArgs e)
+        {
+            UserDialog dia = new UserDialog(val, true);
+            dia.ShowDialog();
+            List<EventClasses.User> BeheerUser = gc.BeheerUser();
+            listBox1.DataSource = BeheerUser;
+        }
     }
 }
