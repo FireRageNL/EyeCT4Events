@@ -703,7 +703,7 @@ namespace EventClasses
                 OracleCommand cmd = new OracleCommand();
                 cmd.Connection = conn;
                 cmd.BindByName = true;
-                cmd.CommandText = "select * from Materiaal";
+                cmd.CommandText = "select * from Materiaal ORDER BY MateriaalID";
                 OracleDataReader dr = cmd.ExecuteReader();
                 while (dr.Read())
                 {
@@ -755,7 +755,7 @@ namespace EventClasses
                 OracleCommand cmd = new OracleCommand();
                 cmd.Connection = conn;
                 cmd.BindByName = true;
-                cmd.CommandText = "INSERT INTO MATERIAAL(MERK,PRODUCTNAAM,TYPENR,PRIJS VALUES(:mrk,:prdnm,:typenr,:price)";
+                cmd.CommandText = "INSERT INTO MATERIAAL(MERK,PRODUCTNAAM,TYPENR,PRIJS) VALUES(:mrk,:prdnm,:typenr,:price)";
                 cmd.Parameters.Add("mrk", brand);
                 cmd.Parameters.Add("prdnm", product);
                 cmd.Parameters.Add("typenr", typenr);
