@@ -43,7 +43,7 @@
             // BtnWissen
             // 
             this.BtnWissen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnWissen.Location = new System.Drawing.Point(374, 136);
+            this.BtnWissen.Location = new System.Drawing.Point(328, 137);
             this.BtnWissen.Name = "BtnWissen";
             this.BtnWissen.Size = new System.Drawing.Size(64, 23);
             this.BtnWissen.TabIndex = 23;
@@ -54,7 +54,7 @@
             // BtnZoeken
             // 
             this.BtnZoeken.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnZoeken.Location = new System.Drawing.Point(299, 136);
+            this.BtnZoeken.Location = new System.Drawing.Point(253, 137);
             this.BtnZoeken.Name = "BtnZoeken";
             this.BtnZoeken.Size = new System.Drawing.Size(64, 23);
             this.BtnZoeken.TabIndex = 22;
@@ -65,7 +65,7 @@
             // TbType
             // 
             this.TbType.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TbType.Location = new System.Drawing.Point(299, 97);
+            this.TbType.Location = new System.Drawing.Point(253, 98);
             this.TbType.Name = "TbType";
             this.TbType.Size = new System.Drawing.Size(139, 22);
             this.TbType.TabIndex = 21;
@@ -73,7 +73,7 @@
             // TbMerk
             // 
             this.TbMerk.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TbMerk.Location = new System.Drawing.Point(299, 67);
+            this.TbMerk.Location = new System.Drawing.Point(253, 68);
             this.TbMerk.Name = "TbMerk";
             this.TbMerk.Size = new System.Drawing.Size(139, 22);
             this.TbMerk.TabIndex = 20;
@@ -81,7 +81,7 @@
             // TbProductnaam
             // 
             this.TbProductnaam.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TbProductnaam.Location = new System.Drawing.Point(299, 35);
+            this.TbProductnaam.Location = new System.Drawing.Point(253, 36);
             this.TbProductnaam.Name = "TbProductnaam";
             this.TbProductnaam.Size = new System.Drawing.Size(139, 22);
             this.TbProductnaam.TabIndex = 19;
@@ -90,7 +90,7 @@
             // 
             this.LblType.AutoSize = true;
             this.LblType.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblType.Location = new System.Drawing.Point(250, 100);
+            this.LblType.Location = new System.Drawing.Point(204, 101);
             this.LblType.Name = "LblType";
             this.LblType.Size = new System.Drawing.Size(43, 16);
             this.LblType.TabIndex = 18;
@@ -100,7 +100,7 @@
             // 
             this.LblMerk.AutoSize = true;
             this.LblMerk.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblMerk.Location = new System.Drawing.Point(252, 70);
+            this.LblMerk.Location = new System.Drawing.Point(206, 71);
             this.LblMerk.Name = "LblMerk";
             this.LblMerk.Size = new System.Drawing.Size(41, 16);
             this.LblMerk.TabIndex = 17;
@@ -110,7 +110,7 @@
             // 
             this.LblProductnaam.AutoSize = true;
             this.LblProductnaam.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblProductnaam.Location = new System.Drawing.Point(202, 38);
+            this.LblProductnaam.Location = new System.Drawing.Point(156, 39);
             this.LblProductnaam.Name = "LblProductnaam";
             this.LblProductnaam.Size = new System.Drawing.Size(91, 16);
             this.LblProductnaam.TabIndex = 16;
@@ -122,7 +122,7 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(12, 197);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(710, 329);
+            this.dataGridView1.Size = new System.Drawing.Size(605, 329);
             this.dataGridView1.TabIndex = 24;
             // 
             // Materiaalbeheer
@@ -130,7 +130,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(734, 538);
+            this.ClientSize = new System.Drawing.Size(626, 538);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.BtnWissen);
             this.Controls.Add(this.BtnZoeken);
