@@ -23,6 +23,10 @@ namespace BeheerSysteem
             this.nw = nw;
             this.obj = obj;
             InitializeComponent();
+            TbMerk.Text = obj.Brand;
+            TbPrijs.Text = ""+obj.Rentprice;
+            TbProduct.Text = obj.Productname;
+            TbType.Text = "" + obj.Type;
         }
         public MateriaalDialog(EventClasses.Login val, bool nw)
         {
@@ -40,7 +44,7 @@ namespace BeheerSysteem
             else
             {
                 string brand = TbMerk.Text;
-                string product = TbMerk.Text;
+                string product = TbProduct.Text;
                 int typenr;
                 int price;
                 bool type = int.TryParse(TbPrijs.Text, out price);
@@ -57,6 +61,7 @@ namespace BeheerSysteem
                         mc.UpdateProduct(obj);
                     }
                 }
+                this.Dispose();
             }
         }
     }

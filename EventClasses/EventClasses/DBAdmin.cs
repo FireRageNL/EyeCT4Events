@@ -703,7 +703,7 @@ namespace EventClasses
                 OracleCommand cmd = new OracleCommand();
                 cmd.Connection = conn;
                 cmd.BindByName = true;
-                cmd.CommandText = "select * from Materiaal";
+                cmd.CommandText = "select * from Materiaal ORDER BY MateriaalID";
                 OracleDataReader dr = cmd.ExecuteReader();
                 while (dr.Read())
                 {
@@ -755,7 +755,7 @@ namespace EventClasses
                 OracleCommand cmd = new OracleCommand();
                 cmd.Connection = conn;
                 cmd.BindByName = true;
-                cmd.CommandText = "INSERT INTO MATERIAAL(MERK,PRODUCTNAAM,TYPENR,PRIJS VALUES(:mrk,:prdnm,:typenr,:price)";
+                cmd.CommandText = "INSERT INTO MATERIAAL(MERK,PRODUCTNAAM,TYPENR,PRIJS) VALUES(:mrk,:prdnm,:typenr,:price)";
                 cmd.Parameters.Add("mrk", brand);
                 cmd.Parameters.Add("prdnm", product);
                 cmd.Parameters.Add("typenr", typenr);
@@ -790,6 +790,40 @@ namespace EventClasses
             {
                 Console.WriteLine("Message: " + e.Message);
                 conn.Close();
+            }
+        }
+
+        public List<string> GetAanwezigheid(int evt)
+        {
+            List<string> rtn = new List<string>();
+            try
+            {
+                conn.Open();
+                OracleCommand cmd = new OracleCommand();
+                cmd.Connection = conn;
+                cmd.BindByName = true;
+                cmd.CommandText = "select a.aanwezigheid, g.voornaam, g.achternaam FROM aanwezig a, gebruiker g WHERE g.gebruikerid = a.gebruikerid AND a.EVENTID ="+evt;
+                OracleDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    int aanwezig = dr.GetInt32(0);
+                    string voornaam = dr.GetString(1);
+                    string achternaam = dr.GetString(2);
+                    if (aanwezig == 1)
+                    {
+                        string toAdd = voornaam + " " + achternaam;
+                        rtn.Add(toAdd);
+                    }
+                    
+                }
+                conn.Close();
+                return rtn;
+            }
+            catch (OracleException e)
+            {
+                Console.WriteLine("Message: " + e.Message);
+                conn.Close();
+                return null;
             }
         }
         public List<User> Geenachternaam(string email, string datum)

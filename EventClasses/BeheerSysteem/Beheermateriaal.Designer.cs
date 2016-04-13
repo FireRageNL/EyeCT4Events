@@ -62,6 +62,7 @@
             this.BtnWijzigen.TabIndex = 27;
             this.BtnWijzigen.Text = "Wijzigen";
             this.BtnWijzigen.UseVisualStyleBackColor = true;
+            this.BtnWijzigen.Click += new System.EventHandler(this.BtnWijzigen_Click);
             // 
             // BtnToevoegen
             // 
@@ -72,6 +73,7 @@
             this.BtnToevoegen.TabIndex = 28;
             this.BtnToevoegen.Text = "Toevoegen";
             this.BtnToevoegen.UseVisualStyleBackColor = true;
+            this.BtnToevoegen.Click += new System.EventHandler(this.BtnToevoegen_Click);
             // 
             // Beheermateriaal
             // 

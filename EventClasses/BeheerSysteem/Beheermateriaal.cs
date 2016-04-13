@@ -25,11 +25,32 @@ namespace BeheerSysteem
 
         private void BtnVerwijder_Click(object sender, EventArgs e)
         {
-            EventClasses.Object DeleteMateriaal = (EventClasses.Object)listBox1.SelectedItem;
-            mc.DeleteMateriaal(DeleteMateriaal);
+            DialogResult result = MessageBox.Show("Weet je zeker dat je dit object wilt verwijderen?", "Waarschuwing!",
+                MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                EventClasses.Object todelete = (EventClasses.Object) listBox1.SelectedItem;
+                mc.ToDelete(todelete);
+            }
+            List<EventClasses.Object> Beheer = mc.Beheer();
+            listBox1.DataSource = Beheer;
+        }
 
-            List<EventClasses.Object> BeheerMateriaal = mc.BeheerMateriaal();
-            listBox1.DataSource = BeheerMateriaal;
+        private void BtnWijzigen_Click(object sender, EventArgs e)
+        {
+            EventClasses.Object toUpdate = (EventClasses.Object)listBox1.SelectedItem;
+            MateriaalDialog dia = new MateriaalDialog(val,false,toUpdate);
+            dia.ShowDialog();
+            List<EventClasses.Object> Beheer = mc.Beheer();
+            listBox1.DataSource = Beheer;
+        }
+
+        private void BtnToevoegen_Click(object sender, EventArgs e)
+        {
+            MateriaalDialog dia = new MateriaalDialog(val,true);
+            dia.ShowDialog();
+            List<EventClasses.Object> Beheer = mc.Beheer();
+            listBox1.DataSource = Beheer;
         }
     }
 }

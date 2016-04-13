@@ -40,6 +40,7 @@
             this.BtnReset = new System.Windows.Forms.Button();
             this.Lblstaticevent = new System.Windows.Forms.Label();
             this.CbEvent = new System.Windows.Forms.ComboBox();
+            this.btnShowAll = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // LblTitel
@@ -158,7 +159,17 @@
             this.CbEvent.Name = "CbEvent";
             this.CbEvent.Size = new System.Drawing.Size(121, 21);
             this.CbEvent.TabIndex = 11;
-            this.CbEvent.SelectedIndexChanged += new System.EventHandler(this.CbEvent_SelectedIndexChanged);
+            // 
+            // btnShowAll
+            // 
+            this.btnShowAll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnShowAll.Location = new System.Drawing.Point(586, 187);
+            this.btnShowAll.Name = "btnShowAll";
+            this.btnShowAll.Size = new System.Drawing.Size(75, 46);
+            this.btnShowAll.TabIndex = 12;
+            this.btnShowAll.Text = "Toon Aanwezigen";
+            this.btnShowAll.UseVisualStyleBackColor = true;
+            this.btnShowAll.Click += new System.EventHandler(this.btnShowAll_Click);
             // 
             // Toegangscontrole
             // 
@@ -166,6 +177,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(725, 386);
+            this.Controls.Add(this.btnShowAll);
             this.Controls.Add(this.CbEvent);
             this.Controls.Add(this.Lblstaticevent);
             this.Controls.Add(this.BtnReset);
@@ -199,6 +211,7 @@
         private System.Windows.Forms.Button BtnReset;
         private System.Windows.Forms.Label Lblstaticevent;
         private System.Windows.Forms.ComboBox CbEvent;
+        public System.Windows.Forms.Button btnShowAll;
     }
 }
 
