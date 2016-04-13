@@ -16,11 +16,6 @@ namespace BeheerSysteem
         private EventClasses.Login val;
         private Materiaalcontrole mc = new Materiaalcontrole();
 
-        public Materiaalbeheer()
-        {
-            InitializeComponent();
-        }
-
         public Materiaalbeheer(EventClasses.Login val)
         {
             InitializeComponent();
@@ -86,5 +81,11 @@ namespace BeheerSysteem
             TbType.Text = "";
         }
 
+        private void BtnBeheer_Click(object sender, EventArgs e)
+        {
+            Beheermateriaal bm = new Beheermateriaal(val);
+            bm.Show();
+
+    }
     }
 }

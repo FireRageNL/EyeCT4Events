@@ -23,5 +23,10 @@ namespace EventClasses
             Type = objtype;
             Rentprice = objrentprice;
         }
+
+        public override string ToString()
+        {
+            return "     ID: " + ObjectID + "     Productnaam: " + Productname + "     Merk: " + Brand + "     Type: " + Type;
+        }
     }
 }

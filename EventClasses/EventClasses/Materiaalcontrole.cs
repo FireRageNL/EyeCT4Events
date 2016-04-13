@@ -41,5 +41,13 @@ namespace EventClasses
         {
             return db.Alles(productnaam , merk , type);
         }
+        public List<Object> Beheer()
+        {
+            return db.Beheer();
+        }
+        public void ToDelete(Object todelete)
+        {
+           db.ToDelete(todelete);
+        }
     }
 }

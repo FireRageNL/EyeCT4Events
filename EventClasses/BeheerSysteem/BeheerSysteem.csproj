@@ -45,7 +45,13 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
-    <ItemGroup>
+  <ItemGroup>
+    <Compile Include="Beheermateriaal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Beheermateriaal.Designer.cs">
+      <DependentUpon>Beheermateriaal.cs</DependentUpon>
+    </Compile>
     <Compile Include="Gebruikerbeheer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -66,6 +72,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Beheermateriaal.resx">
+      <DependentUpon>Beheermateriaal.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Gebruikerbeheer.resx">
       <DependentUpon>Gebruikerbeheer.cs</DependentUpon>
     </EmbeddedResource>

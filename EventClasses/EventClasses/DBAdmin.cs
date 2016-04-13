@@ -691,5 +691,60 @@ namespace EventClasses
                 conn.Close();
             }
         }
+
+        public List<Object> Beheer()
+        {
+
+            List<Object> rtn = new List<Object>();
+
+            try
+            {
+                conn.Open();
+                OracleCommand cmd = new OracleCommand();
+                cmd.Connection = conn;
+                cmd.BindByName = true;
+                cmd.CommandText = "select * from Materiaal";
+                OracleDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    int id = dr.GetInt32(0);
+                    string merk = (dr.GetString(1));
+                    string Productname = (dr.GetString(2));
+                    int Type = (dr.GetInt32(3));
+                    decimal prijs = (dr.GetDecimal(4));
+                    Object toAdd = new Object(id, merk, Productname, Type, prijs);
+                    rtn.Add(toAdd);
+                }
+                conn.Close();
+                return rtn;
+            }
+            catch (OracleException e)
+            {
+                Console.WriteLine("Message: " + e.Message);
+                conn.Close();
+                return null;
+            }
+
+        }
+
+        public void ToDelete(Object todelete)
+        {
+            try
+            {
+                conn.Open();
+                OracleCommand cmd = new OracleCommand();
+                cmd.Connection = conn;
+                cmd.BindByName = true;
+                cmd.CommandText = "DELETE FROM Materiaal WHERE MateriaalID = :param";
+                cmd.Parameters.Add("param",todelete.ObjectID);
+                cmd.ExecuteNonQuery();
+                conn.Close();
+            }
+            catch (OracleException e)
+            {
+                Console.WriteLine("Message: " + e.Message);
+                conn.Close();
+            }
+        }
     }
 }

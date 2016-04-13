@@ -37,6 +37,7 @@
             this.LblMerk = new System.Windows.Forms.Label();
             this.LblProductnaam = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.BtnBeheer = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -125,12 +126,24 @@
             this.dataGridView1.Size = new System.Drawing.Size(605, 329);
             this.dataGridView1.TabIndex = 24;
             // 
+            // BtnBeheer
+            // 
+            this.BtnBeheer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnBeheer.Location = new System.Drawing.Point(480, 53);
+            this.BtnBeheer.Name = "BtnBeheer";
+            this.BtnBeheer.Size = new System.Drawing.Size(78, 53);
+            this.BtnBeheer.TabIndex = 25;
+            this.BtnBeheer.Text = "Beheer";
+            this.BtnBeheer.UseVisualStyleBackColor = true;
+            this.BtnBeheer.Click += new System.EventHandler(this.BtnBeheer_Click);
+            // 
             // Materiaalbeheer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(626, 538);
+            this.Controls.Add(this.BtnBeheer);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.BtnWissen);
             this.Controls.Add(this.BtnZoeken);
@@ -159,5 +172,6 @@
         private System.Windows.Forms.Label LblMerk;
         private System.Windows.Forms.Label LblProductnaam;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Button BtnBeheer;
     }
 }

@@ -14,11 +14,9 @@ namespace BeheerSysteem
     public partial class Login : Form
     {
         LoginControl lg = new LoginControl();
-
         public Login()
         {
             InitializeComponent();
-
         }
 
         private void BtnInloggen_Click(object sender, EventArgs e)
@@ -29,6 +27,7 @@ namespace BeheerSysteem
             {
                 MessageBox.Show("Vul alle velden in a.u.b.");
             }
+
             else
             {
                 EventClasses.Login val = lg.ValidateUser(email, password);
