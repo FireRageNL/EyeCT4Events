@@ -39,12 +39,20 @@ namespace BeheerSysteem
                         Materiaalbeheer form1 = new Materiaalbeheer(val);
                         form1.Show();
                         this.Hide();
+                        form1.Closed += (sender1, args) =>
+                        {
+                            this.Close();
+                        };
                     }
                     if (val.AccessLevel == 2)
                     {
                         FormGebruikersBeheer form = new FormGebruikersBeheer(val);
                         form.Show();
                         this.Hide();
+                        form.Closed += (sender1, args) =>
+                        {
+                            this.Close();
+                        };
                     }
                     else
                     {

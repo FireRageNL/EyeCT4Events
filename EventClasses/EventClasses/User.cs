@@ -22,8 +22,6 @@ namespace EventClasses
 
         public List<TicketReservation> Reserve { get; private set; }
 
-        public Login ULogin { get; private set; }
-
         public User(int uid, string uname, Adress add, RFID rf, string uemail, TicketReservation tickreserve = null)
         {
             UserID = uid;
@@ -36,6 +34,14 @@ namespace EventClasses
                 Reserve.Add(tickreserve);
             }
         }
+
+        public User(int uid, string uname, string uemail)
+        {
+            UserID = uid;
+            Name = uname;
+            Emailadres = uemail;
+        }
+
         public static User FindUser(string uname, string uemail)
         {
             if (uname == null)
@@ -66,17 +72,6 @@ namespace EventClasses
         public void DeleteUser(User deluser)
         {
             //Code to delete user from database
-        }
-
-        public static void LoginUser(Login usrlogin, User usr)
-        {
-            usr.ULogin = usrlogin;
-        }
-
-        public int CheckAccess()
-        {
-            int alvl = ULogin.AccessLevel;
-            return alvl;
         }
     }
 }
