@@ -19,22 +19,6 @@ namespace EventClasses
         {
             return db.GetContents(postid);
         }
-        public bool PostMessage(Message pmessage)
-        {
-            return false;
-        }
-
-        public bool DeleteMessage(Message dMessage)
-        {
-            //Delete the selected message from the database. Return true or false depending on outcome.
-            return false;
-        }
-
-        public bool UpdateMessage(Message uMessage)
-        {
-            //Update the message with the updated content, return true or false depeinding on outcome.
-            return false;
-        }
 
         public void PostReply(string message, Media parent, int userid)
         {

@@ -20,7 +20,7 @@ namespace EventClasses
             conn.ConnectionString =
                             "Data Source = (DESCRIPTION = (ADDRESS_LIST = (ADDRESS = (PROTOCOL = TCP)(HOST = fhictora01.fhict.local)(PORT = 1521)))(CONNECT_DATA = (SERVER = DEDICATED)(SERVICE_NAME = fhictora))); User ID = dbi347373; PASSWORD = Testpassword1234";
         }
-
+        //Check if email and password are correct
         public string CheckLogin(string uname)
         {
             try
@@ -48,7 +48,7 @@ namespace EventClasses
                 return null;
             }
         }
-
+        //Fetch the data about a user using e-mail address
         public User GetUser(string uemail, bool intrnl = false)
         {
             try
@@ -80,6 +80,7 @@ namespace EventClasses
                 return null;
             }
         }
+        //fetch the data about a user using userID
         public User GetUser(int uid, bool intrnl = false)
         {
             try
@@ -111,6 +112,7 @@ namespace EventClasses
                 return null;
             }
         }
+        //Get all events
         public List<string> GetEvents()
         {
             List<string> rtn = new List<string>();
@@ -537,7 +539,7 @@ namespace EventClasses
             }
 
         }
-
+        //Fetch all main posts in the database
         public List<string> GetPosts()
         {
             List<string> rtn = new List<string>();
@@ -563,7 +565,7 @@ namespace EventClasses
                 return null;
             }
         }
-
+        //Fetch the contents of a post, including replies
         public List<Message> GetContents(int postid)
         {
             List<Message> rtn = new List<Message>();
@@ -617,7 +619,7 @@ namespace EventClasses
                 return null;
             }
         }
-
+        //Post a reply to a post into the database
         public void PostReply(string message, Media parent, int userid)
         {
             try
@@ -639,7 +641,7 @@ namespace EventClasses
                 conn.Close();
             }
         }
-
+        //Create a new post in the database
         public void NewPost(string message, string url,string type, Login val)
         {
             try
@@ -691,5 +693,3 @@ namespace EventClasses
         }
     }
 }
-
-
