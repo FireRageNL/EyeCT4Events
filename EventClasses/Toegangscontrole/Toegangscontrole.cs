@@ -59,9 +59,10 @@ namespace Toegangscontrole
             LblNaam.Text = "";
             ChkBetaald.Checked = false;
         }
-
-        private void CbEvent_SelectedIndexChanged(object sender, EventArgs e)
+        private void btnShowAll_Click(object sender, EventArgs e)
         {
+            Gebruikerslijst gl = new Gebruikerslijst(CbEvent.SelectedIndex + 1);
+            gl.Show();
 
         }
     }

@@ -22,5 +22,10 @@ namespace EventClasses
         {
             return db.Betaald(rfidtag , eventid);
         }
+
+       public List<string> GetAanwezigheid(int evt)
+       {
+           return db.GetAanwezigheid(evt);
+       }
     }
 }

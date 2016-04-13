@@ -792,5 +792,39 @@ namespace EventClasses
                 conn.Close();
             }
         }
+
+        public List<string> GetAanwezigheid(int evt)
+        {
+            List<string> rtn = new List<string>();
+            try
+            {
+                conn.Open();
+                OracleCommand cmd = new OracleCommand();
+                cmd.Connection = conn;
+                cmd.BindByName = true;
+                cmd.CommandText = "select a.aanwezigheid, g.voornaam, g.achternaam FROM aanwezig a, gebruiker g WHERE g.gebruikerid = a.gebruikerid AND a.EVENTID ="+evt;
+                OracleDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    int aanwezig = dr.GetInt32(0);
+                    string voornaam = dr.GetString(1);
+                    string achternaam = dr.GetString(2);
+                    if (aanwezig == 1)
+                    {
+                        string toAdd = voornaam + " " + achternaam;
+                        rtn.Add(toAdd);
+                    }
+                    
+                }
+                conn.Close();
+                return rtn;
+            }
+            catch (OracleException e)
+            {
+                Console.WriteLine("Message: " + e.Message);
+                conn.Close();
+                return null;
+            }
+        }
     }
 }
