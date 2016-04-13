@@ -9,9 +9,11 @@ namespace EventClasses
 {
     public class Adress
     {
+        public int AdresID { get; private set; }
+
         public string Street { get; private set; }
 
-        public string Number { get; private set; }
+        public int Number { get; private set; }
 
         public string City { get; private set; }
 
@@ -19,37 +21,17 @@ namespace EventClasses
 
         public string Zipcode { get; private set; }
 
-        public Adress(string str, string num, string cty, string cntry, string zip)
+        public string Addition { get; private set; }
+
+        public Adress(int aid, string str, int num, string cty, string cntry, string zip, string add)
         {
+            AdresID = aid;
             Street = str;
             Number = num;
             City = cty;
             Country = cntry;
             Zipcode = zip;
-            //push to db
+            Addition = add;
         }
-
-        public Adress FindAdress(string str)
-        {
-            //search on streetname
-            return null;
-        }
-
-        public void UpdateAdress(string str, string num, string cty, string cntry, string zip)
-        {
-            Street = str;
-            Number = num;
-            City = cty;
-            Country = cntry;
-            Zipcode = zip;
-            //push to db
-        }
-
-        public void DeleteAdress(Adress toDelete)
-        {
-            //delete from db
-        }
-
-
     }
 }

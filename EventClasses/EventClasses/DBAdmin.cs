@@ -826,5 +826,86 @@ namespace EventClasses
                 return null;
             }
         }
+
+        public List<Event> GetEvent()
+        {
+            List<Event> rtn = new List<Event>();
+
+            try
+            {
+                conn.Open();
+                OracleCommand cmd = new OracleCommand();
+                cmd.Connection = conn;
+                cmd.CommandText = "Select * from Event";
+                OracleDataReader dr = cmd.ExecuteReader();
+                List<Adress> adr = GetAdress(); 
+                while (dr.Read())
+                {
+                    int eventid = dr.GetInt32(0);
+                    string name = dr.GetString(1);
+                    int adresid = dr.GetInt32(4);
+                    Adress eventadres = null;
+                    foreach (Adress ad in adr)
+                    {
+                        if (ad.AdresID == adresid)
+                        {
+                            eventadres = ad;
+                        }
+                    }
+                    Event add = new Event(eventadres,name,eventid);
+                    rtn.Add(add);
+                }
+                conn.Close();
+                return rtn;
+            }
+            catch (OracleException e)
+            {
+                Console.WriteLine("Message: " + e.Message);
+                conn.Close();
+                return null;
+            }
+        }
+
+        public List<Adress> GetAdress()
+        {
+            List<Adress> rtn = new List<Adress>();
+
+            try
+            {
+                bool intern = false;
+                if (conn.State != ConnectionState.Open)
+                {
+                    conn.Open();
+                    intern = true;
+                }
+                OracleCommand cmd = new OracleCommand();
+                cmd.Connection = conn;
+                cmd.CommandText = "Select * from Adres";
+                OracleDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    int aid = dr.GetInt32(0);
+                    string country = dr.GetString(1);
+                    string zip = dr.GetString(2);
+                    string city = dr.GetString(3);
+                    string street = dr.GetString(4);
+                    int number = dr.GetInt32(5);
+                    string toevoeging = dr.GetString(6);
+                    Adress add = new Adress(aid,street,number,city,country,zip,toevoeging);
+                    rtn.Add(add);
+                }
+                if (!intern)
+                {
+                    conn.Close();
+                }
+                return rtn;
+            }
+            catch (OracleException e)
+            {
+                Console.WriteLine("Message: " + e.Message);
+                conn.Close();
+                return null;
+            }
+        }
     }
 }

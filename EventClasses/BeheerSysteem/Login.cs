@@ -35,7 +35,7 @@ namespace BeheerSysteem
                 {
                     if (val.AccessLevel == 1)
                     {
-                        Materiaalbeheer form1 = new Materiaalbeheer(val);
+                        EventBeheer form1 = new EventBeheer(val);
                         form1.Show();
                         this.Hide();
                         form1.Closed += (sender1, args) =>
