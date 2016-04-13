@@ -29,28 +29,28 @@ namespace BeheerSysteem
                 MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
-                EventClasses.Object todelete = (EventClasses.Object) listBox1.SelectedItem;
-                mc.ToDelete(todelete);
+                EventClasses.Object DeleteMateriaal = (EventClasses.Object) listBox1.SelectedItem;
+                mc.DeleteMateriaal(DeleteMateriaal);
             }
-            List<EventClasses.Object> Beheer = mc.Beheer();
-            listBox1.DataSource = Beheer;
+            List<EventClasses.Object> BeheerMateriaal = mc.BeheerMateriaal();
+            listBox1.DataSource = BeheerMateriaal;
         }
 
         private void BtnWijzigen_Click(object sender, EventArgs e)
         {
-            EventClasses.Object toUpdate = (EventClasses.Object)listBox1.SelectedItem;
-            MateriaalDialog dia = new MateriaalDialog(val,false,toUpdate);
+            EventClasses.Object UpdateMateriaal = (EventClasses.Object)listBox1.SelectedItem;
+            MateriaalDialog dia = new MateriaalDialog(val,false, UpdateMateriaal);
             dia.ShowDialog();
-            List<EventClasses.Object> Beheer = mc.Beheer();
-            listBox1.DataSource = Beheer;
+            List<EventClasses.Object> BeheerMateriaal = mc.BeheerMateriaal();
+            listBox1.DataSource = BeheerMateriaal;
         }
 
         private void BtnToevoegen_Click(object sender, EventArgs e)
         {
             MateriaalDialog dia = new MateriaalDialog(val,true);
             dia.ShowDialog();
-            List<EventClasses.Object> Beheer = mc.Beheer();
-            listBox1.DataSource = Beheer;
+            List<EventClasses.Object> BeheerMateriaal = mc.BeheerMateriaal();
+            listBox1.DataSource = BeheerMateriaal;
         }
     }
 }
