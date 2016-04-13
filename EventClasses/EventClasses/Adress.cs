@@ -33,5 +33,15 @@ namespace EventClasses
             Zipcode = zip;
             Addition = add;
         }
+
+        public void Update(string str, int num, string cty, string cntry, string zip, string add)
+        {
+            Street = str;
+            Number = num;
+            City = cty;
+            Country = cntry;
+            Zipcode = zip;
+            Addition = add;
+        }
     }
 }

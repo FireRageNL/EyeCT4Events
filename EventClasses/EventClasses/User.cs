@@ -14,7 +14,7 @@ namespace EventClasses
 
         public string Name { get; private set; }
 
-        public List<Adress> Adress { get; private set; }
+        public Adress Adress { get; private set; }
 
         public string Emailadres { get; private set; }
 
@@ -28,7 +28,7 @@ namespace EventClasses
         {
             UserID = uid;
             Name = uname;
-            Adress.Add(add);
+            Adress = add;
             Emailadres = uemail;
             if (tickreserve != null)
             {
@@ -51,9 +51,27 @@ namespace EventClasses
             Emailadres = uemail;
         }
 
+        public User(int id, string naam, string email, string datum, decimal budget, Adress uadres)
+        {
+            UserID = id;
+            Name = naam;
+            Emailadres = email;
+            Date = datum;
+            Budget = budget;
+            Adress = uadres;
+        }
+
         public override string ToString()
         {
             return "     ID: " + UserID + "     Naam: " + Name + "     Email: " + Emailadres + "     Geboortedatum: " + Date;
+        }
+
+        public void Update(string naam,string email, string datum, decimal budget)
+        {
+            Name = naam;
+            Emailadres = email;
+            Date = datum;
+            Budget = budget;
         }
     }
 }

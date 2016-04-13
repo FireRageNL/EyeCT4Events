@@ -50,14 +50,14 @@ namespace EventClasses
             db.DeleteUser(DeleteUser);
         }
 
-        public void UpdateUser(User user)
+        public void UpdateUser(User user, string password = null)
         {
-            db.UpdateUser(user);
+            db.UpdateUser(user,password);
         }
 
-        public void AddUser(string Naam, string Wachtwoord, int AdresID , string Date , string Email, decimal Budget)
+        public void AddUser(string Naam, string Wachtwoord, string Date , string Email, decimal Budget, string straat, int nr, string toe, string plaats, string postcode, string land)
         {
-           db.AddUser(Naam,Wachtwoord,AdresID,Date,Email,Budget);
+           db.AddUser(Naam,Wachtwoord,Date,Email,Budget,straat,nr,toe,plaats,postcode,land);
         }
 
     }
