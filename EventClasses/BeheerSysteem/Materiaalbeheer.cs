@@ -79,6 +79,7 @@ namespace BeheerSysteem
             TbProductnaam.Text = "";
             TbMerk.Text = "";
             TbType.Text = "";
+            dataGridView1.DataSource = null;
         }
 
         private void BtnBeheer_Click(object sender, EventArgs e)

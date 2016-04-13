@@ -41,13 +41,13 @@ namespace EventClasses
         {
             return db.Alles(productnaam , merk , type);
         }
-        public List<Object> Beheer()
+        public List<Object> BeheerMateriaal()
         {
-            return db.Beheer();
+            return db.BeheerMateriaal();
         }
-        public void ToDelete(Object todelete)
+        public void DeleteMateriaal(Object DeleteMateriaal)
         {
-           db.ToDelete(todelete);
+           db.DeleteMateriaal(DeleteMateriaal);
         }
 
         public void UpdateProduct(Object obj)

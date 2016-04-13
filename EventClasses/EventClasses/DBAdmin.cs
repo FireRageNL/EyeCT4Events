@@ -692,7 +692,7 @@ namespace EventClasses
             }
         }
 
-        public List<Object> Beheer()
+        public List<Object> BeheerMateriaal()
         {
 
             List<Object> rtn = new List<Object>();
@@ -727,7 +727,7 @@ namespace EventClasses
 
         }
 
-        public void ToDelete(Object todelete)
+        public void DeleteMateriaal(Object DeleteMateriaal)
         {
             try
             {
@@ -736,7 +736,7 @@ namespace EventClasses
                 cmd.Connection = conn;
                 cmd.BindByName = true;
                 cmd.CommandText = "DELETE FROM Materiaal WHERE MateriaalID = :param";
-                cmd.Parameters.Add("param",todelete.ObjectID);
+                cmd.Parameters.Add("param",DeleteMateriaal.ObjectID);
                 cmd.ExecuteNonQuery();
                 conn.Close();
             }
@@ -792,5 +792,379 @@ namespace EventClasses
                 conn.Close();
             }
         }
+        public List<User> Geenachternaam(string email, string datum)
+        {
+
+            List<User> rtn = new List<User>();
+
+            try
+            {
+                conn.Open();
+                OracleCommand cmd = new OracleCommand();
+                cmd.Connection = conn;
+                cmd.BindByName = true;
+                cmd.CommandText = "select * from Gebruiker where email = :param and geboortedatum = :par";
+                cmd.Parameters.Add("param", email);
+                cmd.Parameters.Add("par", datum);
+                OracleDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    int id = dr.GetInt32(0);
+                    string Naam = dr.GetString(3) + " " + dr.GetString(4);
+                    string Email = (dr.GetString(6));
+                    string Datum = (dr.GetOracleDate(5).ToString());
+                    User toAdd = new User(id, Naam, Email, Datum);
+                    rtn.Add(toAdd);
+                }
+                conn.Close();
+                return rtn;
+            }
+            catch (OracleException e)
+            {
+                Console.WriteLine("Message: " + e.Message);
+                conn.Close();
+                return null;
+            }
+
+        }
+
+        public List<User> Geenemail(string achternaam, string datum)
+        {
+
+            List<User> rtn = new List<User>();
+
+            try
+            {
+                conn.Open();
+                OracleCommand cmd = new OracleCommand();
+                cmd.Connection = conn;
+                cmd.BindByName = true;
+                cmd.CommandText = "select * from Gebruiker where achternaam = :param and geboortedatum = :par";
+                cmd.Parameters.Add("param", achternaam);
+                cmd.Parameters.Add("par", datum);
+                OracleDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    int id = dr.GetInt32(0);
+                    string Naam = dr.GetString(3) + " " + dr.GetString(4);
+                    string Email = (dr.GetString(6));
+                    string Datum = (dr.GetOracleDate(5).ToString());
+
+                    User toAdd = new User(id, Naam, Email, Datum);
+                    rtn.Add(toAdd);
+                }
+                conn.Close();
+                return rtn;
+            }
+            catch (OracleException e)
+            {
+                Console.WriteLine("Message: " + e.Message);
+                conn.Close();
+                return null;
+            }
+
+        }
+
+        public List<User> Geendatum(string achternaam, string email)
+        {
+
+            List<User> rtn = new List<User>();
+
+            try
+            {
+                conn.Open();
+                OracleCommand cmd = new OracleCommand();
+                cmd.Connection = conn;
+                cmd.BindByName = true;
+                cmd.CommandText = "select * from Gebruiker where achternaam = :param and email = :par";
+                cmd.Parameters.Add("param", achternaam);
+                cmd.Parameters.Add("par", email);
+                OracleDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    int id = dr.GetInt32(0);
+                    string Naam = dr.GetString(3) + " " + dr.GetString(4);
+                    string Email = (dr.GetString(6));
+                    string Datum = (dr.GetOracleDate(5).ToString());
+                    User toAdd = new User(id, Naam, Email, Datum);
+                    rtn.Add(toAdd);
+                }
+                conn.Close();
+                return rtn;
+            }
+            catch (OracleException e)
+            {
+                Console.WriteLine("Message: " + e.Message);
+                conn.Close();
+                return null;
+            }
+
+        }
+
+        public List<User> Alleenachternaam(string achternaam)
+        {
+
+            List<User> rtn = new List<User>();
+
+            try
+            {
+                conn.Open();
+                OracleCommand cmd = new OracleCommand();
+                cmd.Connection = conn;
+                cmd.BindByName = true;
+                cmd.CommandText = "select * from Gebruiker where achternaam = :param";
+                cmd.Parameters.Add("param", achternaam);
+                OracleDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    int id = dr.GetInt32(0);
+                    string Naam = dr.GetString(3) + " " + dr.GetString(4);
+                    string Email = (dr.GetString(6));
+                    string Datum = (dr.GetOracleDate(5).ToString());
+                    User toAdd = new User(id, Naam, Email, Datum);
+                    rtn.Add(toAdd);
+                }
+                conn.Close();
+                return rtn;
+            }
+            catch (OracleException e)
+            {
+                Console.WriteLine("Message: " + e.Message);
+                conn.Close();
+                return null;
+            }
+
+        }
+
+        public List<User> Alleendatum(string datum)
+        {
+
+            List<User> rtn = new List<User>();
+
+            try
+            {
+                conn.Open();
+                OracleCommand cmd = new OracleCommand();
+                cmd.Connection = conn;
+                cmd.BindByName = true;
+                cmd.CommandText = "select * from Gebruiker where geboortedatum = :param";
+                cmd.Parameters.Add("param", datum);
+                OracleDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    int id = dr.GetInt32(0);
+                    string Naam = dr.GetString(3) + " " + dr.GetString(4);
+                    string Email = (dr.GetString(6));
+                    string Datum = (dr.GetOracleDate(5).ToString());
+                    User toAdd = new User(id, Naam, Email, Datum);
+                    rtn.Add(toAdd);
+                }
+                conn.Close();
+                return rtn;
+            }
+            catch (OracleException e)
+            {
+                Console.WriteLine("Message: " + e.Message);
+                conn.Close();
+                return null;
+            }
+
+        }
+
+        public List<User> Alleenemail(string email)
+        {
+
+            List<User> rtn = new List<User>();
+
+            try
+            {
+                conn.Open();
+                OracleCommand cmd = new OracleCommand();
+                cmd.Connection = conn;
+                cmd.BindByName = true;
+                cmd.CommandText = "select * from Gebruiker where email = :param";
+                cmd.Parameters.Add("param", email);
+                OracleDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    int id = dr.GetInt32(0);
+                    string Naam = dr.GetString(3) + " " + dr.GetString(4);
+                    string Email = (dr.GetString(6));
+                    string Datum = (dr.GetOracleDate(5).ToString());
+                    User toAdd = new User(id, Naam, Email, Datum);
+                    rtn.Add(toAdd);
+                }
+                conn.Close();
+                return rtn;
+            }
+            catch (OracleException e)
+            {
+                Console.WriteLine("Message: " + e.Message);
+                conn.Close();
+                return null;
+            }
+
+        }
+
+        public List<User> Alles(string email, string achternaam, string datum)
+        {
+
+            List<User> rtn = new List<User>();
+
+            try
+            {
+                conn.Open();
+                OracleCommand cmd = new OracleCommand();
+                cmd.Connection = conn;
+                cmd.BindByName = true;
+                cmd.CommandText = "select * from Gebruiker where email = :param and achternaam = :para and geboortedatum = :par";
+                cmd.Parameters.Add("param", email);
+                cmd.Parameters.Add("para", achternaam);
+                cmd.Parameters.Add("par", datum);
+                OracleDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    int id = dr.GetInt32(0);
+                    string Naam = dr.GetString(3) + " " + dr.GetString(4);
+                    string Email = (dr.GetString(6));
+                    string Datum = (dr.GetOracleDate(5).ToString());
+                    User toAdd = new User(id, Naam, Email, Datum);
+                    rtn.Add(toAdd);
+                }
+                conn.Close();
+                return rtn;
+            }
+            catch (OracleException e)
+            {
+                Console.WriteLine("Message: " + e.Message);
+                conn.Close();
+                return null;
+            }
+        }
+        public void DeleteUser(User DeleteUser)
+        {
+            try
+            {
+                conn.Open();
+                OracleCommand cmd = new OracleCommand();
+                cmd.Connection = conn;
+                cmd.BindByName = true;
+                cmd.CommandText = "DELETE FROM Gebruiker WHERE GebruikerID = :param";
+                cmd.Parameters.Add("param", DeleteUser.UserID);
+                cmd.ExecuteNonQuery();
+                conn.Close();
+            }
+            catch (OracleException e)
+            {
+                Console.WriteLine("Message: " + e.Message);
+                conn.Close();
+            }
+        }
+        public List<User> BeheerUser()
+        {
+
+            List<User> rtn = new List<User>();
+
+            try
+            {
+                conn.Open();
+                OracleCommand cmd = new OracleCommand();
+                cmd.Connection = conn;
+                cmd.BindByName = true;
+                cmd.CommandText = "select * from Gebruiker";
+                OracleDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    int id = dr.GetInt32(0);
+                    string Naam = dr.GetString(3) + " " + dr.GetString(4);
+                    string Email = (dr.GetString(6));
+                    string Datum = (dr.GetOracleDate(5).ToString());
+                    User toAdd = new User(id, Naam, Email, Datum);
+                    rtn.Add(toAdd);
+                }
+                conn.Close();
+                return rtn;
+            }
+            catch (OracleException e)
+            {
+                Console.WriteLine("Message: " + e.Message);
+                conn.Close();
+                return null;
+            }
+
+        }
+
+        public void UpdateUser(User user, string wachtwoord = null)
+        {
+            try
+            {
+                conn.Open();
+                OracleCommand cmd = new OracleCommand();
+                cmd.Connection = conn;
+                cmd.BindByName = true;
+                if (wachtwoord != null)
+                {
+                    cmd.CommandText = "UPDATE Gebruiker SET Voornaam = :vn, Achternaam =:an, Wachtwoord =:ww, AdresID =:ai , Geboortedatum =:gb , Email =:em , Budget =:bg WHERE Gebruikerid = " + user.UserID;
+                    cmd.Parameters.Add("vn", user.Name);
+                    cmd.Parameters.Add("an", user);
+                    cmd.Parameters.Add("ww", wachtwoord);
+                    cmd.Parameters.Add("ai", user.Adress);
+                    cmd.Parameters.Add("gb", user.Date);
+                    cmd.Parameters.Add("em", user.Emailadres);
+                    cmd.Parameters.Add("bg", user.Budget);
+                }
+                else
+                {
+                    cmd.CommandText = "UPDATE Gebruiker SET Voornaam = :vn, Achternaam =:an, AdresID =:ai , Geboortedatum =:gb , Email =:em , Budget =:bg WHERE Gebruikerid = " + user.UserID;
+                    cmd.Parameters.Add("vn", user.Name);
+                    cmd.Parameters.Add("an", user);
+                    cmd.Parameters.Add("ai", user.Adress);
+                    cmd.Parameters.Add("gb", user.Date);
+                    cmd.Parameters.Add("em", user.Emailadres);
+                    cmd.Parameters.Add("bg", user.Budget);
+                }
+                cmd.ExecuteNonQuery();
+                conn.Close();
+            }
+            catch (OracleException e)
+            {
+                Console.WriteLine("Message: " + e.Message);
+                conn.Close();
+            }
+        }
+        public void AddUser(string Naam , string Wachtwoord, int AdresID, string Date, string Email, decimal Budget)
+        {
+            try
+            {
+                conn.Open();
+                OracleCommand cmd = new OracleCommand();
+                cmd.Connection = conn;
+                cmd.BindByName = true;
+                cmd.CommandText = "INSERT INTO Gebruiker(Voornaam,Achternaam,Wachtwoord,AdresID,Geboortedatum,Email,Budget,Beheerder VALUES(:vn,:an,:ww,:ai,:gb,:em,:bg,:bh)";
+                string[] names = Naam.Split(' ');
+                int nameslenght = names.Length;
+                cmd.Parameters.Add("vn", names[0]);
+                string lastname = null;
+                for(int i = 1; i < nameslenght; i++)
+                {
+                    lastname += names[i] + " ";
+                }
+                cmd.Parameters.Add("an", lastname.Trim());
+                cmd.Parameters.Add("ww", Wachtwoord);
+                cmd.Parameters.Add("ai", AdresID);
+                cmd.Parameters.Add("gb", Date);
+                cmd.Parameters.Add("em", Email);
+                cmd.Parameters.Add("bg", Budget);
+                cmd.Parameters.Add("bh", 0);
+                cmd.ExecuteNonQuery();
+                conn.Close();
+            }
+            catch (OracleException e)
+            {
+                Console.WriteLine("Message: " + e.Message);
+                conn.Close();
+            }
+        }
+
     }
 }

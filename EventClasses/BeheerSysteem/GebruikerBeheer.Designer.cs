@@ -28,35 +28,36 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.TbNaam = new System.Windows.Forms.TextBox();
+            this.TbAchternaam = new System.Windows.Forms.TextBox();
             this.LblRFID = new System.Windows.Forms.Label();
             this.LbLEmail = new System.Windows.Forms.Label();
-            this.LblNaam = new System.Windows.Forms.Label();
+            this.LblAchternaam = new System.Windows.Forms.Label();
             this.TbEmail = new System.Windows.Forms.TextBox();
-            this.TbRFID = new System.Windows.Forms.TextBox();
+            this.TbDatum = new System.Windows.Forms.TextBox();
             this.BtnZoeken = new System.Windows.Forms.Button();
             this.BtnWissen = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.BtnBeheer = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
-            // TbNaam
+            // TbAchternaam
             // 
-            this.TbNaam.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TbNaam.Location = new System.Drawing.Point(246, 40);
-            this.TbNaam.Name = "TbNaam";
-            this.TbNaam.Size = new System.Drawing.Size(139, 22);
-            this.TbNaam.TabIndex = 11;
+            this.TbAchternaam.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TbAchternaam.Location = new System.Drawing.Point(246, 40);
+            this.TbAchternaam.Name = "TbAchternaam";
+            this.TbAchternaam.Size = new System.Drawing.Size(139, 22);
+            this.TbAchternaam.TabIndex = 11;
             // 
             // LblRFID
             // 
             this.LblRFID.AutoSize = true;
             this.LblRFID.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblRFID.Location = new System.Drawing.Point(198, 105);
+            this.LblRFID.Location = new System.Drawing.Point(135, 105);
             this.LblRFID.Name = "LblRFID";
-            this.LblRFID.Size = new System.Drawing.Size(42, 16);
+            this.LblRFID.Size = new System.Drawing.Size(105, 16);
             this.LblRFID.TabIndex = 10;
-            this.LblRFID.Text = "RFID:";
+            this.LblRFID.Text = "Geboortedatum:";
             // 
             // LbLEmail
             // 
@@ -68,15 +69,15 @@
             this.LbLEmail.TabIndex = 8;
             this.LbLEmail.Text = "Email:";
             // 
-            // LblNaam
+            // LblAchternaam
             // 
-            this.LblNaam.AutoSize = true;
-            this.LblNaam.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblNaam.Location = new System.Drawing.Point(192, 43);
-            this.LblNaam.Name = "LblNaam";
-            this.LblNaam.Size = new System.Drawing.Size(48, 16);
-            this.LblNaam.TabIndex = 7;
-            this.LblNaam.Text = "Naam:";
+            this.LblAchternaam.AutoSize = true;
+            this.LblAchternaam.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblAchternaam.Location = new System.Drawing.Point(157, 43);
+            this.LblAchternaam.Name = "LblAchternaam";
+            this.LblAchternaam.Size = new System.Drawing.Size(83, 16);
+            this.LblAchternaam.TabIndex = 7;
+            this.LblAchternaam.Text = "Achternaam:";
             // 
             // TbEmail
             // 
@@ -86,13 +87,13 @@
             this.TbEmail.Size = new System.Drawing.Size(139, 22);
             this.TbEmail.TabIndex = 12;
             // 
-            // TbRFID
+            // TbDatum
             // 
-            this.TbRFID.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TbRFID.Location = new System.Drawing.Point(246, 102);
-            this.TbRFID.Name = "TbRFID";
-            this.TbRFID.Size = new System.Drawing.Size(139, 22);
-            this.TbRFID.TabIndex = 13;
+            this.TbDatum.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TbDatum.Location = new System.Drawing.Point(246, 102);
+            this.TbDatum.Name = "TbDatum";
+            this.TbDatum.Size = new System.Drawing.Size(139, 22);
+            this.TbDatum.TabIndex = 13;
             // 
             // BtnZoeken
             // 
@@ -103,6 +104,7 @@
             this.BtnZoeken.TabIndex = 14;
             this.BtnZoeken.Text = "Zoeken";
             this.BtnZoeken.UseVisualStyleBackColor = true;
+            this.BtnZoeken.Click += new System.EventHandler(this.BtnZoeken_Click);
             // 
             // BtnWissen
             // 
@@ -113,15 +115,29 @@
             this.BtnWissen.TabIndex = 15;
             this.BtnWissen.Text = "Wissen";
             this.BtnWissen.UseVisualStyleBackColor = true;
+            this.BtnWissen.Click += new System.EventHandler(this.BtnWissen_Click);
             // 
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllHeaders;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(12, 192);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(605, 329);
             this.dataGridView1.TabIndex = 25;
+            // 
+            // BtnBeheer
+            // 
+            this.BtnBeheer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.BtnBeheer.Location = new System.Drawing.Point(481, 57);
+            this.BtnBeheer.Name = "BtnBeheer";
+            this.BtnBeheer.Size = new System.Drawing.Size(78, 53);
+            this.BtnBeheer.TabIndex = 26;
+            this.BtnBeheer.Text = "Beheer";
+            this.BtnBeheer.UseVisualStyleBackColor = true;
+            this.BtnBeheer.Click += new System.EventHandler(this.BtnBeheer_Click);
             // 
             // FormGebruikersBeheer
             // 
@@ -129,15 +145,16 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(627, 533);
+            this.Controls.Add(this.BtnBeheer);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.BtnWissen);
             this.Controls.Add(this.BtnZoeken);
-            this.Controls.Add(this.TbRFID);
+            this.Controls.Add(this.TbDatum);
             this.Controls.Add(this.TbEmail);
-            this.Controls.Add(this.TbNaam);
+            this.Controls.Add(this.TbAchternaam);
             this.Controls.Add(this.LblRFID);
             this.Controls.Add(this.LbLEmail);
-            this.Controls.Add(this.LblNaam);
+            this.Controls.Add(this.LblAchternaam);
             this.Name = "FormGebruikersBeheer";
             this.Text = "Gebruikers beheer";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -148,15 +165,16 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox TbNaam;
+        private System.Windows.Forms.TextBox TbAchternaam;
         private System.Windows.Forms.Label LblRFID;
         private System.Windows.Forms.Label LbLEmail;
-        private System.Windows.Forms.Label LblNaam;
+        private System.Windows.Forms.Label LblAchternaam;
         private System.Windows.Forms.TextBox TbEmail;
-        private System.Windows.Forms.TextBox TbRFID;
+        private System.Windows.Forms.TextBox TbDatum;
         private System.Windows.Forms.Button BtnZoeken;
         private System.Windows.Forms.Button BtnWissen;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Button BtnBeheer;
     }
 }
 
