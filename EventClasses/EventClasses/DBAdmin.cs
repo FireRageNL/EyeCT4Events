@@ -746,5 +746,51 @@ namespace EventClasses
                 conn.Close();
             }
         }
+
+        public void AddProduct(string brand, string product, int typenr, int price)
+        {
+            try
+            {
+                conn.Open();
+                OracleCommand cmd = new OracleCommand();
+                cmd.Connection = conn;
+                cmd.BindByName = true;
+                cmd.CommandText = "INSERT INTO MATERIAAL(MERK,PRODUCTNAAM,TYPENR,PRIJS VALUES(:mrk,:prdnm,:typenr,:price)";
+                cmd.Parameters.Add("mrk", brand);
+                cmd.Parameters.Add("prdnm", product);
+                cmd.Parameters.Add("typenr", typenr);
+                cmd.Parameters.Add("price", price);
+                cmd.ExecuteNonQuery();
+                conn.Close();
+            }
+            catch (OracleException e)
+            {
+                Console.WriteLine("Message: " + e.Message);
+                conn.Close();
+            }
+        }
+
+        public void UpdateProduct(Object obj)
+        {
+            try
+            {
+                conn.Open();
+                OracleCommand cmd = new OracleCommand();
+                cmd.Connection = conn;
+                cmd.BindByName = true;
+                cmd.CommandText = "UPDATE MATERIAAL SET Merk = :mrk, PRODUCTNAAM =:prdnm, TYPENR =:typenr, PRIJS =:price WHERE MATERIAALID = "+obj.ObjectID;
+                cmd.Parameters.Add("mrk", obj.Brand);
+                cmd.Parameters.Add("prdnm", obj.Productname);
+                cmd.Parameters.Add("typenr", obj.Type);
+                cmd.Parameters.Add("price", obj.Rentprice);
+                cmd.ExecuteNonQuery();
+                conn.Close();
+            }
+            catch (OracleException e)
+            {
+                Console.WriteLine("Message: " + e.Message);
+                conn.Close();
+            }
+        }
     }
 }

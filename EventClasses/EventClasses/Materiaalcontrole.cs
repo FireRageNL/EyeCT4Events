@@ -49,5 +49,15 @@ namespace EventClasses
         {
            db.ToDelete(todelete);
         }
+
+        public void UpdateProduct(Object obj)
+        {
+            db.UpdateProduct(obj);
+        }
+
+        public void AddProduct(string brand, string product, int typenr, int price)
+        {
+            db.AddProduct(brand, product, typenr, price);
+        }
     }
 }

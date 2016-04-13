@@ -43,7 +43,7 @@ namespace BeheerSysteem
                             this.Close();
                         };
                     }
-                    if (val.AccessLevel == 2)
+                    else if (val.AccessLevel == 2)
                     {
                         FormGebruikersBeheer form = new FormGebruikersBeheer(val);
                         form.Show();
