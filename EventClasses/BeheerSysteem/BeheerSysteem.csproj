@@ -45,7 +45,13 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
-    <ItemGroup>
+  <ItemGroup>
+    <Compile Include="AdminCP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdminCP.Designer.cs">
+      <DependentUpon>AdminCP.cs</DependentUpon>
+    </Compile>
     <Compile Include="Beheergebruiker.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,6 +96,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AdminCP.resx">
+      <DependentUpon>AdminCP.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Beheergebruiker.resx">
       <DependentUpon>Beheergebruiker.cs</DependentUpon>
     </EmbeddedResource>

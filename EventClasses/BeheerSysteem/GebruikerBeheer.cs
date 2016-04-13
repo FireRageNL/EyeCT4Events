@@ -16,11 +16,6 @@ namespace BeheerSysteem
         private EventClasses.Login val;
         private Gebruikercontrole mc = new Gebruikercontrole();
 
-        public FormGebruikersBeheer()
-        {
-            InitializeComponent();
-        }
-
         public FormGebruikersBeheer(EventClasses.Login val)
         {
             InitializeComponent();

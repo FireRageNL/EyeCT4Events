@@ -1208,11 +1208,11 @@ namespace EventClasses
             try
             {
                 conn.Open();
+                List<Adress> adr = GetAdress();
                 OracleCommand cmd = new OracleCommand();
                 cmd.Connection = conn;
                 cmd.CommandText = "Select * from Event";
                 OracleDataReader dr = cmd.ExecuteReader();
-                List<Adress> adr = GetAdress(); 
                 while (dr.Read())
                 {
                     int eventid = dr.GetInt32(0);
@@ -1246,11 +1246,11 @@ namespace EventClasses
 
             try
             {
-                bool intern = false;
+                bool intern = true;
                 if (conn.State != ConnectionState.Open)
                 {
                     conn.Open();
-                    intern = true;
+                    intern = false;
                 }
                 OracleCommand cmd = new OracleCommand();
                 cmd.Connection = conn;
@@ -1264,7 +1264,11 @@ namespace EventClasses
                     string city = dr.GetString(3);
                     string street = dr.GetString(4);
                     int number = dr.GetInt32(5);
-                    string toevoeging = dr.GetString(6);
+                    string toevoeging = null;
+                    if (!dr.IsDBNull(6))
+                    {
+                        toevoeging = dr.GetString(6);
+                    }
                     Adress add = new Adress(aid,street,number,city,country,zip,toevoeging);
                     rtn.Add(add);
                 }

@@ -14,6 +14,7 @@ namespace BeheerSysteem
     public partial class Login : Form
     {
         LoginControl lg = new LoginControl();
+
         public Login()
         {
             InitializeComponent();
@@ -33,26 +34,14 @@ namespace BeheerSysteem
                 EventClasses.Login val = lg.ValidateUser(email, password);
                 if (val != null)
                 {
-                    if (val.AccessLevel == 1)
+                    if (val.AccessLevel > 0)
                     {
-                        EventBeheer form1 = new EventBeheer(val);
+                        AdminCP form1 = new AdminCP(val);
                         form1.Show();
                         this.Hide();
-                        form1.Closed += (sender1, args) =>
-                        {
-                            this.Close();
-                        };
+                        form1.Closed += (sender1, args) => { this.Close(); };
                     }
-                    else if (val.AccessLevel == 2)
-                    {
-                        FormGebruikersBeheer form = new FormGebruikersBeheer(val);
-                        form.Show();
-                        this.Hide();
-                        form.Closed += (sender1, args) =>
-                        {
-                            this.Close();
-                        };
-                    }
+
                     else
                     {
                         MessageBox.Show("Niet genoeg rechten om in te loggen!");
