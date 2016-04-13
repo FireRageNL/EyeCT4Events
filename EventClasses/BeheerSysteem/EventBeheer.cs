@@ -23,5 +23,13 @@ namespace BeheerSysteem
             listBox1.DataSource = evt;
 
         }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            EventDialog dia = new EventDialog(val, true);
+            dia.ShowDialog();
+            List<Event> evt = em.GetEvents();
+            listBox1.DataSource = evt;
+        }
     }
 }

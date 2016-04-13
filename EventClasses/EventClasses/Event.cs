@@ -21,5 +21,10 @@ namespace EventClasses
             Name = nme;
             EventID = id;
         }
+
+        public override string ToString()
+        {
+            return "ID:   " + EventID + "   Name:   " + Name;
+        }
     }
 }

@@ -1285,5 +1285,89 @@ namespace EventClasses
                 return null;
             }
         }
+
+        public void AddEvent(string straat, int nr,string toe, string plaats, string postcode, string land, string naam, DateTime begin, DateTime end)
+        {
+            try
+            {
+                conn.Open();
+                OracleCommand cmd = new OracleCommand();
+                cmd.Connection = conn;
+                cmd.BindByName = true;
+                if (toe != null)
+                {
+                    cmd.CommandText =
+                        "Select count(*) from Adres WHERE land=:land AND Postcode=:postcode AND Woonplaats=:plaats AND straatnaam=:straatnaam AND huisnummer=:nummer AND toevoeging=:toe";
+                    cmd.Parameters.Add("land", land);
+                    cmd.Parameters.Add("postcode", postcode);
+                    cmd.Parameters.Add("plaats", plaats);
+                    cmd.Parameters.Add("straatnaam", straat);
+                    cmd.Parameters.Add("nummer", nr);
+                    cmd.Parameters.Add("toe", toe);
+                }
+                else
+                {
+                    cmd.CommandText =
+                        "Select count(*) from Adres WHERE land=:land AND Postcode=:postcode AND Woonplaats=:plaats AND straatnaam=:straatnaam AND huisnummer=:nummer";
+                    cmd.Parameters.Add("land", land);
+                    cmd.Parameters.Add("postcode", postcode);
+                    cmd.Parameters.Add("plaats", plaats);
+                    cmd.Parameters.Add("straatnaam", straat);
+                    cmd.Parameters.Add("nummer", nr);
+                }
+                OracleDataReader dr = cmd.ExecuteReader();
+                dr.Read();
+                int count = dr.GetInt32(0);
+                int adresid = 0;
+                if (count != 0)
+                {
+                    cmd.CommandText =
+                        "Select adresid from Adres WHERE land=:land AND Postcode=:postcode AND Woonplaats=:plaats AND straatnaam=:straatnaam AND huisnummer=:nummer";
+                    cmd.Parameters.Add("land", land);
+                    cmd.Parameters.Add("postcode", postcode);
+                    cmd.Parameters.Add("plaats", plaats);
+                    cmd.Parameters.Add("straatnaam", straat);
+                    cmd.Parameters.Add("nummer", nr);
+                    OracleDataReader dr2 = cmd.ExecuteReader();
+                    dr2.Read();
+                    adresid = dr2.GetInt32(0);
+                }
+                else
+                {
+                    cmd.CommandText =
+                        "INSERT INTO ADRES(LAND,POSTCODE,WOONPLAATS,STRAATNAAM,HUISNUMMER,TOEVOEGING) VALUES(:land,:postcode,:plaats,:straatnaam,:nummer,:toe)";
+                    cmd.Parameters.Add("land", land);
+                    cmd.Parameters.Add("postcode", postcode);
+                    cmd.Parameters.Add("plaats", plaats);
+                    cmd.Parameters.Add("straatnaam", straat);
+                    cmd.Parameters.Add("nummer", nr);
+                    cmd.Parameters.Add("toe", toe);
+                    cmd.ExecuteNonQuery();
+                    cmd.CommandText =
+                        "Select adresid from Adres WHERE land=:land AND Postcode=:postcode AND Woonplaats=:plaats AND straatnaam=:straatnaam AND huisnummer=:nummer";
+                    cmd.Parameters.Add("land", land);
+                    cmd.Parameters.Add("postcode", postcode);
+                    cmd.Parameters.Add("plaats", plaats);
+                    cmd.Parameters.Add("straatnaam", straat);
+                    cmd.Parameters.Add("nummer", nr);
+                    OracleDataReader dr2 = cmd.ExecuteReader();
+                    dr2.Read();
+                    adresid = dr2.GetInt32(0);
+                }
+                cmd.CommandText =
+                    "INSERT INTO EVENT(EVENTNAAM,BEGINDATUM,EINDDATUM,ADRESID) VALUES(:naam,:begin,:eind,:adres)";
+                cmd.Parameters.Add("naam", naam);
+                cmd.Parameters.Add("begin", begin);
+                cmd.Parameters.Add("eind", end);
+                cmd.Parameters.Add("adres", adresid);
+                cmd.ExecuteNonQuery();
+                conn.Close();
+            }
+            catch (OracleException e)
+            {
+                Console.WriteLine("Message: " + e.Message);
+                conn.Close();
+            }
+        }
     }
 }

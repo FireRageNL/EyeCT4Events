@@ -70,6 +70,12 @@
     <Compile Include="EventBeheer.Designer.cs">
       <DependentUpon>EventBeheer.cs</DependentUpon>
     </Compile>
+    <Compile Include="EventDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EventDialog.Designer.cs">
+      <DependentUpon>EventDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Gebruikerbeheer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -96,6 +102,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserDialog.Designer.cs">
+      <DependentUpon>UserDialog.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="AdminCP.resx">
       <DependentUpon>AdminCP.cs</DependentUpon>
     </EmbeddedResource>
@@ -107,6 +119,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="EventBeheer.resx">
       <DependentUpon>EventBeheer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EventDialog.resx">
+      <DependentUpon>EventDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Gebruikerbeheer.resx">
       <DependentUpon>Gebruikerbeheer.cs</DependentUpon>

@@ -46,7 +46,7 @@ namespace BeheerSysteem
             UserDialog dia = new UserDialog(val, true);
             dia.ShowDialog();
             List<EventClasses.User> BeheerUser = gc.BeheerUser();
-            listBox1.DataSource = BeheerUser;
+          listBox1.DataSource = BeheerUser;
         }
     }
 }
