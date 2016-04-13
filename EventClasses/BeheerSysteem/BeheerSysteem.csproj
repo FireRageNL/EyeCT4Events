@@ -45,7 +45,7 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
-    <ItemGroup>
+  <ItemGroup>
     <Compile Include="Gebruikerbeheer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -64,6 +64,12 @@
     <Compile Include="Materiaalbeheer.Designer.cs">
       <DependentUpon>Materiaalbeheer.cs</DependentUpon>
     </Compile>
+    <Compile Include="MateriaalDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MateriaalDialog.Designer.cs">
+      <DependentUpon>MateriaalDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Gebruikerbeheer.resx">
@@ -74,6 +80,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Materiaalbeheer.resx">
       <DependentUpon>Materiaalbeheer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MateriaalDialog.resx">
+      <DependentUpon>MateriaalDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

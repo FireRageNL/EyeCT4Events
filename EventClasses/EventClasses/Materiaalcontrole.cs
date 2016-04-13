@@ -41,5 +41,15 @@ namespace EventClasses
         {
             return db.Alles(productnaam , merk , type);
         }
+
+        public void UpdateProduct(Object obj)
+        {
+            db.UpdateProduct(obj);
+        }
+
+        public void AddProduct(string brand, string product, int typenr, int price)
+        {
+            db.AddProduct(brand, product, typenr, price);
+        }
     }
 }

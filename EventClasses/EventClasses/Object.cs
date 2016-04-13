@@ -23,5 +23,13 @@ namespace EventClasses
             Type = objtype;
             Rentprice = objrentprice;
         }
+
+        public void Update(string brand, string product, int typenr, int price)
+        {
+            Productname = product;
+            Brand = brand;
+            Type = typenr;
+            Rentprice = Convert.ToDecimal(price);
+        }
     }
 }
