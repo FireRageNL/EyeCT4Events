@@ -46,6 +46,7 @@
     <Compile Include="DAL.cs" />
     <Compile Include="DBAdmin.cs" />
     <Compile Include="Event.cs" />
+    <Compile Include="Gebruikercontrole.cs" />
     <Compile Include="EventBeheerder.cs" />
     <Compile Include="Group.cs" />
     <Compile Include="Location.cs" />

@@ -19,8 +19,8 @@ namespace BeheerSysteem
         {
             InitializeComponent();
             this.val = val;
-            List<EventClasses.Object> Beheer = mc.Beheer();
-            listBox1.DataSource = Beheer;
+            List<EventClasses.Object> BeheerMateriaal = mc.BeheerMateriaal();
+            listBox1.DataSource = BeheerMateriaal;
         }
 
         private void BtnVerwijder_Click(object sender, EventArgs e)
