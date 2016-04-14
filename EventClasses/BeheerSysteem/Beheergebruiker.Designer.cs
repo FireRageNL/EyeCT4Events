@@ -86,7 +86,7 @@
             this.Controls.Add(this.BtnVerwijder);
             this.Controls.Add(this.listBox1);
             this.Name = "Beheergebruiker";
-            this.Text = "Beheermateriaal";
+            this.Text = "Beheer Gebruiker";
             this.ResumeLayout(false);
 
         }
