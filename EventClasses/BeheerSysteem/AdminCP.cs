@@ -35,7 +35,8 @@ namespace BeheerSysteem
 
         private void btnReservering_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Dit bestaat nog niet jong");
+            Beheergroep bg = new Beheergroep(val);
+            bg.Show();
         }
 
         private void btnEvent_Click(object sender, EventArgs e)

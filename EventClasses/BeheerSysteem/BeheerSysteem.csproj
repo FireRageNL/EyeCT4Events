@@ -58,6 +58,12 @@
     <Compile Include="Beheergebruiker.Designer.cs">
       <DependentUpon>Beheergebruiker.cs</DependentUpon>
     </Compile>
+    <Compile Include="Beheergroep.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Beheergroep.Designer.cs">
+      <DependentUpon>Beheergroep.cs</DependentUpon>
+    </Compile>
     <Compile Include="Beheermateriaal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -113,6 +119,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Beheergebruiker.resx">
       <DependentUpon>Beheergebruiker.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Beheergroep.resx">
+      <DependentUpon>Beheergroep.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Beheermateriaal.resx">
       <DependentUpon>Beheermateriaal.cs</DependentUpon>

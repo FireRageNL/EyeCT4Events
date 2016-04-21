@@ -48,6 +48,7 @@
     <Compile Include="Event.cs" />
     <Compile Include="Gebruikercontrole.cs" />
     <Compile Include="EventBeheerder.cs" />
+    <Compile Include="GroepControl.cs" />
     <Compile Include="Group.cs" />
     <Compile Include="Location.cs" />
     <Compile Include="Login.cs" />

@@ -66,6 +66,8 @@ namespace EventClasses
             return "     ID: " + UserID + "     Naam: " + Name + "     Email: " + Emailadres + "     Geboortedatum: " + Date;
         }
 
+        public string GroupName => Name + " " + Emailadres;
+
         public void Update(string naam,string email, string datum, decimal budget)
         {
             Name = naam;
