@@ -70,6 +70,12 @@
     <Compile Include="Beheermateriaal.Designer.cs">
       <DependentUpon>Beheermateriaal.cs</DependentUpon>
     </Compile>
+    <Compile Include="Beheerverhuur.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Beheerverhuur.Designer.cs">
+      <DependentUpon>Beheerverhuur.cs</DependentUpon>
+    </Compile>
     <Compile Include="EventBeheer.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -125,6 +131,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Beheermateriaal.resx">
       <DependentUpon>Beheermateriaal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Beheerverhuur.resx">
+      <DependentUpon>Beheerverhuur.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="EventBeheer.resx">
       <DependentUpon>EventBeheer.cs</DependentUpon>

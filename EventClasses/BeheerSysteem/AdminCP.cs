@@ -53,7 +53,8 @@ namespace BeheerSysteem
 
         private void btnVerhuur_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Dit bestaat nog niet jong");
+            Beheerverhuur vb = new Beheerverhuur(val);
+            vb.Show();
         }
     }
 }
