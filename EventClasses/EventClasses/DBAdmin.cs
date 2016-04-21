@@ -619,7 +619,8 @@ namespace EventClasses
                 return null;
             }
         }
-        //Post a reply to a post into the database
+
+        // Post a reply to a post into the database
         public void PostReply(string message, Media parent, int userid)
         {
             try

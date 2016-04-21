@@ -129,7 +129,7 @@
             // BtnBeheer
             // 
             this.BtnBeheer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnBeheer.Location = new System.Drawing.Point(480, 53);
+            this.BtnBeheer.Location = new System.Drawing.Point(483, 39);
             this.BtnBeheer.Name = "BtnBeheer";
             this.BtnBeheer.Size = new System.Drawing.Size(78, 53);
             this.BtnBeheer.TabIndex = 25;
