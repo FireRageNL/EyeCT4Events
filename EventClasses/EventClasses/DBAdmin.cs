@@ -1640,5 +1640,98 @@ namespace EventClasses
                 conn.Close();
             }
         }
+
+        public List<Group> GetEmptyGroups()
+        {
+            List<Group> empty = new List<Group>();
+            conn.Open();
+            OracleCommand cmd = new OracleCommand();
+            cmd.Connection = conn;
+            cmd.BindByName = true;
+            cmd.CommandText = "SELECT GROEPID FROM GROEP WHERE PLAATSNR IS NULL";
+            OracleDataReader dr = cmd.ExecuteReader();
+            List<int> groups = new List<int>();
+            while (dr.Read())
+            {
+                groups.Add(dr.GetInt32(0));
+            }
+            if (groups.Count > 0)
+            {
+                foreach (int i in groups)
+                {
+                    List<User> usr = new List<User>();
+                    cmd.CommandText = "SELECT GEBRUIKERID FROM GEBRUIKERGROEP WHERE GROEPID='"+i+"'";
+                    OracleDataReader dr2 = cmd.ExecuteReader();
+                    while (dr2.Read())
+                    {
+                        int uid = dr2.GetInt32(0);
+                        usr.Add(GetUser(uid, true));
+                    }
+                    cmd.CommandText = "SELECT GROEPSNAAM FROM GROEP WHERE GROEPID='" + i + "'";
+                    //cmd.Parameters.Add("groep", i);
+                    OracleDataReader dr3 = cmd.ExecuteReader();
+                    dr3.Read();
+                    Group add = new Group(dr3.GetString(0),i,usr);
+                    empty.Add(add);
+                    dr3.Dispose();
+                    dr2.Dispose();
+                }
+            }
+            conn.Close();
+            return empty;
+        }
+
+        public List<Location> GetFreeLocations(int count)
+        {
+            List<Location> freeLocations = new List<Location>();
+
+            try
+            {
+                conn.Open();
+                OracleCommand cmd = new OracleCommand();
+                cmd.Connection = conn;
+                cmd.BindByName = true;
+                cmd.CommandText = "SELECT * FROM VERBLIJFPLAATS WHERE ACCOMODATIEID IN(SELECT ACCOMODATIEID FROM ACCOMODATIE WHERE EVENTID = '1') AND PLAATSNR NOT IN(SELECT PLAATSNR FROM GROEP WHERE PLAATSNR IS NOT NULL) AND MAXAANTALPERSONEN >= :personen";
+                cmd.Parameters.Add("personen", count);
+                OracleDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    string desc = dr.GetString(3);
+                    int locid = dr.GetInt32(0);
+                    int spaces = dr.GetInt32(2);
+                    Location add = new Location(desc,1,locid,spaces);
+                    freeLocations.Add(add);
+                }
+                conn.Close();
+            }
+            catch (OracleException e)
+            {
+                Console.WriteLine("Message: "+e.Message);
+                conn.Close();
+            }
+            return freeLocations;
+        }
+
+        public void ReserveLocation(Group searchgroup, Location reserve)
+        {
+            try
+            {
+                conn.Open();
+                OracleCommand cmd = new OracleCommand();
+                cmd.Connection = conn;
+                cmd.BindByName = true;
+                cmd.CommandText = "UPDATE GROEP SET PLAATSNR = :plaats WHERE GROEPID =:groep";
+                cmd.Parameters.Add("plaats", reserve.LocationId);
+                cmd.Parameters.Add("groep", searchgroup.GroupID);
+                cmd.ExecuteNonQuery();
+                conn.Close();
+
+            }
+            catch (OracleException e)
+            {
+                Console.WriteLine("Message: "+e.Message);
+                conn.Close();
+            }
+        }
     }
 }

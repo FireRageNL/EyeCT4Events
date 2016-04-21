@@ -58,6 +58,7 @@
     <Compile Include="Message.cs" />
     <Compile Include="Object.cs" />
     <Compile Include="ObjectReservation.cs" />
+    <Compile Include="ReserveringControl.cs" />
     <Compile Include="RFID.cs" />
     <Compile Include="SocialControl.cs" />
     <Compile Include="TicketReservation.cs" />

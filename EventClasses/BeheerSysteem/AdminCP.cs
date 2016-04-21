@@ -59,7 +59,8 @@ namespace BeheerSysteem
 
         private void btnReservering_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Dit doet het nog niet dus shhhhh");
+            Beheerreservering br = new Beheerreservering(val);
+            br.Show();
         }
     }
 }
