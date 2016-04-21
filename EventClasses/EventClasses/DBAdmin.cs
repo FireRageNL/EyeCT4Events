@@ -1553,5 +1553,46 @@ namespace EventClasses
                 conn.Close();
             }
         }
+
+        public void HuurMateriaal(EventClasses.Object Materiaal, EventClasses.User User, DateTime BeginDatum, DateTime EindDatum, DateTime NuDatum)
+        {
+            try
+            {
+                int HuurID = 0;
+
+                conn.Open();
+                OracleCommand cmd = new OracleCommand();
+                cmd.Connection = conn;
+                cmd.BindByName = true;
+                cmd.CommandText = "INSERT INTO HUUR(GEBRUIKERID,HUURDATUM) VALUES(:gebruiker,:datum)";
+                cmd.Parameters.Add("gebruiker", User.UserID);
+                cmd.Parameters.Add("datum", NuDatum);
+                cmd.ExecuteNonQuery();
+
+
+                cmd.CommandText = "SELECT HUURID FROM HUUR WHERE GEBRUIKERID =:gebruiker AND HUURDATUM =:datum";
+                cmd.Parameters.Add("gebruiker", User.UserID);
+                cmd.Parameters.Add("datum", NuDatum);
+                cmd.ExecuteNonQuery();
+                OracleDataReader dr = cmd.ExecuteReader();
+                dr.Read();
+                HuurID = dr.GetInt32(0);
+
+
+                cmd.CommandText = "INSERT INTO MATERIAALVERHUUR(MATERIAALID,HUURID,BEGINTIJD,EINDTIJD) VALUES(:MatID,:HuurID,:Begin,:Eind)";
+                cmd.Parameters.Add("MatID", Materiaal.ObjectID);
+                cmd.Parameters.Add("HuurID", HuurID);
+                cmd.Parameters.Add("Begin", BeginDatum);
+                cmd.Parameters.Add("Eind", EindDatum);
+                cmd.ExecuteNonQuery();
+                conn.Close();
+
+            }
+            catch (OracleException e)
+            {
+                Console.WriteLine("Message: " + e.Message);
+                conn.Close();
+            }
+        }
     }
 }

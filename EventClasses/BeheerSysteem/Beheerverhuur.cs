@@ -16,6 +16,7 @@ namespace BeheerSysteem
         private EventClasses.Login val;
         private Materiaalcontrole mc = new Materiaalcontrole();
         private Gebruikercontrole gc = new Gebruikercontrole();
+        private Verhuurcontrole vc = new Verhuurcontrole();
 
         public Beheerverhuur(EventClasses.Login val)
         {
@@ -140,6 +141,8 @@ namespace BeheerSysteem
             DateTime BeginDatum = DTPBegin.Value;
             DateTime EindDatum = DTPEind.Value;
             DateTime NuDatum = DateTime.Now;
+            vc.Huur(SelectMateriaal, SelectUser, BeginDatum, EindDatum, NuDatum);
+
         }
     }
 }
