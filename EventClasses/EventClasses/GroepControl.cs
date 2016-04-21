@@ -14,5 +14,10 @@ namespace EventClasses
         {
             return db.BeheerUser();
         }
+
+        public void AddGroup(List<User> groupUsers, string text)
+        {
+            db.AddGroup(groupUsers, text);
+        }
     }
 }

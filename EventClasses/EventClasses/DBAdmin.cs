@@ -1569,16 +1569,29 @@ namespace EventClasses
                 cmd.Parameters.Add("gebruiker", User.UserID);
                 cmd.Parameters.Add("datum", NuDatum);
                 cmd.ExecuteNonQuery();
-
-
-                cmd.CommandText = "SELECT HUURID FROM HUUR WHERE GEBRUIKERID =:gebruiker AND HUURDATUM =:datum";
-                cmd.Parameters.Add("gebruiker", User.UserID);
-                cmd.Parameters.Add("datum", NuDatum);
-                cmd.ExecuteNonQuery();
-                OracleDataReader dr = cmd.ExecuteReader();
-                dr.Read();
-                HuurID = dr.GetInt32(0);
-
+                try
+                {
+                    cmd.CommandText = "SELECT * FROM HUUR WHERE GEBRUIKERID =:gebruiker";
+                    cmd.Parameters.Add("gebruiker", User.UserID);
+                    OracleDataReader dr = cmd.ExecuteReader();
+                    List<ObjectReservation> rents = new List<ObjectReservation>();
+                    while (dr.Read())
+                    {
+                        ObjectReservation add = new ObjectReservation(dr.GetInt32(0),dr.GetInt32(1),dr.GetDateTime(2));
+                        rents.Add(add);
+                    }
+                    foreach (ObjectReservation res in rents)
+                    {
+                        if (res.ResTime.ToString() == NuDatum.ToString())
+                        {
+                            HuurID = res.ReservationID;
+                        }
+                    }
+                }
+                catch (OracleException e)
+                {
+                    Console.WriteLine("Message: " + e.Message);
+                }
 
                 cmd.CommandText = "INSERT INTO MATERIAALVERHUUR(MATERIAALID,HUURID,BEGINTIJD,EINDTIJD) VALUES(:MatID,:HuurID,:Begin,:Eind)";
                 cmd.Parameters.Add("MatID", Materiaal.ObjectID);
@@ -1590,6 +1603,38 @@ namespace EventClasses
 
             }
             catch (OracleException e)
+            {
+                Console.WriteLine("Message: " + e.Message);
+                conn.Close();
+            }
+        }
+
+        public void AddGroup(List<User> groupUsers, string text)
+        {
+            try
+            {
+                conn.Open();
+                OracleCommand cmd = new OracleCommand();
+                cmd.Connection = conn;
+                cmd.BindByName = true;
+                cmd.CommandText = "INSERT INTO GROEP(Groepsnaam) VALUES(:groepsnaam)";
+                cmd.Parameters.Add("groepsnaam", text);
+                cmd.ExecuteNonQuery();
+                cmd.CommandText = "SELECT GROEPID FROM GROEP WHERE GROEPSNAAM =:groepsnaam";
+                cmd.Parameters.Add("groepsnaam", text);
+                OracleDataReader dr = cmd.ExecuteReader();
+                dr.Read();
+                int groupid = dr.GetInt32(0);
+                foreach (User usr in groupUsers)
+                {
+                    cmd.CommandText = "INSERT INTO GEBRUIKERGROEP(GROEPID, GEBRUIKERID) VALUES(:groepid,:gebruikerid)";
+                    cmd.Parameters.Add("groepid", groupid);
+                    cmd.Parameters.Add("gebruikerid", usr.UserID);
+                    cmd.ExecuteNonQuery();
+                }
+                conn.Close();
+            }
+            catch(OracleException e)
             {
                 Console.WriteLine("Message: " + e.Message);
                 conn.Close();
