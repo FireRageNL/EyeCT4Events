@@ -1573,7 +1573,6 @@ namespace EventClasses
                 cmd.CommandText = "SELECT HUURID FROM HUUR WHERE GEBRUIKERID =:gebruiker AND HUURDATUM =:datum";
                 cmd.Parameters.Add("gebruiker", User.UserID);
                 cmd.Parameters.Add("datum", NuDatum);
-                cmd.ExecuteNonQuery();
                 OracleDataReader dr = cmd.ExecuteReader();
                 dr.Read();
                 HuurID = dr.GetInt32(0);
@@ -1584,7 +1583,6 @@ namespace EventClasses
                 cmd.Parameters.Add("HuurID", HuurID);
                 cmd.Parameters.Add("Begin", BeginDatum);
                 cmd.Parameters.Add("Eind", EindDatum);
-                cmd.ExecuteNonQuery();
                 conn.Close();
 
             }
