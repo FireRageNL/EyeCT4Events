@@ -23,5 +23,10 @@ namespace EventClasses
             }
                 return 3;
         }
+
+        public List<ObjectReservation> GetReserved()
+        {
+            return db.GetReserved();
+        }
     }
 }

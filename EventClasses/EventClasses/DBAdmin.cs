@@ -1827,5 +1827,25 @@ namespace EventClasses
                 conn.Close();
             }
         }
+
+        public List<ObjectReservation> GetReserved()
+        {
+            List<ObjectReservation> ret = new List<ObjectReservation>();
+            try
+            {
+                conn.Open();
+                OracleCommand cmd = new OracleCommand();
+                cmd.Connection = conn;
+                cmd.BindByName = true;
+                cmd.CommandText = "GET * FROM MATERIAALVERHUUR WHERE OPGEHAALD='0' AND TERUGGEBRACHT ='0'";
+                OracleDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+
+                    ObjectReservation add = new ObjectReservation(resid,userid,time);
+                }
+            }
+            return ret;
+        }
     }
 }
