@@ -1555,7 +1555,7 @@ namespace EventClasses
             }
         }
 
-        public int HuurMateriaal(EventClasses.Object Materiaal, EventClasses.User User, DateTime BeginDatum, DateTime EindDatum, DateTime NuDatum)
+        public int HuurMateriaal(EventClasses.Object Materiaal, EventClasses.User User, DateTime BeginDatum, DateTime EindDatum, DateTime NuDatum , bool Opgehaald, bool Teruggebracht)
         {
             try
             {
@@ -1662,12 +1662,30 @@ namespace EventClasses
 
                                     }
                                 }
-                                cmd.CommandText = "INSERT INTO MATERIAALVERHUUR(MATERIAALID,HUURID,BEGINTIJD,EINDTIJD) VALUES(:MatID,:HuurID,:Begin,:Eind)";
-                                cmd.Parameters.Add("MatID", Materiaal.ObjectID);
-                                cmd.Parameters.Add("HuurID", HuurID);
-                                cmd.Parameters.Add("Begin", BeginDatum);
-                                cmd.Parameters.Add("Eind", EindDatum);
-                                cmd.ExecuteNonQuery();
+
+                                if (Opgehaald == true)
+                                {
+                                    cmd.CommandText = "INSERT INTO MATERIAALVERHUUR(MATERIAALID,HUURID,BEGINTIJD,EINDTIJD,OPGEHAALD,TERUGGEBRACHT) VALUES(:MatID,:HuurID,:Begin,:Eind,:Opgehaald,:Teruggebracht)";
+                                    cmd.Parameters.Add("MatID", Materiaal.ObjectID);
+                                    cmd.Parameters.Add("HuurID", HuurID);
+                                    cmd.Parameters.Add("Begin", BeginDatum);
+                                    cmd.Parameters.Add("Eind", EindDatum);
+                                    cmd.Parameters.Add("Opgehaald", "1");
+                                    cmd.Parameters.Add("Teruggebracht", "0");
+                                    cmd.ExecuteNonQuery();
+                                }
+                                else
+                                {
+                                    cmd.CommandText = "INSERT INTO MATERIAALVERHUUR(MATERIAALID,HUURID,BEGINTIJD,EINDTIJD,OPGEHAALD,TERUGGEBRACHT) VALUES(:MatID,:HuurID,:Begin,:Eind,:Opgehaald,:Teruggebracht)";
+                                    cmd.Parameters.Add("MatID", Materiaal.ObjectID);
+                                    cmd.Parameters.Add("HuurID", HuurID);
+                                    cmd.Parameters.Add("Begin", BeginDatum);
+                                    cmd.Parameters.Add("Eind", EindDatum);
+                                    cmd.Parameters.Add("Opgehaald", "0");
+                                    cmd.Parameters.Add("Teruggebracht", "0");
+                                    cmd.ExecuteNonQuery();
+                                }
+
                                 conn.Close();
                             }
                             else

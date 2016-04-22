@@ -34,7 +34,7 @@ namespace EventClasses
 
         public override string ToString()
         {
-            return "     ID: " + ObjectID + "     Productnaam: " + Productname + "     Merk: " + Brand + "     Type: " + Type;
+            return "   ID: " + ObjectID + "   Productnaam: " + Productname + "   Merk: " + Brand + "   Type: " + Type;
         }
     }
 }

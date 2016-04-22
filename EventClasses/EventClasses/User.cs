@@ -63,7 +63,7 @@ namespace EventClasses
 
         public override string ToString()
         {
-            return "     ID: " + UserID + "     Naam: " + Name + "     Email: " + Emailadres + "     Geboortedatum: " + Date;
+            return "   ID: " + UserID + "   Naam: " + Name + "   Email: " + Emailadres + "   Geboortedatum: " + Date;
         }
 
         public string GroupName => Name + " " + Emailadres;

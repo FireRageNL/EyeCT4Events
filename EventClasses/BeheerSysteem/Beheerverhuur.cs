@@ -141,7 +141,11 @@ namespace BeheerSysteem
             DateTime BeginDatum = DTPBegin.Value;
             DateTime EindDatum = DTPEind.Value;
             DateTime NuDatum = DateTime.Now;
-            int huur = vc.Huur(SelectMateriaal, SelectUser, BeginDatum, EindDatum, NuDatum);
+            bool Opgehaald = CbOpgehaald.Checked;
+            bool Teruggebracht = false;
+
+
+            int huur = vc.Huur(SelectMateriaal, SelectUser, BeginDatum, EindDatum, NuDatum , Opgehaald, Teruggebracht);
 
             if (huur == 1)
             {

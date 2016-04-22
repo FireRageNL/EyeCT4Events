@@ -51,13 +51,14 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.BtnBevestigen = new System.Windows.Forms.Button();
+            this.CbOpgehaald = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // DTPBegin
             // 
             this.DTPBegin.CustomFormat = "dd-MM-yyyy hh:mm";
             this.DTPBegin.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.DTPBegin.Location = new System.Drawing.Point(133, 526);
+            this.DTPBegin.Location = new System.Drawing.Point(194, 503);
             this.DTPBegin.Name = "DTPBegin";
             this.DTPBegin.Size = new System.Drawing.Size(200, 20);
             this.DTPBegin.TabIndex = 0;
@@ -66,7 +67,7 @@
             // 
             this.DTPEind.CustomFormat = "dd-MM-yyyy hh:mm";
             this.DTPEind.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.DTPEind.Location = new System.Drawing.Point(478, 526);
+            this.DTPEind.Location = new System.Drawing.Point(629, 503);
             this.DTPEind.Name = "DTPEind";
             this.DTPEind.Size = new System.Drawing.Size(200, 20);
             this.DTPEind.TabIndex = 1;
@@ -74,9 +75,9 @@
             // LBGebruikers
             // 
             this.LBGebruikers.FormattingEnabled = true;
-            this.LBGebruikers.Location = new System.Drawing.Point(383, 164);
+            this.LBGebruikers.Location = new System.Drawing.Point(479, 164);
             this.LBGebruikers.Name = "LBGebruikers";
-            this.LBGebruikers.Size = new System.Drawing.Size(295, 316);
+            this.LBGebruikers.Size = new System.Drawing.Size(384, 316);
             this.LBGebruikers.TabIndex = 2;
             // 
             // LBMateriaal
@@ -84,13 +85,13 @@
             this.LBMateriaal.FormattingEnabled = true;
             this.LBMateriaal.Location = new System.Drawing.Point(38, 164);
             this.LBMateriaal.Name = "LBMateriaal";
-            this.LBMateriaal.Size = new System.Drawing.Size(295, 316);
+            this.LBMateriaal.Size = new System.Drawing.Size(384, 316);
             this.LBMateriaal.TabIndex = 3;
             // 
             // BtnWissen
             // 
             this.BtnWissen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnWissen.Location = new System.Drawing.Point(211, 127);
+            this.BtnWissen.Location = new System.Drawing.Point(269, 127);
             this.BtnWissen.Name = "BtnWissen";
             this.BtnWissen.Size = new System.Drawing.Size(64, 23);
             this.BtnWissen.TabIndex = 31;
@@ -101,7 +102,7 @@
             // BtnZoeken
             // 
             this.BtnZoeken.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnZoeken.Location = new System.Drawing.Point(136, 127);
+            this.BtnZoeken.Location = new System.Drawing.Point(194, 127);
             this.BtnZoeken.Name = "BtnZoeken";
             this.BtnZoeken.Size = new System.Drawing.Size(64, 23);
             this.BtnZoeken.TabIndex = 30;
@@ -112,7 +113,7 @@
             // TbType
             // 
             this.TbType.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TbType.Location = new System.Drawing.Point(136, 88);
+            this.TbType.Location = new System.Drawing.Point(194, 88);
             this.TbType.Name = "TbType";
             this.TbType.Size = new System.Drawing.Size(139, 22);
             this.TbType.TabIndex = 29;
@@ -120,7 +121,7 @@
             // TbMerk
             // 
             this.TbMerk.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TbMerk.Location = new System.Drawing.Point(136, 58);
+            this.TbMerk.Location = new System.Drawing.Point(194, 58);
             this.TbMerk.Name = "TbMerk";
             this.TbMerk.Size = new System.Drawing.Size(139, 22);
             this.TbMerk.TabIndex = 28;
@@ -128,7 +129,7 @@
             // TbProductnaam
             // 
             this.TbProductnaam.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TbProductnaam.Location = new System.Drawing.Point(136, 26);
+            this.TbProductnaam.Location = new System.Drawing.Point(194, 26);
             this.TbProductnaam.Name = "TbProductnaam";
             this.TbProductnaam.Size = new System.Drawing.Size(139, 22);
             this.TbProductnaam.TabIndex = 27;
@@ -137,7 +138,7 @@
             // 
             this.LblType.AutoSize = true;
             this.LblType.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblType.Location = new System.Drawing.Point(87, 91);
+            this.LblType.Location = new System.Drawing.Point(145, 91);
             this.LblType.Name = "LblType";
             this.LblType.Size = new System.Drawing.Size(43, 16);
             this.LblType.TabIndex = 26;
@@ -147,7 +148,7 @@
             // 
             this.LblMerk.AutoSize = true;
             this.LblMerk.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblMerk.Location = new System.Drawing.Point(89, 61);
+            this.LblMerk.Location = new System.Drawing.Point(147, 61);
             this.LblMerk.Name = "LblMerk";
             this.LblMerk.Size = new System.Drawing.Size(41, 16);
             this.LblMerk.TabIndex = 25;
@@ -157,7 +158,7 @@
             // 
             this.LblProductnaam.AutoSize = true;
             this.LblProductnaam.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblProductnaam.Location = new System.Drawing.Point(39, 29);
+            this.LblProductnaam.Location = new System.Drawing.Point(97, 29);
             this.LblProductnaam.Name = "LblProductnaam";
             this.LblProductnaam.Size = new System.Drawing.Size(91, 16);
             this.LblProductnaam.TabIndex = 24;
@@ -166,7 +167,7 @@
             // button1
             // 
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Location = new System.Drawing.Point(571, 127);
+            this.button1.Location = new System.Drawing.Point(704, 127);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(64, 23);
             this.button1.TabIndex = 39;
@@ -176,7 +177,7 @@
             // BtnGebZoek
             // 
             this.BtnGebZoek.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.BtnGebZoek.Location = new System.Drawing.Point(496, 127);
+            this.BtnGebZoek.Location = new System.Drawing.Point(629, 127);
             this.BtnGebZoek.Name = "BtnGebZoek";
             this.BtnGebZoek.Size = new System.Drawing.Size(64, 23);
             this.BtnGebZoek.TabIndex = 38;
@@ -187,7 +188,7 @@
             // TbDatum
             // 
             this.TbDatum.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TbDatum.Location = new System.Drawing.Point(496, 88);
+            this.TbDatum.Location = new System.Drawing.Point(629, 88);
             this.TbDatum.Name = "TbDatum";
             this.TbDatum.Size = new System.Drawing.Size(139, 22);
             this.TbDatum.TabIndex = 37;
@@ -195,7 +196,7 @@
             // TbEmail
             // 
             this.TbEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TbEmail.Location = new System.Drawing.Point(496, 58);
+            this.TbEmail.Location = new System.Drawing.Point(629, 58);
             this.TbEmail.Name = "TbEmail";
             this.TbEmail.Size = new System.Drawing.Size(139, 22);
             this.TbEmail.TabIndex = 36;
@@ -203,7 +204,7 @@
             // TbAchternaam
             // 
             this.TbAchternaam.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TbAchternaam.Location = new System.Drawing.Point(496, 26);
+            this.TbAchternaam.Location = new System.Drawing.Point(629, 26);
             this.TbAchternaam.Name = "TbAchternaam";
             this.TbAchternaam.Size = new System.Drawing.Size(139, 22);
             this.TbAchternaam.TabIndex = 35;
@@ -212,7 +213,7 @@
             // 
             this.LblRFID.AutoSize = true;
             this.LblRFID.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblRFID.Location = new System.Drawing.Point(385, 91);
+            this.LblRFID.Location = new System.Drawing.Point(518, 91);
             this.LblRFID.Name = "LblRFID";
             this.LblRFID.Size = new System.Drawing.Size(105, 16);
             this.LblRFID.TabIndex = 34;
@@ -222,7 +223,7 @@
             // 
             this.LbLEmail.AutoSize = true;
             this.LbLEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LbLEmail.Location = new System.Drawing.Point(445, 61);
+            this.LbLEmail.Location = new System.Drawing.Point(578, 61);
             this.LbLEmail.Name = "LbLEmail";
             this.LbLEmail.Size = new System.Drawing.Size(45, 16);
             this.LbLEmail.TabIndex = 33;
@@ -232,7 +233,7 @@
             // 
             this.LblAchternaam.AutoSize = true;
             this.LblAchternaam.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LblAchternaam.Location = new System.Drawing.Point(407, 29);
+            this.LblAchternaam.Location = new System.Drawing.Point(540, 29);
             this.LblAchternaam.Name = "LblAchternaam";
             this.LblAchternaam.Size = new System.Drawing.Size(83, 16);
             this.LblAchternaam.TabIndex = 32;
@@ -242,7 +243,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(35, 530);
+            this.label1.Location = new System.Drawing.Point(96, 507);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(88, 16);
             this.label1.TabIndex = 40;
@@ -252,7 +253,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(380, 530);
+            this.label2.Location = new System.Drawing.Point(531, 507);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(80, 16);
             this.label2.TabIndex = 41;
@@ -262,7 +263,7 @@
             // 
             this.BtnBevestigen.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.BtnBevestigen.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.3F);
-            this.BtnBevestigen.Location = new System.Drawing.Point(319, 576);
+            this.BtnBevestigen.Location = new System.Drawing.Point(407, 570);
             this.BtnBevestigen.Name = "BtnBevestigen";
             this.BtnBevestigen.Size = new System.Drawing.Size(81, 39);
             this.BtnBevestigen.TabIndex = 42;
@@ -270,11 +271,22 @@
             this.BtnBevestigen.UseVisualStyleBackColor = true;
             this.BtnBevestigen.Click += new System.EventHandler(this.BtnBevestigen_Click);
             // 
+            // CbOpgehaald
+            // 
+            this.CbOpgehaald.AutoSize = true;
+            this.CbOpgehaald.Location = new System.Drawing.Point(408, 547);
+            this.CbOpgehaald.Name = "CbOpgehaald";
+            this.CbOpgehaald.Size = new System.Drawing.Size(78, 17);
+            this.CbOpgehaald.TabIndex = 43;
+            this.CbOpgehaald.Text = "Opgehaald";
+            this.CbOpgehaald.UseVisualStyleBackColor = true;
+            // 
             // Beheerverhuur
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(722, 638);
+            this.ClientSize = new System.Drawing.Size(907, 619);
+            this.Controls.Add(this.CbOpgehaald);
             this.Controls.Add(this.BtnBevestigen);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -330,5 +342,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button BtnBevestigen;
+        private System.Windows.Forms.CheckBox CbOpgehaald;
     }
 }
