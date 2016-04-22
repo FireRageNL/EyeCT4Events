@@ -141,8 +141,22 @@ namespace BeheerSysteem
             DateTime BeginDatum = DTPBegin.Value;
             DateTime EindDatum = DTPEind.Value;
             DateTime NuDatum = DateTime.Now;
-            vc.Huur(SelectMateriaal, SelectUser, BeginDatum, EindDatum, NuDatum);
+            int huur = vc.Huur(SelectMateriaal, SelectUser, BeginDatum, EindDatum, NuDatum);
 
+            if (huur == 1)
+            {
+                MessageBox.Show("Materiaal niet beschiktbaar op begin datum");
+            }
+            else if (huur == 2)
+            {
+                MessageBox.Show("Materiaal niet beschiktbaar op einddatum datum");
+            }
+
+            else if (huur == 3)
+            {
+                MessageBox.Show("Reservering is bevestigt");
+            }
+            
         }
     }
 }

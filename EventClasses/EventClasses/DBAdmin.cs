@@ -35,14 +35,14 @@ namespace EventClasses
                 dr.Read();
                 string li = null;
                 if (dr.HasRows)
-        {
+                {
                     li = dr.GetString(0) + "," + dr.GetInt32(1);
                 }
                 conn.Close();
                 return li;
-        }
+            }
             catch (OracleException e)
-        {
+            {
                 Console.WriteLine("Message: " + e.Message);
                 conn.Close();
                 return null;
@@ -70,7 +70,7 @@ namespace EventClasses
                 {
                     conn.Close();
                 }
-                User rtn = new User(uid,name,uemail);
+                User rtn = new User(uid, name, uemail);
                 return rtn;
             }
             catch (OracleException e)
@@ -126,7 +126,7 @@ namespace EventClasses
                 OracleDataReader dr = cmd.ExecuteReader();
                 while (dr.Read())
                 {
-                        rtn.Add(dr.GetString(0));
+                    rtn.Add(dr.GetString(0));
                 }
                 conn.Close();
                 return rtn;
@@ -249,11 +249,11 @@ namespace EventClasses
             }
 
             //return
-            CheckIn rtrn = new EventClasses.CheckIn(rfidtag, Naam, Aanwezig , Payment);
+            CheckIn rtrn = new EventClasses.CheckIn(rfidtag, Naam, Aanwezig, Payment);
             return rtrn;
         }
 
-        public Boolean Betaald(int rfidtag , int eventid)
+        public Boolean Betaald(int rfidtag, int eventid)
         {
             // gebruiker op heeft betaald zetten
             try
@@ -283,8 +283,8 @@ namespace EventClasses
             return true;
         }
 
-        public List<Object> Geenmerk(string productnaam , int type)
-            {
+        public List<Object> Geenmerk(string productnaam, int type)
+        {
 
             List<Object> rtn = new List<Object>();
 
@@ -318,7 +318,7 @@ namespace EventClasses
                 return null;
             }
 
-            }
+        }
 
         public List<Object> Geenproductnaam(string Merk, int type)
         {
@@ -394,7 +394,7 @@ namespace EventClasses
 
         }
 
-        public List<Object> Alleenmerk (string Merk)
+        public List<Object> Alleenmerk(string Merk)
         {
 
             List<Object> rtn = new List<Object>();
@@ -502,7 +502,7 @@ namespace EventClasses
 
         }
 
-        public List<Object> Alles(string productnaam , string merk , int type)
+        public List<Object> Alles(string productnaam, string merk, int type)
         {
 
             List<Object> rtn = new List<Object>();
@@ -560,7 +560,7 @@ namespace EventClasses
             }
             catch (OracleException e)
             {
-                Console.WriteLine("Message: "+ e.Message);
+                Console.WriteLine("Message: " + e.Message);
                 conn.Close();
                 return null;
             }
@@ -595,7 +595,7 @@ namespace EventClasses
                     dr2.Read();
                     floc = dr2.GetString(0);
                 }
-                Message parent = new Media(cont, GetUser(puid,true), postid, floc);
+                Message parent = new Media(cont, GetUser(puid, true), postid, floc);
                 rtn.Add(parent);
                 cmd.CommandText = "Select Berichtid, gebruikerid, inhoud FROM Bericht WHERE ParentID = :par";
                 cmd.Parameters.Add("par", postid);
@@ -605,8 +605,8 @@ namespace EventClasses
                     int mid = dr3.GetInt32(0);
                     int uid = dr3.GetInt32(1);
                     string inh = dr3.GetString(2);
-                    User usr = GetUser(uid,true);
-                    Message msg = new Message(inh,usr,mid,parent);
+                    User usr = GetUser(uid, true);
+                    Message msg = new Message(inh, usr, mid, parent);
                     rtn.Add(msg);
                 }
                 conn.Close();
@@ -643,7 +643,7 @@ namespace EventClasses
             }
         }
         //Create a new post in the database
-        public void NewPost(string message, string url,string type, Login val)
+        public void NewPost(string message, string url, string type, Login val)
         {
             try
             {
@@ -668,7 +668,7 @@ namespace EventClasses
                     OracleDataReader dr = cmd.ExecuteReader();
                     dr.Read();
                     int mid = dr.GetInt32(0);
-                    parent = new Media(message,val.User,mid,url);
+                    parent = new Media(message, val.User, mid, url);
                 }
                 if (parent != null)
                 {
@@ -737,7 +737,7 @@ namespace EventClasses
                 cmd.Connection = conn;
                 cmd.BindByName = true;
                 cmd.CommandText = "DELETE FROM Materiaal WHERE MateriaalID = :param";
-                cmd.Parameters.Add("param",DeleteMateriaal.ObjectID);
+                cmd.Parameters.Add("param", DeleteMateriaal.ObjectID);
                 cmd.ExecuteNonQuery();
                 conn.Close();
             }
@@ -779,7 +779,7 @@ namespace EventClasses
                 OracleCommand cmd = new OracleCommand();
                 cmd.Connection = conn;
                 cmd.BindByName = true;
-                cmd.CommandText = "UPDATE MATERIAAL SET Merk = :mrk, PRODUCTNAAM =:prdnm, TYPENR =:typenr, PRIJS =:price WHERE MATERIAALID = "+obj.ObjectID;
+                cmd.CommandText = "UPDATE MATERIAAL SET Merk = :mrk, PRODUCTNAAM =:prdnm, TYPENR =:typenr, PRIJS =:price WHERE MATERIAALID = " + obj.ObjectID;
                 cmd.Parameters.Add("mrk", obj.Brand);
                 cmd.Parameters.Add("prdnm", obj.Productname);
                 cmd.Parameters.Add("typenr", obj.Type);
@@ -803,7 +803,7 @@ namespace EventClasses
                 OracleCommand cmd = new OracleCommand();
                 cmd.Connection = conn;
                 cmd.BindByName = true;
-                cmd.CommandText = "select a.aanwezigheid, g.voornaam, g.achternaam FROM aanwezig a, gebruiker g WHERE g.gebruikerid = a.gebruikerid AND a.EVENTID ="+evt;
+                cmd.CommandText = "select a.aanwezigheid, g.voornaam, g.achternaam FROM aanwezig a, gebruiker g WHERE g.gebruikerid = a.gebruikerid AND a.EVENTID =" + evt;
                 OracleDataReader dr = cmd.ExecuteReader();
                 while (dr.Read())
                 {
@@ -815,7 +815,7 @@ namespace EventClasses
                         string toAdd = voornaam + " " + achternaam;
                         rtn.Add(toAdd);
                     }
-                    
+
                 }
                 conn.Close();
                 return rtn;
@@ -1028,7 +1028,7 @@ namespace EventClasses
                     string Datum = (dr.GetOracleDate(5).ToString());
                     User toAdd = new User(id, Naam, Email, Datum);
                     rtn.Add(toAdd);
-                    }
+                }
                 conn.Close();
                 return rtn;
             }
@@ -1097,7 +1097,7 @@ namespace EventClasses
         }
         public List<User> BeheerUser()
         {
-                    
+
             List<User> rtn = new List<User>();
 
             try
@@ -1116,7 +1116,7 @@ namespace EventClasses
                     string Datum = (dr.GetOracleDate(5).ToString());
                     decimal budget = (dr.GetDecimal(8));
                     Adress uadres = GetUserAddress(dr.GetInt32(1));
-                    User toAdd = new User(id, Naam, Email, Datum,budget,uadres);
+                    User toAdd = new User(id, Naam, Email, Datum, budget, uadres);
                     rtn.Add(toAdd);
                 }
                 conn.Close();
@@ -1216,7 +1216,7 @@ namespace EventClasses
                     cmd.Parameters.Add("gb", user.Date);
                     cmd.Parameters.Add("em", user.Emailadres);
                     cmd.Parameters.Add("bg", user.Budget);
-        }
+                }
                 else
                 {
                     cmd.CommandText = "UPDATE Gebruiker SET Voornaam = :vn, Achternaam =:an, AdresID =:ai , Geboortedatum =:gb , Email =:em , Budget =:bg WHERE Gebruikerid = " + user.UserID;
@@ -1244,7 +1244,7 @@ namespace EventClasses
                 conn.Close();
             }
         }
-        public void AddUser(string Naam , string Wachtwoord, string Date, string Email, decimal Budget, string straat, int nr, string toe, string plaats, string postcode, string land)
+        public void AddUser(string Naam, string Wachtwoord, string Date, string Email, decimal Budget, string straat, int nr, string toe, string plaats, string postcode, string land)
         {
             try
             {
@@ -1317,7 +1317,7 @@ namespace EventClasses
                 int nameslenght = names.Length;
                 cmd.Parameters.Add("vn", names[0]);
                 string lastname = null;
-                for(int i = 1; i < nameslenght; i++)
+                for (int i = 1; i < nameslenght; i++)
                 {
                     lastname += names[i] + " ";
                 }
@@ -1365,7 +1365,7 @@ namespace EventClasses
                             eventadres = ad;
                         }
                     }
-                    Event add = new Event(eventadres,name,eventid);
+                    Event add = new Event(eventadres, name, eventid);
                     rtn.Add(add);
                 }
                 conn.Close();
@@ -1385,7 +1385,7 @@ namespace EventClasses
             try
             {
                 Adress add = null;
-                
+
                 if (conn.State != ConnectionState.Open)
                 {
                     conn.Open();
@@ -1393,7 +1393,7 @@ namespace EventClasses
                 }
                 OracleCommand cmd = new OracleCommand();
                 cmd.Connection = conn;
-                cmd.CommandText = "Select * from Adres WHERE adresid="+aid;
+                cmd.CommandText = "Select * from Adres WHERE adresid=" + aid;
                 OracleDataReader dr = cmd.ExecuteReader();
                 while (dr.Read())
                 {
@@ -1454,7 +1454,7 @@ namespace EventClasses
                     {
                         toevoeging = dr.GetString(6);
                     }
-                    Adress add = new Adress(aid,street,number,city,country,zip,toevoeging);
+                    Adress add = new Adress(aid, street, number, city, country, zip, toevoeging);
                     rtn.Add(add);
                 }
                 if (!intern)
@@ -1471,7 +1471,7 @@ namespace EventClasses
             }
         }
 
-        public void AddEvent(string straat, int nr,string toe, string plaats, string postcode, string land, string naam, DateTime begin, DateTime end)
+        public void AddEvent(string straat, int nr, string toe, string plaats, string postcode, string land, string naam, DateTime begin, DateTime end)
         {
             try
             {
@@ -1555,50 +1555,144 @@ namespace EventClasses
             }
         }
 
-        public void HuurMateriaal(EventClasses.Object Materiaal, EventClasses.User User, DateTime BeginDatum, DateTime EindDatum, DateTime NuDatum)
+        public int HuurMateriaal(EventClasses.Object Materiaal, EventClasses.User User, DateTime BeginDatum, DateTime EindDatum, DateTime NuDatum)
         {
             try
             {
                 int HuurID = 0;
+                int count1 = 0;
+                int count2 = 0;
+                int count3 = 0;
+                int count4 = 0;
 
                 conn.Open();
                 OracleCommand cmd = new OracleCommand();
                 cmd.Connection = conn;
                 cmd.BindByName = true;
-                cmd.CommandText = "INSERT INTO HUUR(GEBRUIKERID,HUURDATUM) VALUES(:gebruiker,:datum)";
-                cmd.Parameters.Add("gebruiker", User.UserID);
-                cmd.Parameters.Add("datum", NuDatum);
-                cmd.ExecuteNonQuery();
-                try
+                cmd.CommandText = "select count(*) from materiaalverhuur where :begindatum between begintijd and eindtijd and materiaalid =:MatID";
+                cmd.Parameters.Add("begindatum", BeginDatum);
+                cmd.Parameters.Add("MatID", Materiaal.ObjectID);
+                OracleDataReader dr5 = cmd.ExecuteReader();
+                dr5.Read();
+                count1 = dr5.GetInt32(0);
+
+                if (count1 == 0)
                 {
-                    cmd.CommandText = "SELECT * FROM HUUR WHERE GEBRUIKERID =:gebruiker";
-                cmd.Parameters.Add("gebruiker", User.UserID);
-                OracleDataReader dr = cmd.ExecuteReader();
-                    List<ObjectReservation> rents = new List<ObjectReservation>();
-                    while (dr.Read())
+                    cmd.CommandText = "select count(*) from materiaalverhuur where :einddatum between begintijd and eindtijd and materiaalid =:MatID";
+                    cmd.Parameters.Add("einddatum", EindDatum);
+                    cmd.Parameters.Add("MatID", Materiaal.ObjectID);
+                    OracleDataReader dr6 = cmd.ExecuteReader();
+                    dr6.Read();
+                    count2 = dr6.GetInt32(0);
+
+                    if (count2 == 0)
                     {
-                        ObjectReservation add = new ObjectReservation(dr.GetInt32(0),dr.GetInt32(1),dr.GetDateTime(2));
-                        rents.Add(add);
-                    }
-                    foreach (ObjectReservation res in rents)
-                    {
-                        if (res.ResTime.ToString() == NuDatum.ToString())
+                        cmd.CommandText = "select count(*) from materiaalverhuur where begintijd between :begindatum and :einddatum and materiaalid =:MatID";
+                        cmd.Parameters.Add("begindatum", BeginDatum);
+                        cmd.Parameters.Add("einddatum", EindDatum);
+                        cmd.Parameters.Add("MatID", Materiaal.ObjectID);
+                        OracleDataReader dr8 = cmd.ExecuteReader();
+                        dr8.Read();
+                        count3 = dr8.GetInt32(0);
+                        if (count3 == 0)
                         {
-                            HuurID = res.ReservationID;
+                            cmd.CommandText = "select count(*) from materiaalverhuur where eindtijd between :begindatum and :einddatum and materiaalid =:MatID";
+                            cmd.Parameters.Add("begindatum", BeginDatum);
+                            cmd.Parameters.Add("einddatum", EindDatum);
+                            cmd.Parameters.Add("MatID", Materiaal.ObjectID);
+                            OracleDataReader dr9 = cmd.ExecuteReader();
+                            dr9.Read();
+                            count4 = dr9.GetInt32(0);
+                            if (count4 == 0)
+                            {
+                                try
+                                {
+                                    cmd.CommandText = "SELECT * FROM HUUR WHERE GEBRUIKERID =:gebruiker";
+                                    cmd.Parameters.Add("gebruiker", User.UserID);
+                                    OracleDataReader dr = cmd.ExecuteReader();
+                                    List<ObjectReservation> rents = new List<ObjectReservation>();
+                                    while (dr.Read())
+                                    {
+                                        ObjectReservation add = new ObjectReservation(dr.GetInt32(0), dr.GetInt32(1), dr.GetDateTime(2));
+                                        rents.Add(add);
+                                    }
+                                    foreach (ObjectReservation res in rents)
+                                    {
+                                        if (res.ResTime.Hour == NuDatum.Hour || res.ResTime.Hour == (NuDatum.Hour + 1))
+                                        {
+                                            HuurID = res.ReservationID;
+                                        }
+                                    }
+                                }
+                                catch (OracleException e)
+                                {
+                                    Console.WriteLine("Message: " + e.Message);
+                                    conn.Close();
+
+                                }
+                                if (HuurID == 0)
+                                {
+                                    cmd.CommandText = "INSERT INTO HUUR(GEBRUIKERID,HUURDATUM) VALUES(:gebruiker,:datum)";
+                                    cmd.Parameters.Add("gebruiker", User.UserID);
+                                    cmd.Parameters.Add("datum", NuDatum);
+                                    cmd.ExecuteNonQuery();
+                                    try
+                                    {
+                                        cmd.CommandText = "SELECT * FROM HUUR WHERE GEBRUIKERID =:gebruiker";
+                                        cmd.Parameters.Add("gebruiker", User.UserID);
+                                        OracleDataReader dr7 = cmd.ExecuteReader();
+                                        List<ObjectReservation> rents = new List<ObjectReservation>();
+                                        while (dr7.Read())
+                                        {
+                                            ObjectReservation add = new ObjectReservation(dr7.GetInt32(0), dr7.GetInt32(1), dr7.GetDateTime(2));
+                                            rents.Add(add);
+                                        }
+                                        foreach (ObjectReservation res in rents)
+                                        {
+                                            if (res.ResTime.Hour == NuDatum.Hour || res.ResTime.Hour == (NuDatum.Hour + 1))
+                                            {
+                                                HuurID = res.ReservationID;
+                                            }
+                                        }
+                                    }
+                                    catch (OracleException e)
+                                    {
+                                        Console.WriteLine("Message: " + e.Message);
+                                        conn.Close();
+
+                                    }
+                                }
+                                cmd.CommandText = "INSERT INTO MATERIAALVERHUUR(MATERIAALID,HUURID,BEGINTIJD,EINDTIJD) VALUES(:MatID,:HuurID,:Begin,:Eind)";
+                                cmd.Parameters.Add("MatID", Materiaal.ObjectID);
+                                cmd.Parameters.Add("HuurID", HuurID);
+                                cmd.Parameters.Add("Begin", BeginDatum);
+                                cmd.Parameters.Add("Eind", EindDatum);
+                                cmd.ExecuteNonQuery();
+                                conn.Close();
+                            }
+                            else
+                            {
+                                conn.Close();
+                                return 2;
+                            }
+                        }
+                        else
+                        {
+                            conn.Close();
+                            return 2;
                         }
                     }
+                    else
+                    {
+                        conn.Close();
+                        return 2;
+                    }
                 }
-                catch (OracleException e)
+                else
                 {
-                    Console.WriteLine("Message: " + e.Message);
+                    conn.Close();
+                    return 1;
                 }
-
-                cmd.CommandText = "INSERT INTO MATERIAALVERHUUR(MATERIAALID,HUURID,BEGINTIJD,EINDTIJD) VALUES(:MatID,:HuurID,:Begin,:Eind)";
-                cmd.Parameters.Add("MatID", Materiaal.ObjectID);
-                cmd.Parameters.Add("HuurID", HuurID);
-                cmd.Parameters.Add("Begin", BeginDatum);
-                cmd.Parameters.Add("Eind", EindDatum);
-                conn.Close();
 
             }
             catch (OracleException e)
@@ -1606,7 +1700,16 @@ namespace EventClasses
                 Console.WriteLine("Message: " + e.Message);
                 conn.Close();
             }
+                else
+                {
+                conn.Close();
+                return 1;
+            }
         }
+
+        conn.Close();
+            return 3;
+        } }
 
         public void AddGroup(List<User> groupUsers, string text)
         {

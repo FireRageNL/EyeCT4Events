@@ -55,7 +55,7 @@
             // 
             // DTPBegin
             // 
-            this.DTPBegin.CustomFormat = "dd-mm-yyyy hh:mm";
+            this.DTPBegin.CustomFormat = "dd-MM-yyyy hh:mm";
             this.DTPBegin.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.DTPBegin.Location = new System.Drawing.Point(133, 526);
             this.DTPBegin.Name = "DTPBegin";
@@ -64,7 +64,7 @@
             // 
             // DTPEind
             // 
-            this.DTPEind.CustomFormat = "dd-mm-yyyy hh:mm";
+            this.DTPEind.CustomFormat = "dd-MM-yyyy hh:mm";
             this.DTPEind.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.DTPEind.Location = new System.Drawing.Point(478, 526);
             this.DTPEind.Name = "DTPEind";

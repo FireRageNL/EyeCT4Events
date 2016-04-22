@@ -10,9 +10,18 @@ namespace EventClasses
     {
         private DBAdmin db = new DBAdmin();
 
-        public void Huur(EventClasses.Object Materiaal, EventClasses.User User, DateTime BeginDatum, DateTime EindDatum , DateTime Nudatum)
+        public int Huur(EventClasses.Object Materiaal, EventClasses.User User, DateTime BeginDatum, DateTime EindDatum , DateTime Nudatum)
         {
-            db.HuurMateriaal(Materiaal, User, BeginDatum, EindDatum , Nudatum);
+            int huur = db.HuurMateriaal(Materiaal, User, BeginDatum, EindDatum , Nudatum);
+            if (huur == 1)
+            {
+                return 1;
+            }
+            else if (huur == 2)
+            {
+                return 2;
+            }
+                return 3;
         }
     }
 }
