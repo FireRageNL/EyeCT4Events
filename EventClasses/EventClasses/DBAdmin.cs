@@ -1572,8 +1572,8 @@ namespace EventClasses
                 try
                 {
                     cmd.CommandText = "SELECT * FROM HUUR WHERE GEBRUIKERID =:gebruiker";
-                    cmd.Parameters.Add("gebruiker", User.UserID);
-                    OracleDataReader dr = cmd.ExecuteReader();
+                cmd.Parameters.Add("gebruiker", User.UserID);
+                OracleDataReader dr = cmd.ExecuteReader();
                     List<ObjectReservation> rents = new List<ObjectReservation>();
                     while (dr.Read())
                     {
@@ -1598,7 +1598,6 @@ namespace EventClasses
                 cmd.Parameters.Add("HuurID", HuurID);
                 cmd.Parameters.Add("Begin", BeginDatum);
                 cmd.Parameters.Add("Eind", EindDatum);
-                cmd.ExecuteNonQuery();
                 conn.Close();
 
             }
