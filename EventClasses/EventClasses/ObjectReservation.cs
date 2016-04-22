@@ -16,7 +16,13 @@ namespace EventClasses
 
         public DateTime ResTime { get; private set; }
 
+        public DateTime StartTime { get; private set; }
+
+        public DateTime EndTime { get; private set; }
+
         public bool ObjectTaken { get; private set; }
+        
+        public User Usr { get; private set; }
 
 
         public ObjectReservation(int resid, int ruser, DateTime time)
@@ -26,5 +32,19 @@ namespace EventClasses
             ResTime = time;
         }
 
+        public ObjectReservation(int resid, User ruser, DateTime start, DateTime end,Object obj)
+        {
+            ReservationID = resid;
+            Usr = ruser;
+            StartTime = start;
+            EndTime = end;
+            ResObject = obj;
+        }
+
+        public override string ToString()
+        {
+            return ReservationID + ": " + ResObject.Brand + " " + ResObject.Productname + " Verhuurd Van: " +
+                   StartTime.ToShortDateString() + " Tot: " + EndTime.ToShortDateString() + " Aan: " + Usr.Name;
+        }
     }
 }

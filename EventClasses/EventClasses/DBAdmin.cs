@@ -1780,7 +1780,6 @@ namespace EventClasses
                         usr.Add(GetUser(uid, true));
                     }
                     cmd.CommandText = "SELECT GROEPSNAAM FROM GROEP WHERE GROEPID='" + i + "'";
-                    //cmd.Parameters.Add("groep", i);
                     OracleDataReader dr3 = cmd.ExecuteReader();
                     dr3.Read();
                     Group add = new Group(dr3.GetString(0), i, usr);
@@ -1855,15 +1854,113 @@ namespace EventClasses
                 OracleCommand cmd = new OracleCommand();
                 cmd.Connection = conn;
                 cmd.BindByName = true;
-                cmd.CommandText = "GET * FROM MATERIAALVERHUUR WHERE OPGEHAALD='0' AND TERUGGEBRACHT ='0'";
+                cmd.CommandText = "SELECT * FROM MATERIAALVERHUUR WHERE OPGEHAALD='0' AND TERUGGEBRACHT ='0'";
                 OracleDataReader dr = cmd.ExecuteReader();
                 while (dr.Read())
                 {
-
-                    ObjectReservation add = new ObjectReservation(resid,userid,time);
+                    int resid = dr.GetInt32(0);
+                    DateTime start = dr.GetDateTime(3);
+                    DateTime end = dr.GetDateTime(4);
+                    int objID = dr.GetInt32(1);
+                    cmd.CommandText = "SELECT * FROM MATERIAAL WHERE MATERIAALID ='" + objID + "'";
+                    OracleDataReader dr2 = cmd.ExecuteReader();
+                    dr2.Read();
+                    Object obj = new Object(dr2.GetInt32(0), dr2.GetString(1), dr2.GetString(2), dr2.GetInt32(3),
+                        dr2.GetDecimal(4));
+                    cmd.CommandText = "SELECT GEBRUIKERID FROM HUUR WHERE HUURID='" + dr.GetInt32(2) + "'";
+                    OracleDataReader dr3 = cmd.ExecuteReader();
+                    dr3.Read();
+                    User usr = GetUser(dr3.GetInt32(0), true);
+                    ObjectReservation add = new ObjectReservation(resid, usr, start, end, obj);
+                    ret.Add(add);
                 }
+                conn.Close();
+            }
+            catch (OracleException e)
+            {
+                Console.WriteLine("Message: "+e.Message);
+                conn.Close();;
             }
             return ret;
+        }
+
+        public List<ObjectReservation> GetBorrowed()
+        {
+            List<ObjectReservation> ret = new List<ObjectReservation>();
+            try
+            {
+                conn.Open();
+                OracleCommand cmd = new OracleCommand();
+                cmd.Connection = conn;
+                cmd.BindByName = true;
+                cmd.CommandText = "SELECT * FROM MATERIAALVERHUUR WHERE OPGEHAALD='1' AND TERUGGEBRACHT ='0'";
+                OracleDataReader dr = cmd.ExecuteReader();
+                while (dr.Read())
+                {
+                    int resid = dr.GetInt32(0);
+                    DateTime start = dr.GetDateTime(3);
+                    DateTime end = dr.GetDateTime(4);
+                    int objID = dr.GetInt32(1);
+                    cmd.CommandText = "SELECT * FROM MATERIAAL WHERE MATERIAALID ='" + objID + "'";
+                    OracleDataReader dr2 = cmd.ExecuteReader();
+                    dr2.Read();
+                    Object obj = new Object(dr2.GetInt32(0), dr2.GetString(1), dr2.GetString(2), dr2.GetInt32(3),
+                        dr2.GetDecimal(4));
+                    cmd.CommandText = "SELECT GEBRUIKERID FROM HUUR WHERE HUURID='" + dr.GetInt32(2) + "'";
+                    OracleDataReader dr3 = cmd.ExecuteReader();
+                    dr3.Read();
+                    User usr = GetUser(dr3.GetInt32(0), true);
+                    ObjectReservation add = new ObjectReservation(resid, usr, start, end, obj);
+                    ret.Add(add);
+                }
+                conn.Close();
+            }
+            catch (OracleException e)
+            {
+                Console.WriteLine("Message: " + e.Message);
+                conn.Close(); ;
+            }
+            return ret;
+        }
+
+        public void BorrowObject(ObjectReservation res)
+        {
+            try
+            {
+                conn.Open();
+                OracleCommand cmd = new OracleCommand();
+                cmd.Connection = conn;
+                cmd.BindByName = true;
+                cmd.CommandText = "UPDATE MATERIAALVERHUUR SET OPGEHAALD='1' WHERE MATERIAALVERHUURID='" +
+                                  res.ReservationID + "'";
+                cmd.ExecuteNonQuery();
+                conn.Close();
+            }
+            catch (OracleException e)
+            {
+                Console.WriteLine("Message: " + e.Message);
+                conn.Close(); ;
+            }
+        }
+
+        public void TakeBackObject(ObjectReservation res)
+        {
+            try
+            {
+                conn.Open();
+                OracleCommand cmd = new OracleCommand();
+                cmd.Connection = conn;
+                cmd.BindByName = true;
+                cmd.CommandText = "UPDATE MATERIAALVERHUUR SET TERUGGEBRACHT='1' WHERE MATERIAALVERHUURID='" +
+                                  res.ReservationID + "'";
+                cmd.ExecuteNonQuery();
+                conn.Close();
+            }
+            catch (OracleException e)
+            {
+                Console.WriteLine("Message: " + e.Message);
+                conn.Close(); ;
+            }
         }
     }
 }

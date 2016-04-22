@@ -41,15 +41,15 @@
             this.listBox1.FormattingEnabled = true;
             this.listBox1.Location = new System.Drawing.Point(12, 59);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(189, 472);
+            this.listBox1.Size = new System.Drawing.Size(491, 160);
             this.listBox1.TabIndex = 0;
             // 
             // listBox2
             // 
             this.listBox2.FormattingEnabled = true;
-            this.listBox2.Location = new System.Drawing.Point(314, 59);
+            this.listBox2.Location = new System.Drawing.Point(12, 312);
             this.listBox2.Name = "listBox2";
-            this.listBox2.Size = new System.Drawing.Size(189, 472);
+            this.listBox2.Size = new System.Drawing.Size(491, 160);
             this.listBox2.TabIndex = 1;
             // 
             // label1
@@ -64,7 +64,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(311, 40);
+            this.label2.Location = new System.Drawing.Point(9, 293);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(108, 13);
             this.label2.TabIndex = 3;
@@ -72,21 +72,23 @@
             // 
             // btnGeefUit
             // 
-            this.btnGeefUit.Location = new System.Drawing.Point(16, 546);
+            this.btnGeefUit.Location = new System.Drawing.Point(21, 225);
             this.btnGeefUit.Name = "btnGeefUit";
             this.btnGeefUit.Size = new System.Drawing.Size(75, 23);
             this.btnGeefUit.TabIndex = 4;
             this.btnGeefUit.Text = "Uitgeven";
             this.btnGeefUit.UseVisualStyleBackColor = true;
+            this.btnGeefUit.Click += new System.EventHandler(this.btnGeefUit_Click);
             // 
             // btnNeemTerug
             // 
-            this.btnNeemTerug.Location = new System.Drawing.Point(314, 546);
+            this.btnNeemTerug.Location = new System.Drawing.Point(21, 478);
             this.btnNeemTerug.Name = "btnNeemTerug";
             this.btnNeemTerug.Size = new System.Drawing.Size(75, 23);
             this.btnNeemTerug.TabIndex = 5;
             this.btnNeemTerug.Text = "Terugnemen";
             this.btnNeemTerug.UseVisualStyleBackColor = true;
+            this.btnNeemTerug.Click += new System.EventHandler(this.btnNeemTerug_Click);
             // 
             // OphalenTerugbrengen
             // 

@@ -162,5 +162,11 @@ namespace BeheerSysteem
             }
             
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            OphalenTerugbrengen ot = new OphalenTerugbrengen(val);
+            ot.ShowDialog();
+        }
     }
 }

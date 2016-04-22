@@ -22,5 +22,25 @@ namespace BeheerSysteem
             listBox1.DataSource = vc.GetReserved();
             listBox2.DataSource = vc.GetBorrowed();
         }
+
+        private void btnGeefUit_Click(object sender, EventArgs e)
+        {
+            ObjectReservation res = (ObjectReservation)listBox1.SelectedItem;
+            vc.Borrow(res);
+            listBox1.DataSource = null;
+            listBox2.DataSource = null;
+            listBox1.DataSource = vc.GetReserved();
+            listBox2.DataSource = vc.GetBorrowed();
+        }
+
+        private void btnNeemTerug_Click(object sender, EventArgs e)
+        {
+            ObjectReservation res = (ObjectReservation) listBox2.SelectedItem;
+            vc.TakeBack(res);
+            listBox1.DataSource = null;
+            listBox2.DataSource = null;
+            listBox1.DataSource = vc.GetReserved();
+            listBox2.DataSource = vc.GetBorrowed();
+        }
     }
 }

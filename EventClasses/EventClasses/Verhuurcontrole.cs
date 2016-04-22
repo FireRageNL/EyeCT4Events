@@ -28,5 +28,20 @@ namespace EventClasses
         {
             return db.GetReserved();
         }
+
+        public List<ObjectReservation> GetBorrowed()
+        {
+            return db.GetBorrowed();
+        }
+
+        public void Borrow(ObjectReservation res)
+        {
+            db.BorrowObject(res);
+        }
+
+        public void TakeBack(ObjectReservation res)
+        {
+            db.TakeBackObject(res);
+        }
     }
 }
