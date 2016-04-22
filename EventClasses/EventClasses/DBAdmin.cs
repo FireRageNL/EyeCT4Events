@@ -35,14 +35,14 @@ namespace EventClasses
                 dr.Read();
                 string li = null;
                 if (dr.HasRows)
-                {
+        {
                     li = dr.GetString(0) + "," + dr.GetInt32(1);
                 }
                 conn.Close();
                 return li;
-            }
+        }
             catch (OracleException e)
-            {
+        {
                 Console.WriteLine("Message: " + e.Message);
                 conn.Close();
                 return null;
@@ -126,7 +126,7 @@ namespace EventClasses
                 OracleDataReader dr = cmd.ExecuteReader();
                 while (dr.Read())
                 {
-                    rtn.Add(dr.GetString(0));
+                        rtn.Add(dr.GetString(0));
                 }
                 conn.Close();
                 return rtn;
@@ -140,7 +140,7 @@ namespace EventClasses
 
         }
         //Checkin
-        public CheckIn CheckIn(int rfidtag, int eventid)
+        public CheckIn CheckIn(string rfidtag, int eventid)
         {
             string Naam = null;
             int Aanwezig = 0;
@@ -253,7 +253,7 @@ namespace EventClasses
             return rtrn;
         }
 
-        public Boolean Betaald(int rfidtag, int eventid)
+        public Boolean Betaald(string rfidtag , int eventid)
         {
             // gebruiker op heeft betaald zetten
             try
@@ -284,7 +284,7 @@ namespace EventClasses
         }
 
         public List<Object> Geenmerk(string productnaam, int type)
-        {
+            {
 
             List<Object> rtn = new List<Object>();
 
@@ -318,7 +318,7 @@ namespace EventClasses
                 return null;
             }
 
-        }
+            }
 
         public List<Object> Geenproductnaam(string Merk, int type)
         {
@@ -815,7 +815,7 @@ namespace EventClasses
                         string toAdd = voornaam + " " + achternaam;
                         rtn.Add(toAdd);
                     }
-
+                    
                 }
                 conn.Close();
                 return rtn;
@@ -1028,7 +1028,7 @@ namespace EventClasses
                     string Datum = (dr.GetOracleDate(5).ToString());
                     User toAdd = new User(id, Naam, Email, Datum);
                     rtn.Add(toAdd);
-                }
+                    }
                 conn.Close();
                 return rtn;
             }
@@ -1097,7 +1097,7 @@ namespace EventClasses
         }
         public List<User> BeheerUser()
         {
-
+                    
             List<User> rtn = new List<User>();
 
             try
@@ -1216,7 +1216,7 @@ namespace EventClasses
                     cmd.Parameters.Add("gb", user.Date);
                     cmd.Parameters.Add("em", user.Emailadres);
                     cmd.Parameters.Add("bg", user.Budget);
-                }
+        }
                 else
                 {
                     cmd.CommandText = "UPDATE Gebruiker SET Voornaam = :vn, Achternaam =:an, AdresID =:ai , Geboortedatum =:gb , Email =:em , Budget =:bg WHERE Gebruikerid = " + user.UserID;
@@ -1385,7 +1385,7 @@ namespace EventClasses
             try
             {
                 Adress add = null;
-
+                
                 if (conn.State != ConnectionState.Open)
                 {
                     conn.Open();
@@ -1632,41 +1632,41 @@ namespace EventClasses
                                 }
                                 if (HuurID == 0)
                                 {
-                                    cmd.CommandText = "INSERT INTO HUUR(GEBRUIKERID,HUURDATUM) VALUES(:gebruiker,:datum)";
-                                    cmd.Parameters.Add("gebruiker", User.UserID);
-                                    cmd.Parameters.Add("datum", NuDatum);
-                                    cmd.ExecuteNonQuery();
-                                    try
-                                    {
-                                        cmd.CommandText = "SELECT * FROM HUUR WHERE GEBRUIKERID =:gebruiker";
-                                        cmd.Parameters.Add("gebruiker", User.UserID);
+                cmd.CommandText = "INSERT INTO HUUR(GEBRUIKERID,HUURDATUM) VALUES(:gebruiker,:datum)";
+                cmd.Parameters.Add("gebruiker", User.UserID);
+                cmd.Parameters.Add("datum", NuDatum);
+                cmd.ExecuteNonQuery();
+                try
+                {
+                    cmd.CommandText = "SELECT * FROM HUUR WHERE GEBRUIKERID =:gebruiker";
+                cmd.Parameters.Add("gebruiker", User.UserID);
                                         OracleDataReader dr7 = cmd.ExecuteReader();
-                                        List<ObjectReservation> rents = new List<ObjectReservation>();
+                    List<ObjectReservation> rents = new List<ObjectReservation>();
                                         while (dr7.Read())
-                                        {
+                    {
                                             ObjectReservation add = new ObjectReservation(dr7.GetInt32(0), dr7.GetInt32(1), dr7.GetDateTime(2));
-                                            rents.Add(add);
-                                        }
-                                        foreach (ObjectReservation res in rents)
-                                        {
+                        rents.Add(add);
+                    }
+                    foreach (ObjectReservation res in rents)
+                    {
                                             if (res.ResTime.Hour == NuDatum.Hour || res.ResTime.Hour == (NuDatum.Hour + 1))
-                                            {
-                                                HuurID = res.ReservationID;
-                                            }
-                                        }
-                                    }
-                                    catch (OracleException e)
-                                    {
-                                        Console.WriteLine("Message: " + e.Message);
+                        {
+                            HuurID = res.ReservationID;
+                        }
+                    }
+                }
+                catch (OracleException e)
+                {
+                    Console.WriteLine("Message: " + e.Message);
                                         conn.Close();
 
                                     }
-                                }
-                                cmd.CommandText = "INSERT INTO MATERIAALVERHUUR(MATERIAALID,HUURID,BEGINTIJD,EINDTIJD) VALUES(:MatID,:HuurID,:Begin,:Eind)";
-                                cmd.Parameters.Add("MatID", Materiaal.ObjectID);
-                                cmd.Parameters.Add("HuurID", HuurID);
-                                cmd.Parameters.Add("Begin", BeginDatum);
-                                cmd.Parameters.Add("Eind", EindDatum);
+                }
+                cmd.CommandText = "INSERT INTO MATERIAALVERHUUR(MATERIAALID,HUURID,BEGINTIJD,EINDTIJD) VALUES(:MatID,:HuurID,:Begin,:Eind)";
+                cmd.Parameters.Add("MatID", Materiaal.ObjectID);
+                cmd.Parameters.Add("HuurID", HuurID);
+                cmd.Parameters.Add("Begin", BeginDatum);
+                cmd.Parameters.Add("Eind", EindDatum);
                                 cmd.ExecuteNonQuery();
                                 conn.Close();
                             }
@@ -1690,7 +1690,7 @@ namespace EventClasses
                 }
                 else
                 {
-                    conn.Close();
+                conn.Close();
                     return 1;
                 }
 

@@ -10,7 +10,7 @@ namespace EventClasses
     {
         public User Usr { get; set; }
 
-        public int RfidTag { get; private set; }
+        public string RfidTag { get; private set; }
 
         public decimal Funds { get; private set; }
 
