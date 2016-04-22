@@ -24,6 +24,7 @@ namespace BeheerSysteem
                 btnGebruiker.Enabled = false;
                 btnEvent.Enabled = false;
                 btnGroep.Enabled = false;
+                btnReservering.Enabled = false;
             }
         }
 
