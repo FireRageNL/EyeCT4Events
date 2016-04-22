@@ -43,7 +43,6 @@
   <ItemGroup>
     <Compile Include="Adress.cs" />
     <Compile Include="CheckIn.cs" />
-    <Compile Include="DAL.cs" />
     <Compile Include="DBAdmin.cs" />
     <Compile Include="Event.cs" />
     <Compile Include="Gebruikercontrole.cs" />

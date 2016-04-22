@@ -27,6 +27,7 @@ namespace BeheerSysteem
 
         private void btnZoek_Click(object sender, EventArgs e)
         {
+            if (listBox1.SelectedItem == null) return;
             searchgroup = (Group) listBox1.SelectedItem;
             List<EventClasses.Location> freeLocations = new List<Location>();
             freeLocations = rc.GetFreeLocations(searchgroup.Users.Count);

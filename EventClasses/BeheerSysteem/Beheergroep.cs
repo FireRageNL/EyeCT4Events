@@ -47,5 +47,37 @@ namespace BeheerSysteem
             listBox1.DisplayMember = "GroupName";
             listBox2.Items.Clear();
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            List<User> search = new List<User>();
+            if (!String.IsNullOrWhiteSpace(textBox1.Text))
+            {  
+                foreach (User usr in users)
+                {
+                    if (usr.Name.Contains(textBox1.Text))
+                    {
+                        search.Add(usr);
+                    }
+                }
+            }
+            else if (!String.IsNullOrWhiteSpace(textBox2.Text))
+            {
+                foreach (User usr in users)
+                {
+                    if (usr.Emailadres.Contains(textBox2.Text))
+                    {
+                        search.Add(usr);
+                    }
+                }
+            }
+            else
+            {
+                search = users;
+            }
+            listBox1.DataSource = null;
+            listBox1.DataSource = search;
+            listBox1.DisplayMember = "GroupName";
+        }
     }
 }
