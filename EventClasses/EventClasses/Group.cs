@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace EventClasses
 {
-    class Group
+    public class Group
     {
         public List<User> Users { get; private set; }
         
@@ -15,38 +15,22 @@ namespace EventClasses
         
         public string Groupname { get; private set; } 
 
-        public Location Loc { get; private set; }
+        public Location Loc { get; set; }
 
-        public Group(string gname, int id)
+        public Group(string gname, int id, List<User> usr )
         {
             GroupID = id;
             Groupname = gname;
+            Users = usr;
         }
 
-        public void AddUserToGroup(User usr)
+        public override string ToString()
         {
-            Users.Add(usr);
-        }
-
-        public void RemoveUserFromGroup(User usr)
-        {
-            foreach (User search in Users)
+            if (Users.Count == 1)
             {
-                if (search.UserID == usr.UserID)
-                {
-                    Users.Remove(search);
-                }
+                return Groupname + " - " + Users.Count + " Persoon";
             }
-        }
-
-        public void ChangeLocation(Location l)
-        {
-            Loc = l;
-        }
-
-        public void DeleteLocation()
-        {
-            Loc = null;
+            return Groupname + " - " + Users.Count+ " Personen";
         }
     }
 }

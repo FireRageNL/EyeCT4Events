@@ -81,29 +81,37 @@ namespace BeheerSysteem
                     MessageBox.Show("Vul een wachtwoord in!");
                     pwok = false;
                 }
-                if (nr != 0 && dcok && pwok)
+                string[] naamverify = naam.Split(' ');
+                if (naamverify.Length > 1)
                 {
-                    if (v)
+                    if (nr != 0 && dcok && pwok)
                     {
-                        gc.AddUser(naam,tbWachtwoord.Text,Convert.ToString(dateTimePicker1.Value.Date),email,budget,straat,nr,toe,plaats,postcode,land);
-                    }
-                    else
-                    {
-                        updateUser.Adress.Update(straat, nr, plaats, land, postcode, toe);
-                        updateUser.Update(naam, email, Convert.ToString(dateTimePicker1.Value.Date), budget);
-                        if (!string.IsNullOrWhiteSpace(tbWachtwoord.Text))
+                        if (v)
                         {
-                            gc.UpdateUser(updateUser, tbWachtwoord.Text);
+                            gc.AddUser(naam, tbWachtwoord.Text, Convert.ToString(dateTimePicker1.Value.Date), email,
+                                budget, straat, nr, toe, plaats, postcode, land);
                         }
                         else
                         {
-                            gc.UpdateUser(updateUser);
+                            updateUser.Adress.Update(straat, nr, plaats, land, postcode, toe);
+                            updateUser.Update(naam, email, Convert.ToString(dateTimePicker1.Value.Date), budget);
+                            if (!string.IsNullOrWhiteSpace(tbWachtwoord.Text))
+                            {
+                                gc.UpdateUser(updateUser, tbWachtwoord.Text);
+                            }
+                            else
+                            {
+                                gc.UpdateUser(updateUser);
+                            }
                         }
                     }
                     this.Dispose();
+                }
+                else
+                {
+                    MessageBox.Show("Vul de volledige naam in!");
                 }
             }
         }
     }
 }
-//Adress add = new Adress(aid,street,number,city,country,zip,toevoeging);

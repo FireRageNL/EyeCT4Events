@@ -25,9 +25,13 @@ namespace BeheerSysteem
 
         private void BtnVerwijder_Click(object sender, EventArgs e)
         {
-            EventClasses.User DeleteUser = (EventClasses.User)listBox1.SelectedItem;
-            gc.DeleteUser(DeleteUser);
-
+            DialogResult result = MessageBox.Show("Weet je zeker dat je dit object wilt verwijderen?", "Waarschuwing!",
+                MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                EventClasses.User DeleteUser = (EventClasses.User) listBox1.SelectedItem;
+                gc.DeleteUser(DeleteUser);
+            }
             List<EventClasses.User> User= gc.BeheerUser();
             listBox1.DataSource = User;
         }

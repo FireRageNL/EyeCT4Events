@@ -12,34 +12,19 @@ namespace EventClasses
 
         public Object ResObject { get; private set; }
 
-        public User ResUser { get; private set; }
+        public int ResUser { get; private set; }
 
         public DateTime ResTime { get; private set; }
 
         public bool ObjectTaken { get; private set; }
 
 
-        public ObjectReservation(int resid, Object robject, User ruser, DateTime time)
+        public ObjectReservation(int resid, int ruser, DateTime time)
         {
             ReservationID = resid;
-            ResObject = robject;
             ResUser = ruser;
             ResTime = time;
         }
 
-        public static List<ObjectReservation> GetFreeObjects(DateTime time)
-        {
-            return null;
-        }
-
-        public void DispatchObject()
-        {
-            ObjectTaken = true;
-        }
-
-        public void ReturnObject()
-        {
-            ObjectTaken = false;
-        }
     }
 }

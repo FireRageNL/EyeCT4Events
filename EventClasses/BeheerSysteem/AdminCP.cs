@@ -23,7 +23,7 @@ namespace BeheerSysteem
             {
                 btnGebruiker.Enabled = false;
                 btnEvent.Enabled = false;
-                btnReservering.Enabled = false;
+                btnGroep.Enabled = false;
             }
         }
 
@@ -31,11 +31,6 @@ namespace BeheerSysteem
         {
             FormGebruikersBeheer gb = new FormGebruikersBeheer(val);
             gb.Show();
-        }
-
-        private void btnReservering_Click(object sender, EventArgs e)
-        {
-            MessageBox.Show("Dit bestaat nog niet jong");
         }
 
         private void btnEvent_Click(object sender, EventArgs e)
@@ -54,6 +49,18 @@ namespace BeheerSysteem
         {
             Beheerverhuur vb = new Beheerverhuur(val);
             vb.Show();
+        }
+
+        private void btnGroep_Click(object sender, EventArgs e)
+        {
+            Beheergroep bg = new Beheergroep(val);
+            bg.Show();
+        }
+
+        private void btnReservering_Click(object sender, EventArgs e)
+        {
+            Beheerreservering br = new Beheerreservering(val);
+            br.Show();
         }
     }
 }
