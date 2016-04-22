@@ -12,12 +12,12 @@ namespace EventClasses
     {
       ////  static DAL Start = new DAL();
       //  DBAdmin DatabaseAdmin = new DBAdmin(Start);
-        public int RfidTag { get; private set; }
+        public string RfidTag { get; private set; }
         public int Aanwezig { get;  set; }
         public string Naam { get; private set; }
         public Boolean Betaald { get; private set; }
 
-        public CheckIn(int rfidTag, string naam , int aanwezig , Boolean payment)
+        public CheckIn(string rfidTag, string naam , int aanwezig , Boolean payment)
         {
             RfidTag = rfidTag;
             Naam = naam;

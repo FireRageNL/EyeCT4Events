@@ -14,11 +14,11 @@ namespace EventClasses
         {
             return db.GetEvents();
         }
-        public CheckIn CheckIn(int rfidTag, int eventid)
+        public CheckIn CheckIn(string rfidTag, int eventid)
         {
             return db.CheckIn(rfidTag, eventid);
         }
-        public Boolean Betaald(int rfidtag , int eventid)
+        public Boolean Betaald(string rfidtag , int eventid)
         {
             return db.Betaald(rfidtag , eventid);
         }

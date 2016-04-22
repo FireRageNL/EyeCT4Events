@@ -140,7 +140,7 @@ namespace EventClasses
 
         }
         //Checkin
-        public CheckIn CheckIn(int rfidtag, int eventid)
+        public CheckIn CheckIn(string rfidtag, int eventid)
         {
             string Naam = null;
             int Aanwezig = 0;
@@ -253,7 +253,7 @@ namespace EventClasses
             return rtrn;
         }
 
-        public Boolean Betaald(int rfidtag , int eventid)
+        public Boolean Betaald(string rfidtag , int eventid)
         {
             // gebruiker op heeft betaald zetten
             try
