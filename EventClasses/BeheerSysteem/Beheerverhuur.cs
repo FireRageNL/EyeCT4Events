@@ -1,11 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using EventClasses;
 
@@ -92,43 +86,43 @@ namespace BeheerSysteem
 
             if (TbAchternaam.Text == "" && TbEmail.Text != "" && TbDatum.Text != "")
             {
-                List<EventClasses.User> geenachternaam = gc.Geenachternaam(email, datum);
+                List<User> geenachternaam = gc.Geenachternaam(email, datum);
                 LBGebruikers.DataSource = geenachternaam;
             }
 
             else if (TbEmail.Text == "" && TbDatum.Text != "" && TbAchternaam.Text != "")
             {
-                List<EventClasses.User> Geenachternaam = gc.Geenemail(achternaam, datum);
+                List<User> Geenachternaam = gc.Geenemail(achternaam, datum);
                 LBGebruikers.DataSource = Geenachternaam;
             }
 
             else if (TbDatum.Text == "" && TbEmail.Text != "" && TbAchternaam.Text != "")
             {
-                List<EventClasses.User> Geendatum = gc.Geendatum(achternaam, email);
+                List<User> Geendatum = gc.Geendatum(achternaam, email);
                 LBGebruikers.DataSource = Geendatum;
             }
 
             else if (TbEmail.Text == "" && TbDatum.Text == "" && TbAchternaam.Text != "")
             {
-                List<EventClasses.User> Alleenachternaam = gc.Alleenachternaam(achternaam);
+                List<User> Alleenachternaam = gc.Alleenachternaam(achternaam);
                 LBGebruikers.DataSource = Alleenachternaam;
             }
 
             else if (TbEmail.Text == "" && TbDatum.Text != "" && TbAchternaam.Text == "")
             {
-                List<EventClasses.User> Alleendatum = gc.Alleendatum(datum);
+                List<User> Alleendatum = gc.Alleendatum(datum);
                 LBGebruikers.DataSource = Alleendatum;
             }
 
             else if (TbEmail.Text != "" && TbDatum.Text == "" && TbAchternaam.Text == "")
             {
-                List<EventClasses.User> Alleenachternaam = gc.Alleenemail(email);
+                List<User> Alleenachternaam = gc.Alleenemail(email);
                 LBGebruikers.DataSource = Alleenachternaam;
             }
 
             else if (TbEmail.Text != "" && TbDatum.Text != "" && TbAchternaam.Text != "")
             {
-                List<EventClasses.User> Alles = gc.Alles(achternaam, email, datum);
+                List<User> Alles = gc.Alles(achternaam, email, datum);
                 LBGebruikers.DataSource = Alles;
             }
         }
@@ -136,7 +130,7 @@ namespace BeheerSysteem
         private void BtnBevestigen_Click(object sender, EventArgs e)
         {
 
-            EventClasses.User SelectUser = (EventClasses.User)LBGebruikers.SelectedItem;
+            User SelectUser = (User)LBGebruikers.SelectedItem;
             EventClasses.Object SelectMateriaal = (EventClasses.Object)LBMateriaal.SelectedItem;
             DateTime BeginDatum = DTPBegin.Value;
             DateTime EindDatum = DTPEind.Value;

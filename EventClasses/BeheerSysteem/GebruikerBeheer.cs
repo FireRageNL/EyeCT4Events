@@ -1,11 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using EventClasses;
 
@@ -30,43 +24,43 @@ namespace BeheerSysteem
 
             if (TbAchternaam.Text == "" && TbEmail.Text != "" && TbDatum.Text != "")
             {
-                List<EventClasses.User> geenachternaam = mc.Geenachternaam(email, datum);
+                List<User> geenachternaam = mc.Geenachternaam(email, datum);
                 dataGridView1.DataSource = geenachternaam;
             }
 
             else if (TbEmail.Text == "" && TbDatum.Text != "" && TbAchternaam.Text != "")
             {
-                List<EventClasses.User> Geenachternaam = mc.Geenemail(achternaam, datum);
+                List<User> Geenachternaam = mc.Geenemail(achternaam, datum);
                 dataGridView1.DataSource = Geenachternaam;
             }
 
             else if (TbDatum.Text == "" && TbEmail.Text != "" && TbAchternaam.Text != "")
             {
-                List<EventClasses.User> Geendatum = mc.Geendatum(achternaam, email);
+                List<User> Geendatum = mc.Geendatum(achternaam, email);
                 dataGridView1.DataSource = Geendatum;
             }
 
             else if (TbEmail.Text == "" && TbDatum.Text == "" && TbAchternaam.Text != "")
             {
-                List<EventClasses.User> Alleenachternaam = mc.Alleenachternaam(achternaam);
+                List<User> Alleenachternaam = mc.Alleenachternaam(achternaam);
                 dataGridView1.DataSource = Alleenachternaam;
             }
 
             else if (TbEmail.Text == "" && TbDatum.Text != "" && TbAchternaam.Text == "")
             {
-                List<EventClasses.User> Alleendatum = mc.Alleendatum(datum);
+                List<User> Alleendatum = mc.Alleendatum(datum);
                 dataGridView1.DataSource = Alleendatum;
             }
 
             else if (TbEmail.Text != "" && TbDatum.Text == "" && TbAchternaam.Text == "")
             {
-                List<EventClasses.User> Alleenachternaam = mc.Alleenemail(email);
+                List<User> Alleenachternaam = mc.Alleenemail(email);
                 dataGridView1.DataSource = Alleenachternaam;
             }
 
             else if (TbEmail.Text != "" && TbDatum.Text != "" && TbAchternaam.Text != "")
             {
-                List<EventClasses.User> Alles = mc.Alles(achternaam, email, datum);
+                List<User> Alles = mc.Alles(achternaam, email, datum);
                 dataGridView1.DataSource = Alles;
             }
         }

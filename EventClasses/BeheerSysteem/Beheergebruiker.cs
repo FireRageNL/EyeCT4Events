@@ -1,11 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using EventClasses;
 
@@ -19,7 +13,7 @@ namespace BeheerSysteem
         {
             InitializeComponent();
             this.val = val;
-            List<EventClasses.User> User = gc.BeheerUser();
+            List<User> User = gc.BeheerUser();
             listBox1.DataSource = User;
         }
 
@@ -29,19 +23,19 @@ namespace BeheerSysteem
                 MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
-                EventClasses.User DeleteUser = (EventClasses.User) listBox1.SelectedItem;
+                User DeleteUser = (User) listBox1.SelectedItem;
                 gc.DeleteUser(DeleteUser);
             }
-            List<EventClasses.User> User= gc.BeheerUser();
+            List<User> User= gc.BeheerUser();
             listBox1.DataSource = User;
         }
 
         private void BtnWijzigen_Click(object sender, EventArgs e)
         {
-            EventClasses.User UpdateUser = (EventClasses.User)listBox1.SelectedItem;
+            User UpdateUser = (User)listBox1.SelectedItem;
             UserDialog dia = new UserDialog(val, false, UpdateUser);
             dia.ShowDialog();
-            List<EventClasses.User> BeheerUser= gc.BeheerUser();
+            List<User> BeheerUser= gc.BeheerUser();
             listBox1.DataSource = BeheerUser;
         }
 
@@ -49,7 +43,7 @@ namespace BeheerSysteem
         {
             UserDialog dia = new UserDialog(val, true);
             dia.ShowDialog();
-            List<EventClasses.User> BeheerUser = gc.BeheerUser();
+            List<User> BeheerUser = gc.BeheerUser();
           listBox1.DataSource = BeheerUser;
         }
     }

@@ -1,11 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
-using Oracle.ManagedDataAccess.Types;
 using Oracle.ManagedDataAccess.Client;
 
 
@@ -1555,7 +1550,7 @@ namespace EventClasses
             }
         }
 
-        public int HuurMateriaal(EventClasses.Object Materiaal, EventClasses.User User, DateTime BeginDatum, DateTime EindDatum, DateTime NuDatum , bool Opgehaald, bool Teruggebracht)
+        public int HuurMateriaal(EventClasses.Object Materiaal, User User, DateTime BeginDatum, DateTime EindDatum, DateTime NuDatum , bool Opgehaald, bool Teruggebracht)
         {
             try
             {
