@@ -4,56 +4,56 @@ namespace EventClasses
 {
     public class Gebruikercontrole
     {
-        private DBAdmin db = new DBAdmin();
+        private readonly DbAdmin _db = new DbAdmin();
 
         public List<User> Geenachternaam(string email, string datum)
         {
-            return db.Geenachternaam(email, datum);
+            return _db.Geenachternaam(email, datum);
         }
 
         public List<User> Geenemail(string achternaam, string datum)
         {
-            return db.Geenemail(achternaam, datum);
+            return _db.Geenemail(achternaam, datum);
         }
         public List<User> Geendatum(string achternaam, string email)
         {
-            return db.Geendatum(achternaam, email);
+            return _db.Geendatum(achternaam, email);
         }
 
         public List<User> Alleenachternaam(string achternaam)
         {
-            return db.Alleenachternaam(achternaam);
+            return _db.Alleenachternaam(achternaam);
         }
         public List<User> Alleendatum(string datum)
         {
-            return db.Alleendatum(datum);
+            return _db.Alleendatum(datum);
         }
 
         public List<User> Alleenemail(string email)
         {
-            return db.Alleenemail(email);
+            return _db.Alleenemail(email);
         }
         public List<User> Alles(string email, string achternaam, string datum)
         {
-            return db.Alles(email, achternaam, datum);
+            return _db.Alles(email, achternaam, datum);
         }
         public List<User> BeheerUser()
         {
-            return db.BeheerUser();
+            return _db.BeheerUser();
         }
-        public void DeleteUser(User DeleteUser)
+        public void DeleteUser(User deleteUser)
         {
-            db.DeleteUser(DeleteUser);
+            _db.DeleteUser(deleteUser);
         }
 
         public void UpdateUser(User user, string password = null)
         {
-            db.UpdateUser(user,password);
+            _db.UpdateUser(user,password);
         }
 
-        public void AddUser(string Naam, string Wachtwoord, string Date , string Email, decimal Budget, string straat, int nr, string toe, string plaats, string postcode, string land)
+        public void AddUser(string naam, string wachtwoord, string date , string email, decimal budget, string straat, int nr, string toe, string plaats, string postcode, string land)
         {
-           db.AddUser(Naam,Wachtwoord,Date,Email,Budget,straat,nr,toe,plaats,postcode,land);
+           _db.AddUser(naam,wachtwoord,date,email,budget,straat,nr,toe,plaats,postcode,land);
         }
 
     }

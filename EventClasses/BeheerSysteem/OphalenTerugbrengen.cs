@@ -6,34 +6,32 @@ namespace BeheerSysteem
 {
     public partial class OphalenTerugbrengen : Form
     {
-        private EventClasses.Login Val;
-        private Verhuurcontrole vc = new Verhuurcontrole();
-        public OphalenTerugbrengen(EventClasses.Login val)
+        private readonly Verhuurcontrole _vc = new Verhuurcontrole();
+        public OphalenTerugbrengen()
         {
-            Val = val;
             InitializeComponent();
-            listBox1.DataSource = vc.GetReserved();
-            listBox2.DataSource = vc.GetBorrowed();
+            listBox1.DataSource = _vc.GetReserved();
+            listBox2.DataSource = _vc.GetBorrowed();
         }
 
         private void btnGeefUit_Click(object sender, EventArgs e)
         {
             ObjectReservation res = (ObjectReservation)listBox1.SelectedItem;
-            vc.Borrow(res);
+            _vc.Borrow(res);
             listBox1.DataSource = null;
             listBox2.DataSource = null;
-            listBox1.DataSource = vc.GetReserved();
-            listBox2.DataSource = vc.GetBorrowed();
+            listBox1.DataSource = _vc.GetReserved();
+            listBox2.DataSource = _vc.GetBorrowed();
         }
 
         private void btnNeemTerug_Click(object sender, EventArgs e)
         {
             ObjectReservation res = (ObjectReservation) listBox2.SelectedItem;
-            vc.TakeBack(res);
+            _vc.TakeBack(res);
             listBox1.DataSource = null;
             listBox2.DataSource = null;
-            listBox1.DataSource = vc.GetReserved();
-            listBox2.DataSource = vc.GetBorrowed();
+            listBox1.DataSource = _vc.GetReserved();
+            listBox2.DataSource = _vc.GetBorrowed();
         }
     }
 }

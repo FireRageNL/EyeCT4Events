@@ -1,11 +1,14 @@
-﻿namespace BeheerSysteem
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+
+namespace BeheerSysteem
 {
     partial class Materiaalbeheer
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -163,15 +166,15 @@
 
         #endregion
 
-        private System.Windows.Forms.Button BtnWissen;
-        private System.Windows.Forms.Button BtnZoeken;
-        private System.Windows.Forms.TextBox TbType;
-        private System.Windows.Forms.TextBox TbMerk;
-        private System.Windows.Forms.TextBox TbProductnaam;
-        private System.Windows.Forms.Label LblType;
-        private System.Windows.Forms.Label LblMerk;
-        private System.Windows.Forms.Label LblProductnaam;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Button BtnBeheer;
+        private Button BtnWissen;
+        private Button BtnZoeken;
+        private TextBox TbType;
+        private TextBox TbMerk;
+        private TextBox TbProductnaam;
+        private Label LblType;
+        private Label LblMerk;
+        private Label LblProductnaam;
+        private DataGridView dataGridView1;
+        private Button BtnBeheer;
     }
 }

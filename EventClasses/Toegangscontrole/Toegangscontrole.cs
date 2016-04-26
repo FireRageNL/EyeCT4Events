@@ -2,39 +2,37 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using EventClasses;
+using Phidgets;
 using Phidgets.Events;
-
 
 namespace Toegangscontrole
 {
     public partial class Toegangscontrole : Form
     {
-        private EventClasses.Toegangscontrole tc = new EventClasses.Toegangscontrole();
-        private EventClasses.Login val;
-        Phidgets.RFID rfid = new Phidgets.RFID();    
-        public Toegangscontrole(EventClasses.Login val)
+        private readonly EventClasses.Toegangscontrole _tc = new EventClasses.Toegangscontrole();
+        readonly RFID _rfid = new RFID();    
+        public Toegangscontrole()
         {
             InitializeComponent();
-            rfid.Attach += new AttachEventHandler(rfid_Attach);
-            rfid.Detach += new DetachEventHandler(rfid_Detach);
-            rfid.Error += new ErrorEventHandler(rfid_Error);
+            _rfid.Attach += rfid_Attach;
+            _rfid.Detach += rfid_Detach;
+            _rfid.Error += rfid_Error;
 
-            rfid.Tag += new TagEventHandler(rfid_Tag);
-            rfid.TagLost += new TagEventHandler(rfid_TagLost);
-            rfid.open();
+            _rfid.Tag += rfid_Tag;
+            _rfid.TagLost += rfid_TagLost;
+            _rfid.open();
             Console.WriteLine("waiting for attachment...");
-            rfid.waitForAttachment();
-            rfid.Antenna = true;
-            rfid.LED = true;
-            List<string> eventnaam = tc.GetEvents();
+            _rfid.waitForAttachment();
+            _rfid.Antenna = true;
+            _rfid.LED = true;
+            List<string> eventnaam = _tc.GetEvents();
             CbEvent.DataSource = eventnaam;
-            this.val = val;
         }
 
         private void BtnCheck_Click(object sender, EventArgs e)
         {
-            string RFID = TbRFID.Text;
-            CheckIn check= tc.CheckIn(RFID,(CbEvent.SelectedIndex+1));
+            string rfid = TbRFID.Text;
+            CheckIn check= _tc.CheckIn(rfid,(CbEvent.SelectedIndex+1));
             LblNaam.Text = check.Naam;
             ChkBetaald.Checked = check.Betaald;
 
@@ -46,8 +44,8 @@ namespace Toegangscontrole
 
         private void BtnBetaald_Click(object sender, EventArgs e)
         {
-            string RFID = TbRFID.Text;
-            Boolean check = tc.Betaald(RFID , CbEvent.SelectedIndex + 1);
+            string rfid = TbRFID.Text;
+            bool check = _tc.Betaald(rfid , CbEvent.SelectedIndex + 1);
             ChkBetaald.Checked = check;
         }
 
@@ -66,12 +64,12 @@ namespace Toegangscontrole
         static void rfid_Attach(object sender, AttachEventArgs e)
         {
             Console.WriteLine("RFIDReader {0} attached!",
-                                    e.Device.SerialNumber.ToString());
+                                    e.Device.SerialNumber);
         }
         static void rfid_Detach(object sender, DetachEventArgs e)
         {
             Console.WriteLine("RFID reader {0} detached!",
-                                    e.Device.SerialNumber.ToString());
+                                    e.Device.SerialNumber);
         }
         static void rfid_Error(object sender, ErrorEventArgs e)
         {

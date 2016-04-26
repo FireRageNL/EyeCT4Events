@@ -8,9 +8,9 @@ namespace SocialMediaPlatform
 {
     public partial class Form1 : Form
     {
-        private EventClasses.Login val;
-        private EventClasses.SocialControl sc = new SocialControl();
-        private Media parent;
+        private readonly EventClasses.Login _val;
+        private readonly SocialControl _sc = new SocialControl();
+        private readonly Media _parent;
 
         public Form1()
         {
@@ -20,10 +20,10 @@ namespace SocialMediaPlatform
         public Form1(EventClasses.Login val, int postid)
         {
             InitializeComponent();
-            this.val = val;
-            List<Message> list = sc.GetContents(postid);
-            parent = (Media)list[0];
-            LblNaam.Text = parent.UserMessage.Name;
+            _val = val;
+            List<Message> list = _sc.GetContents(postid);
+            _parent = (Media)list[0];
+            LblNaam.Text = _parent.UserMessage.Name;
             LblDatum.Text = "Vandaag";
             List<string> cont = new List<string>();
             foreach (Message msg in list)
@@ -35,18 +35,18 @@ namespace SocialMediaPlatform
                 }
             }
             listBox1.DataSource = cont;
-            LblPost.Text = parent.Content;
+            LblPost.Text = _parent.Content;
             int reacties = cont.Count;
             LblReacties.Text = reacties.ToString();
             PbMedia.SizeMode = PictureBoxSizeMode.StretchImage;
-            PbMedia.ImageLocation = parent.Location;
+            PbMedia.ImageLocation = _parent.Location;
         }
 
         private void BtnPlaats_Click(object sender, EventArgs e)
         {
             string message = RtbReactie.Text;
-            sc.PostReply(message, parent,val.User.UserID);
-            List<Message> list = sc.GetContents(parent.MessageID);
+            _sc.PostReply(message, _parent,_val.User.UserId);
+            List<Message> list = _sc.GetContents(_parent.MessageId);
             List<string> cont = new List<string>();
             foreach (Message msg in list)
             {
@@ -63,9 +63,11 @@ namespace SocialMediaPlatform
 
         private void BtnDownload_Click(object sender, EventArgs e)
         {
-            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-            saveFileDialog1.Filter = "JPeg Image|*.jpg|Bitmap Image|*.bmp|Gif Image|*.gif";
-            saveFileDialog1.Title = "Save an Image File";
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog
+            {
+                Filter = "JPeg Image|*.jpg|Bitmap Image|*.bmp|Gif Image|*.gif",
+                Title = "Save an Image File"
+            };
             saveFileDialog1.ShowDialog();
             if (saveFileDialog1.FileName != "")
             {

@@ -2,19 +2,18 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using EventClasses;
+using Object = EventClasses.Object;
 
 namespace BeheerSysteem
 {
     public partial class Beheermateriaal : Form
     {
-        private EventClasses.Login val;
-        private Materiaalcontrole mc = new Materiaalcontrole();
-        public Beheermateriaal(EventClasses.Login val)
+        private readonly Materiaalcontrole _mc = new Materiaalcontrole();
+        public Beheermateriaal()
         {
             InitializeComponent();
-            this.val = val;
-            List<EventClasses.Object> BeheerMateriaal = mc.BeheerMateriaal();
-            listBox1.DataSource = BeheerMateriaal;
+            List<Object> beheerMateriaal = _mc.BeheerMateriaal();
+            listBox1.DataSource = beheerMateriaal;
         }
 
         private void BtnVerwijder_Click(object sender, EventArgs e)
@@ -23,28 +22,28 @@ namespace BeheerSysteem
                 MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
-                EventClasses.Object DeleteMateriaal = (EventClasses.Object) listBox1.SelectedItem;
-                mc.DeleteMateriaal(DeleteMateriaal);
+                Object deleteMateriaal = (Object) listBox1.SelectedItem;
+                _mc.DeleteMateriaal(deleteMateriaal);
             }
-            List<EventClasses.Object> BeheerMateriaal = mc.BeheerMateriaal();
-            listBox1.DataSource = BeheerMateriaal;
+            List<Object> beheerMateriaal = _mc.BeheerMateriaal();
+            listBox1.DataSource = beheerMateriaal;
         }
 
         private void BtnWijzigen_Click(object sender, EventArgs e)
         {
-            EventClasses.Object UpdateMateriaal = (EventClasses.Object)listBox1.SelectedItem;
-            MateriaalDialog dia = new MateriaalDialog(val,false, UpdateMateriaal);
+            Object updateMateriaal = (Object)listBox1.SelectedItem;
+            MateriaalDialog dia = new MateriaalDialog(false, updateMateriaal);
             dia.ShowDialog();
-            List<EventClasses.Object> BeheerMateriaal = mc.BeheerMateriaal();
-            listBox1.DataSource = BeheerMateriaal;
+            List<Object> beheerMateriaal = _mc.BeheerMateriaal();
+            listBox1.DataSource = beheerMateriaal;
         }
 
         private void BtnToevoegen_Click(object sender, EventArgs e)
         {
-            MateriaalDialog dia = new MateriaalDialog(val,true);
+            MateriaalDialog dia = new MateriaalDialog(true);
             dia.ShowDialog();
-            List<EventClasses.Object> BeheerMateriaal = mc.BeheerMateriaal();
-            listBox1.DataSource = BeheerMateriaal;
+            List<Object> beheerMateriaal = _mc.BeheerMateriaal();
+            listBox1.DataSource = beheerMateriaal;
         }
     }
 }

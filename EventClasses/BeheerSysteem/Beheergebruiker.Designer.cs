@@ -1,11 +1,14 @@
-﻿namespace BeheerSysteem
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+
+namespace BeheerSysteem
 {
     partial class Beheergebruiker
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -93,9 +96,9 @@
 
         #endregion
 
-        private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.Button BtnVerwijder;
-        private System.Windows.Forms.Button BtnWijzigen;
-        private System.Windows.Forms.Button BtnToevoegen;
+        private ListBox listBox1;
+        private Button BtnVerwijder;
+        private Button BtnWijzigen;
+        private Button BtnToevoegen;
     }
 }

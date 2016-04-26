@@ -5,40 +5,40 @@ namespace EventClasses
 {
     public class Verhuurcontrole
     {
-        private DBAdmin db = new DBAdmin();
+        private readonly DbAdmin _db = new DbAdmin();
 
-        public int Huur(EventClasses.Object Materiaal, User User, DateTime BeginDatum, DateTime EindDatum , DateTime Nudatum ,bool Opgehaald , bool Teruggebracht)
+        public int Huur(Object materiaal, User user, DateTime beginDatum, DateTime eindDatum , DateTime nudatum ,bool opgehaald)
         {
-            int huur = db.HuurMateriaal(Materiaal, User, BeginDatum, EindDatum , Nudatum , Opgehaald , Teruggebracht);
+            int huur = _db.HuurMateriaal(materiaal, user, beginDatum, eindDatum , nudatum , opgehaald);
             if (huur == 1)
             {
                 return 1;
             }
-            else if (huur == 2)
+            if (huur == 2)
             {
                 return 2;
             }
-                return 3;
+            return 3;
         }
 
         public List<ObjectReservation> GetReserved()
         {
-            return db.GetReserved();
+            return _db.GetReserved();
         }
 
         public List<ObjectReservation> GetBorrowed()
         {
-            return db.GetBorrowed();
+            return _db.GetBorrowed();
         }
 
         public void Borrow(ObjectReservation res)
         {
-            db.BorrowObject(res);
+            _db.BorrowObject(res);
         }
 
         public void TakeBack(ObjectReservation res)
         {
-            db.TakeBackObject(res);
+            _db.TakeBackObject(res);
         }
     }
 }

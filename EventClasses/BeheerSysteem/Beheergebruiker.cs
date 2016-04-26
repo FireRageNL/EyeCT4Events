@@ -7,14 +7,12 @@ namespace BeheerSysteem
 {
     public partial class Beheergebruiker : Form
     {
-        private EventClasses.Login val;
-        private Gebruikercontrole gc = new Gebruikercontrole();
-        public Beheergebruiker(EventClasses.Login val)
+        private readonly Gebruikercontrole _gc = new Gebruikercontrole();
+        public Beheergebruiker()
         {
             InitializeComponent();
-            this.val = val;
-            List<User> User = gc.BeheerUser();
-            listBox1.DataSource = User;
+            List<User> user = _gc.BeheerUser();
+            listBox1.DataSource = user;
         }
 
         private void BtnVerwijder_Click(object sender, EventArgs e)
@@ -23,28 +21,28 @@ namespace BeheerSysteem
                 MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
-                User DeleteUser = (User) listBox1.SelectedItem;
-                gc.DeleteUser(DeleteUser);
+                User deleteUser = (User) listBox1.SelectedItem;
+                _gc.DeleteUser(deleteUser);
             }
-            List<User> User= gc.BeheerUser();
-            listBox1.DataSource = User;
+            List<User> user= _gc.BeheerUser();
+            listBox1.DataSource = user;
         }
 
         private void BtnWijzigen_Click(object sender, EventArgs e)
         {
-            User UpdateUser = (User)listBox1.SelectedItem;
-            UserDialog dia = new UserDialog(val, false, UpdateUser);
+            User updateUser = (User)listBox1.SelectedItem;
+            UserDialog dia = new UserDialog(false, updateUser);
             dia.ShowDialog();
-            List<User> BeheerUser= gc.BeheerUser();
-            listBox1.DataSource = BeheerUser;
+            List<User> beheerUser= _gc.BeheerUser();
+            listBox1.DataSource = beheerUser;
         }
 
         private void BtnToevoegen_Click(object sender, EventArgs e)
         {
-            UserDialog dia = new UserDialog(val, true);
+            UserDialog dia = new UserDialog(true);
             dia.ShowDialog();
-            List<User> BeheerUser = gc.BeheerUser();
-          listBox1.DataSource = BeheerUser;
+            List<User> beheerUser = _gc.BeheerUser();
+          listBox1.DataSource = beheerUser;
         }
     }
 }

@@ -2,8 +2,6 @@
 {
     public class Adress
     {
-        public int AdresID { get; private set; }
-
         public string Street { get; private set; }
 
         public int Number { get; private set; }
@@ -16,9 +14,8 @@
 
         public string Addition { get; private set; }
 
-        public Adress(int aid, string str, int num, string cty, string cntry, string zip, string add)
+        public Adress(string str, int num, string cty, string cntry, string zip, string add)
         {
-            AdresID = aid;
             Street = str;
             Number = num;
             City = cty;

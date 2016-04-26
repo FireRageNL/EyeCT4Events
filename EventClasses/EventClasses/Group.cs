@@ -4,17 +4,15 @@ namespace EventClasses
 {
     public class Group
     {
-        public List<User> Users { get; private set; }
+        public List<User> Users { get; }
         
-        public int GroupID { get; private set; }
-        
-        public string Groupname { get; private set; } 
+        public int GroupId { get; private set; }
 
-        public Location Loc { get; set; }
+        private string Groupname { get; }
 
         public Group(string gname, int id, List<User> usr )
         {
-            GroupID = id;
+            GroupId = id;
             Groupname = gname;
             Users = usr;
         }

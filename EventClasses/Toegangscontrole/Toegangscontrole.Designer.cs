@@ -1,11 +1,14 @@
-﻿namespace Toegangscontrole
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+
+namespace Toegangscontrole
 {
     partial class Toegangscontrole
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -199,19 +202,19 @@
 
         #endregion
 
-        private System.Windows.Forms.Label LblTitel;
-        private System.Windows.Forms.Label LblstaticRFID;
-        private System.Windows.Forms.Label LbLstaticnaam;
-        private System.Windows.Forms.Label LblNaam;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox TbRFID;
-        private System.Windows.Forms.CheckBox ChkBetaald;
-        private System.Windows.Forms.Button BtnCheck;
-        private System.Windows.Forms.Button BtnBetaald;
-        private System.Windows.Forms.Button BtnReset;
-        private System.Windows.Forms.Label Lblstaticevent;
-        private System.Windows.Forms.ComboBox CbEvent;
-        public System.Windows.Forms.Button btnShowAll;
+        private Label LblTitel;
+        private Label LblstaticRFID;
+        private Label LbLstaticnaam;
+        private Label LblNaam;
+        private Label label4;
+        private TextBox TbRFID;
+        private CheckBox ChkBetaald;
+        private Button BtnCheck;
+        private Button BtnBetaald;
+        private Button BtnReset;
+        private Label Lblstaticevent;
+        private ComboBox CbEvent;
+        public Button btnShowAll;
     }
 }
 

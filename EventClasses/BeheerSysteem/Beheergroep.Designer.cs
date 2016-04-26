@@ -1,11 +1,14 @@
-﻿namespace BeheerSysteem
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+
+namespace BeheerSysteem
 {
     partial class Beheergroep
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -160,16 +163,16 @@
 
         #endregion
 
-        private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.ListBox listBox2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox tbGroep;
-        private System.Windows.Forms.Button button3;
+        private ListBox listBox1;
+        private ListBox listBox2;
+        private Button button1;
+        private TextBox textBox1;
+        private TextBox textBox2;
+        private Label label1;
+        private Label label2;
+        private Button button2;
+        private Label label3;
+        private TextBox tbGroep;
+        private Button button3;
     }
 }

@@ -8,15 +8,13 @@ namespace BeheerSysteem
 {
     public partial class Beheergroep : Form
     {
-        private EventClasses.Login Val;
-        private GroepControl gc = new GroepControl();
-        private List<User> users = new List<User>();
-        public Beheergroep(EventClasses.Login val)
+        private readonly GroepControl _gc = new GroepControl();
+        private List<User> _users;
+        public Beheergroep()
         {   
             InitializeComponent();
-            Val = val;
-            users = gc.GetUsers();
-            listBox1.DataSource = users;
+            _users = _gc.GetUsers();
+            listBox1.DataSource = _users;
             listBox1.DisplayMember = "GroupName";
         }
 
@@ -24,9 +22,9 @@ namespace BeheerSysteem
         {
             User add = (User) listBox1.SelectedItem;
             listBox2.Items.Add(add);
-            users.Remove(add);
+            _users.Remove(add);
             listBox1.DataSource = null;
-            listBox1.DataSource = users;
+            listBox1.DataSource = _users;
             listBox1.DisplayMember = "GroupName";
             listBox2.DisplayMember = "GroupName";
         }
@@ -35,10 +33,10 @@ namespace BeheerSysteem
         {
             if (String.IsNullOrWhiteSpace(tbGroep.Text)) return;
             List<User> groupUsers = listBox2.Items.OfType<User>().ToList();
-            gc.AddGroup(groupUsers,tbGroep.Text);
-            users = gc.GetUsers();
+            _gc.AddGroup(groupUsers,tbGroep.Text);
+            _users = _gc.GetUsers();
             listBox1.DataSource = null;
-            listBox1.DataSource = users;
+            listBox1.DataSource = _users;
             listBox1.DisplayMember = "GroupName";
             listBox2.Items.Clear();
         }
@@ -48,7 +46,7 @@ namespace BeheerSysteem
             List<User> search = new List<User>();
             if (!String.IsNullOrWhiteSpace(textBox1.Text))
             {  
-                foreach (User usr in users)
+                foreach (User usr in _users)
                 {
                     if (usr.Name.Contains(textBox1.Text))
                     {
@@ -58,7 +56,7 @@ namespace BeheerSysteem
             }
             else if (!String.IsNullOrWhiteSpace(textBox2.Text))
             {
-                foreach (User usr in users)
+                foreach (User usr in _users)
                 {
                     if (usr.Emailadres.Contains(textBox2.Text))
                     {
@@ -68,7 +66,7 @@ namespace BeheerSysteem
             }
             else
             {
-                search = users;
+                search = _users;
             }
             listBox1.DataSource = null;
             listBox1.DataSource = search;

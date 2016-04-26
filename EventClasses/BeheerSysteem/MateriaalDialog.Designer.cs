@@ -1,11 +1,14 @@
-﻿namespace BeheerSysteem
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+
+namespace BeheerSysteem
 {
     partial class MateriaalDialog
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -136,14 +139,14 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox TbMerk;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button btnConfirm;
-        private System.Windows.Forms.TextBox TbPrijs;
-        private System.Windows.Forms.TextBox TbType;
-        private System.Windows.Forms.TextBox TbProduct;
+        private TextBox TbMerk;
+        private Label label1;
+        private Label label2;
+        private Label label3;
+        private Label label4;
+        private Button btnConfirm;
+        private TextBox TbPrijs;
+        private TextBox TbType;
+        private TextBox TbProduct;
     }
 }

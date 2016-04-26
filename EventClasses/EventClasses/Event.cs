@@ -2,23 +2,20 @@
 {
     public class Event
     {
-        public Adress EventAddress { get; private set; }
+        private string Name { get; }
 
-        public string Name { get; private set; }
-
-        public int EventID { get; private set; }
+        private int EventId { get; }
 
 
-        public Event(Adress adr, string nme, int id)
+        public Event(string nme, int id)
         {
-            EventAddress = adr;
             Name = nme;
-            EventID = id;
+            EventId = id;
         }
 
         public override string ToString()
         {
-            return "ID:   " + EventID + "   Name:   " + Name;
+            return "ID:   " + EventId + "   Name:   " + Name;
         }
     }
 }

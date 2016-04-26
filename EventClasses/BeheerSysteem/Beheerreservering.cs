@@ -2,19 +2,17 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using EventClasses;
+
 namespace BeheerSysteem
 {
     public partial class Beheerreservering : Form
     {
-        private EventClasses.Login Val;
-        private ReserveringControl rc = new ReserveringControl();
-        private Group searchgroup;
-        public Beheerreservering(EventClasses.Login val)
+        private readonly ReserveringControl _rc = new ReserveringControl();
+        private Group _searchgroup;
+        public Beheerreservering()
         {
-            Val = val;
             InitializeComponent();
-            List<Group> data = new List<Group>();
-            data = rc.GetEmptyGroups();
+            List<Group> data = _rc.GetEmptyGroups();
             listBox1.DataSource = data;
             btnReserveer.Enabled = false;
         }
@@ -22,9 +20,8 @@ namespace BeheerSysteem
         private void btnZoek_Click(object sender, EventArgs e)
         {
             if (listBox1.SelectedItem == null) return;
-            searchgroup = (Group) listBox1.SelectedItem;
-            List<EventClasses.Location> freeLocations = new List<Location>();
-            freeLocations = rc.GetFreeLocations(searchgroup.Users.Count);
+            _searchgroup = (Group) listBox1.SelectedItem;
+            List<Location> freeLocations = _rc.GetFreeLocations(_searchgroup.Users.Count);
             listBox2.DataSource = freeLocations;
             btnReserveer.Enabled = true;
         }
@@ -32,11 +29,10 @@ namespace BeheerSysteem
         private void btnReserveer_Click(object sender, EventArgs e)
         {
             Location reserve = (Location) listBox2.SelectedItem;
-            rc.ReserveLocation(searchgroup, reserve);
+            _rc.ReserveLocation(_searchgroup, reserve);
             listBox2.DataSource = null;
             listBox1.DataSource = null;
-            List<Group> data = new List<Group>();
-            data = rc.GetEmptyGroups();
+            List<Group> data = _rc.GetEmptyGroups();
             listBox1.DataSource = data;
             btnReserveer.Enabled = false;
         }

@@ -1,11 +1,14 @@
-﻿namespace SocialMediaPlatform
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+
+namespace SocialMediaPlatform
 {
     partial class Form1
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -171,17 +174,17 @@
         }
 
         #endregion
-        private System.Windows.Forms.Label LblNaam;
-        private System.Windows.Forms.Label LblDatum;
-        private System.Windows.Forms.PictureBox PbMedia;
-        private System.Windows.Forms.Label Lblstaticreactie;
-        private System.Windows.Forms.Label LblReacties;
-        private System.Windows.Forms.RichTextBox RtbReactie;
-        private System.Windows.Forms.Label Lblstaticreactie2;
-        private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.Label LblPost;
-        private System.Windows.Forms.Button BtnPlaats;
-        private System.Windows.Forms.Button BtnDownload;
+        private Label LblNaam;
+        private Label LblDatum;
+        private PictureBox PbMedia;
+        private Label Lblstaticreactie;
+        private Label LblReacties;
+        private RichTextBox RtbReactie;
+        private Label Lblstaticreactie2;
+        private ListBox listBox1;
+        private Label LblPost;
+        private Button BtnPlaats;
+        private Button BtnDownload;
     }
 }
 

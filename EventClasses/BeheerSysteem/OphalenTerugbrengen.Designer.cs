@@ -1,11 +1,14 @@
-﻿namespace BeheerSysteem
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+
+namespace BeheerSysteem
 {
     partial class OphalenTerugbrengen
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -110,11 +113,11 @@
 
         #endregion
 
-        private System.Windows.Forms.ListBox listBox1;
-        private System.Windows.Forms.ListBox listBox2;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button btnGeefUit;
-        private System.Windows.Forms.Button btnNeemTerug;
+        private ListBox listBox1;
+        private ListBox listBox2;
+        private Label label1;
+        private Label label2;
+        private Button btnGeefUit;
+        private Button btnNeemTerug;
     }
 }

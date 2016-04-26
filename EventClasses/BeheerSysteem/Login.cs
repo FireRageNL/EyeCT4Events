@@ -6,7 +6,7 @@ namespace BeheerSysteem
 {
     public partial class Login : Form
     {
-        LoginControl lg = new LoginControl();
+        readonly LoginControl _lg = new LoginControl();
 
         public Login()
         {
@@ -24,15 +24,15 @@ namespace BeheerSysteem
 
             else
             {
-                EventClasses.Login val = lg.ValidateUser(email, password);
+                EventClasses.Login val = _lg.ValidateUser(email, password);
                 if (val != null)
                 {
                     if (val.AccessLevel > 0)
                     {
-                        AdminCP form1 = new AdminCP(val);
+                        AdminCp form1 = new AdminCp(val);
                         form1.Show();
-                        this.Hide();
-                        form1.Closed += (sender1, args) => { this.Close(); };
+                        Hide();
+                        form1.Closed += (sender1, args) => { Close(); };
                     }
 
                     else

@@ -1,11 +1,14 @@
-﻿namespace SocialMediaPlatform
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+
+namespace SocialMediaPlatform
 {
     partial class NewPost
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -123,12 +126,12 @@
 
         #endregion
 
-        private System.Windows.Forms.Button BtnSave;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.RichTextBox richTextBox1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Label label3;
+        private Button BtnSave;
+        private Label label1;
+        private RichTextBox richTextBox1;
+        private Label label2;
+        private TextBox textBox1;
+        private ComboBox comboBox1;
+        private Label label3;
     }
 }

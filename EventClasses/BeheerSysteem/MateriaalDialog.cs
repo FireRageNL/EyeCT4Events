@@ -1,30 +1,28 @@
 ﻿using System;
 using System.Windows.Forms;
 using EventClasses;
+using Object = EventClasses.Object;
 
 namespace BeheerSysteem
 {
     public partial class MateriaalDialog : Form
     {
-        private EventClasses.Login val;
-        private bool nw;
-        private Materiaalcontrole mc = new Materiaalcontrole();
-        private EventClasses.Object obj;
-        public MateriaalDialog(EventClasses.Login val,bool nw,EventClasses.Object obj)
+        private readonly bool _nw;
+        private readonly Materiaalcontrole _mc = new Materiaalcontrole();
+        private readonly Object _obj;
+        public MateriaalDialog(bool nw,Object obj)
         {
-            this.val = val;
-            this.nw = nw;
-            this.obj = obj;
+            _nw = nw;
+            _obj = obj;
             InitializeComponent();
             TbMerk.Text = obj.Brand;
             TbPrijs.Text = ""+obj.Rentprice;
             TbProduct.Text = obj.Productname;
             TbType.Text = "" + obj.Type;
         }
-        public MateriaalDialog(EventClasses.Login val, bool nw)
+        public MateriaalDialog(bool nw)
         {
-            this.val = val;
-            this.nw = nw;
+            _nw = nw;
             InitializeComponent();
         }
 
@@ -44,17 +42,17 @@ namespace BeheerSysteem
                 bool pr = int.TryParse(TbType.Text, out typenr);
                 if (type && pr)
                 {
-                    if (nw)
+                    if (_nw)
                     {
-                        mc.AddProduct(brand, product, typenr, price);
+                        _mc.AddProduct(brand, product, typenr, price);
                     }
                     else
                     {
-                        obj.Update(brand, product, typenr, price);
-                        mc.UpdateProduct(obj);
+                        _obj.Update(brand, product, typenr, price);
+                        _mc.UpdateProduct(_obj);
                     }
                 }
-                this.Dispose();
+                Dispose();
             }
         }
     }

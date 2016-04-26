@@ -2,10 +2,10 @@
 {
     public class LoginControl
     {
-        private DBAdmin db = new DBAdmin();
+        private readonly DbAdmin _db = new DbAdmin();
         public Login ValidateUser(string email, string password)
         {
-            string check = db.CheckLogin(email);
+            string check = _db.CheckLogin(email);
             if (check != null)
             {
                 string[] split = check.Split(',');
@@ -14,8 +14,8 @@
                 {
                     if (password == split[0])
                     {
-                        User usr = db.GetUser(email);
-                        Login log = new Login(val, true, usr);
+                        User usr = _db.GetUser(email);
+                        Login log = new Login(val, usr);
                         return log;
                     }
                 }

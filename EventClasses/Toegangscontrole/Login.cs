@@ -6,7 +6,7 @@ namespace Toegangscontrole
 {
     public partial class Login : Form
     {
-        LoginControl lg = new LoginControl();
+        readonly LoginControl _lg = new LoginControl();
 
         public Login()
         {
@@ -23,19 +23,19 @@ namespace Toegangscontrole
             }
             else
             {
-                EventClasses.Login val = lg.ValidateUser(email, password);
+                EventClasses.Login val = _lg.ValidateUser(email, password);
                 if (val != null)
                 {
                     if (val.AccessLevel >= 1)
                     {
-                        Toegangscontrole form1 = new Toegangscontrole(val);
+                        Toegangscontrole form1 = new Toegangscontrole();
                         form1.Show();
-                        this.Hide();
+                        Hide();
                         form1.Closed += (sender1, args) =>
                         {
-                            this.Close();
+                            Close();
                         };
-                        this.Hide();
+                        Hide();
                     }
                     else
                     {

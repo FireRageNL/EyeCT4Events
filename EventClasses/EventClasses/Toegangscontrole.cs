@@ -1,28 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace EventClasses
 {
     public class Toegangscontrole
     {
-        private DBAdmin db = new DBAdmin();
+        private readonly DbAdmin _db = new DbAdmin();
 
         public List<string> GetEvents()
         {
-            return db.GetEvents();
+            return _db.GetEvents();
         }
         public CheckIn CheckIn(string rfidTag, int eventid)
         {
-            return db.CheckIn(rfidTag, eventid);
+            return _db.CheckIn(rfidTag, eventid);
         }
-        public Boolean Betaald(string rfidtag , int eventid)
+        public bool Betaald(string rfidtag , int eventid)
         {
-            return db.Betaald(rfidtag , eventid);
+            return _db.Betaald(rfidtag , eventid);
         }
 
        public List<string> GetAanwezigheid(int evt)
        {
-           return db.GetAanwezigheid(evt);
+           return _db.GetAanwezigheid(evt);
        }
     }
 }

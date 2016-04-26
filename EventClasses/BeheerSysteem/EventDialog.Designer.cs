@@ -1,11 +1,14 @@
-﻿namespace BeheerSysteem
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+
+namespace BeheerSysteem
 {
     partial class EventDialog
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -241,24 +244,24 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox tbNaam;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.DateTimePicker dateTimePicker2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox tbStraat;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox tbNr;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox tbToev;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox tbPlaats;
-        private System.Windows.Forms.TextBox tbPost;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox tbLand;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Button button1;
+        private TextBox tbNaam;
+        private Label label1;
+        private Label label2;
+        private DateTimePicker dateTimePicker1;
+        private DateTimePicker dateTimePicker2;
+        private Label label3;
+        private Label label7;
+        private TextBox tbStraat;
+        private Label label4;
+        private TextBox tbNr;
+        private Label label5;
+        private TextBox tbToev;
+        private Label label6;
+        private TextBox tbPlaats;
+        private TextBox tbPost;
+        private Label label8;
+        private TextBox tbLand;
+        private Label label9;
+        private Button button1;
     }
 }

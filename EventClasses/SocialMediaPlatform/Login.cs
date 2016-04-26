@@ -6,7 +6,7 @@ namespace SocialMediaPlatform
 {
     public partial class Login : Form
     {
-        LoginControl lg = new LoginControl();
+        readonly LoginControl _lg = new LoginControl();
 
         public Login()
         {
@@ -23,14 +23,14 @@ namespace SocialMediaPlatform
             }
             else
             {
-                EventClasses.Login val = lg.ValidateUser(email, password);
+                EventClasses.Login val = _lg.ValidateUser(email, password);
                 if (val != null)
                 {
                     PostOverview form = new PostOverview(val);
-                    this.Hide();
+                    Hide();
                     form.Closed += (sender1, args) =>
                     {
-                        this.Close();
+                        Close();
                     };
                     form.Show();
                 }

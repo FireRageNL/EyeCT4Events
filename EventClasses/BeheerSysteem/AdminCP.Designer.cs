@@ -1,11 +1,14 @@
-﻿namespace BeheerSysteem
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+
+namespace BeheerSysteem
 {
-    partial class AdminCP
+    partial class AdminCp
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -107,7 +110,7 @@
             this.Controls.Add(this.btnEvent);
             this.Controls.Add(this.btnMateriaal);
             this.Controls.Add(this.btnGebruiker);
-            this.Name = "AdminCP";
+            this.Name = "AdminCp";
             this.Text = "AdminCP";
             this.ResumeLayout(false);
 
@@ -115,11 +118,11 @@
 
         #endregion
 
-        private System.Windows.Forms.Button btnGebruiker;
-        private System.Windows.Forms.Button btnMateriaal;
-        private System.Windows.Forms.Button btnEvent;
-        private System.Windows.Forms.Button btnGroep;
-        private System.Windows.Forms.Button btnVerhuur;
-        private System.Windows.Forms.Button btnReservering;
+        private Button btnGebruiker;
+        private Button btnMateriaal;
+        private Button btnEvent;
+        private Button btnGroep;
+        private Button btnVerhuur;
+        private Button btnReservering;
     }
 }

@@ -1,11 +1,14 @@
-﻿namespace BeheerSysteem
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+
+namespace BeheerSysteem
 {
     partial class Beheerverhuur
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -331,30 +334,30 @@
 
         #endregion
 
-        private System.Windows.Forms.DateTimePicker DTPBegin;
-        private System.Windows.Forms.DateTimePicker DTPEind;
-        private System.Windows.Forms.ListBox LBGebruikers;
-        private System.Windows.Forms.ListBox LBMateriaal;
-        private System.Windows.Forms.Button BtnWissen;
-        private System.Windows.Forms.Button BtnZoeken;
-        private System.Windows.Forms.TextBox TbType;
-        private System.Windows.Forms.TextBox TbMerk;
-        private System.Windows.Forms.TextBox TbProductnaam;
-        private System.Windows.Forms.Label LblType;
-        private System.Windows.Forms.Label LblMerk;
-        private System.Windows.Forms.Label LblProductnaam;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button BtnGebZoek;
-        private System.Windows.Forms.TextBox TbDatum;
-        private System.Windows.Forms.TextBox TbEmail;
-        private System.Windows.Forms.TextBox TbAchternaam;
-        private System.Windows.Forms.Label LblRFID;
-        private System.Windows.Forms.Label LbLEmail;
-        private System.Windows.Forms.Label LblAchternaam;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button BtnBevestigen;
-        private System.Windows.Forms.CheckBox CbOpgehaald;
-        private System.Windows.Forms.Button button2;
+        private DateTimePicker DTPBegin;
+        private DateTimePicker DTPEind;
+        private ListBox LBGebruikers;
+        private ListBox LBMateriaal;
+        private Button BtnWissen;
+        private Button BtnZoeken;
+        private TextBox TbType;
+        private TextBox TbMerk;
+        private TextBox TbProductnaam;
+        private Label LblType;
+        private Label LblMerk;
+        private Label LblProductnaam;
+        private Button button1;
+        private Button BtnGebZoek;
+        private TextBox TbDatum;
+        private TextBox TbEmail;
+        private TextBox TbAchternaam;
+        private Label LblRFID;
+        private Label LbLEmail;
+        private Label LblAchternaam;
+        private Label label1;
+        private Label label2;
+        private Button BtnBevestigen;
+        private CheckBox CbOpgehaald;
+        private Button button2;
     }
 }

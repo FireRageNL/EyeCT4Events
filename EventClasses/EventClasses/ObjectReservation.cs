@@ -4,33 +4,28 @@ namespace EventClasses
 {
     public class ObjectReservation
     {
-        public int ReservationID { get; private set; }
+        public int ReservationId { get; }
 
-        public Object ResObject { get; private set; }
-
-        public int ResUser { get; private set; }
+        private Object ResObject { get; }
 
         public DateTime ResTime { get; private set; }
 
-        public DateTime StartTime { get; private set; }
+        private DateTime StartTime { get; }
 
-        public DateTime EndTime { get; private set; }
+        private DateTime EndTime { get; }
 
-        public bool ObjectTaken { get; private set; }
-        
-        public User Usr { get; private set; }
+        private User Usr { get; }
 
 
-        public ObjectReservation(int resid, int ruser, DateTime time)
+        public ObjectReservation(int resid, DateTime time)
         {
-            ReservationID = resid;
-            ResUser = ruser;
+            ReservationId = resid;
             ResTime = time;
         }
 
         public ObjectReservation(int resid, User ruser, DateTime start, DateTime end,Object obj)
         {
-            ReservationID = resid;
+            ReservationId = resid;
             Usr = ruser;
             StartTime = start;
             EndTime = end;
@@ -39,7 +34,7 @@ namespace EventClasses
 
         public override string ToString()
         {
-            return ReservationID + ": " + ResObject.Brand + " " + ResObject.Productname + " Verhuurd Van: " +
+            return ReservationId + ": " + ResObject.Brand + " " + ResObject.Productname + " Verhuurd Van: " +
                    StartTime.ToShortDateString() + " Tot: " + EndTime.ToShortDateString() + " Aan: " + Usr.Name;
         }
     }

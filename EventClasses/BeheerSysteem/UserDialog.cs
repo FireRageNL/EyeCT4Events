@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Windows.Forms;
 using EventClasses;
 
@@ -6,35 +7,32 @@ namespace BeheerSysteem
 {
     public partial class UserDialog : Form
     {
-        private User updateUser;
-        private bool v;
-        private EventClasses.Login val;
-        private Gebruikercontrole gc = new Gebruikercontrole();
+        private readonly User _updateUser;
+        private readonly bool _v;
+        private readonly Gebruikercontrole _gc = new Gebruikercontrole();
 
-        public UserDialog(EventClasses.Login val, bool v)
+        public UserDialog(bool v)
         {
             InitializeComponent();
-            this.val = val;
-            this.v = v;
+            _v = v;
         }
 
-        public UserDialog(EventClasses.Login val, bool v, User upd)
+        public UserDialog(bool v, User upd)
         {
             InitializeComponent();
-            this.val = val;
-            this.v = v;
-            updateUser = upd;
-            tbBudget.Text = Convert.ToString(updateUser.Budget);
-            tbLand.Text = updateUser.Adress.Country;
-            tbEmail.Text = updateUser.Emailadres;
-            tbNaam.Text = updateUser.Name;
-            tbNr.Text = Convert.ToString(updateUser.Adress.Number);
-            tbPlaats.Text = updateUser.Adress.City;
-            tbPost.Text = updateUser.Adress.Zipcode;
-            tbStraat.Text = updateUser.Adress.Street;
-            tbToev.Text = updateUser.Adress.Addition;
-            IFormatProvider culture = new System.Globalization.CultureInfo("en-US", true);
-            dateTimePicker1.Value = Convert.ToDateTime(updateUser.Date,culture);
+            _v = v;
+            _updateUser = upd;
+            tbBudget.Text = Convert.ToString(_updateUser.Budget, CultureInfo.CurrentCulture);
+            tbLand.Text = _updateUser.Adress.Country;
+            tbEmail.Text = _updateUser.Emailadres;
+            tbNaam.Text = _updateUser.Name;
+            tbNr.Text = Convert.ToString(_updateUser.Adress.Number);
+            tbPlaats.Text = _updateUser.Adress.City;
+            tbPost.Text = _updateUser.Adress.Zipcode;
+            tbStraat.Text = _updateUser.Adress.Street;
+            tbToev.Text = _updateUser.Adress.Addition;
+            IFormatProvider culture = new CultureInfo("en-US", true);
+            dateTimePicker1.Value = Convert.ToDateTime(_updateUser.Date,culture);
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -69,7 +67,7 @@ namespace BeheerSysteem
                     dcok = false;
                 }
                 bool pwok = true;
-                if (v && string.IsNullOrWhiteSpace(tbWachtwoord.Text))
+                if (_v && string.IsNullOrWhiteSpace(tbWachtwoord.Text))
                 {
                     MessageBox.Show("Vul een wachtwoord in!");
                     pwok = false;
@@ -79,26 +77,26 @@ namespace BeheerSysteem
                 {
                     if (nr != 0 && dcok && pwok)
                     {
-                        if (v)
+                        if (_v)
                         {
-                            gc.AddUser(naam, tbWachtwoord.Text, Convert.ToString(dateTimePicker1.Value.Date), email,
+                            _gc.AddUser(naam, tbWachtwoord.Text, Convert.ToString(dateTimePicker1.Value.Date, CultureInfo.CurrentCulture), email,
                                 budget, straat, nr, toe, plaats, postcode, land);
                         }
                         else
                         {
-                            updateUser.Adress.Update(straat, nr, plaats, land, postcode, toe);
-                            updateUser.Update(naam, email, Convert.ToString(dateTimePicker1.Value.Date), budget);
+                            _updateUser.Adress.Update(straat, nr, plaats, land, postcode, toe);
+                            _updateUser.Update(naam, email, Convert.ToString(dateTimePicker1.Value.Date, CultureInfo.CurrentCulture), budget);
                             if (!string.IsNullOrWhiteSpace(tbWachtwoord.Text))
                             {
-                                gc.UpdateUser(updateUser, tbWachtwoord.Text);
+                                _gc.UpdateUser(_updateUser, tbWachtwoord.Text);
                             }
                             else
                             {
-                                gc.UpdateUser(updateUser);
+                                _gc.UpdateUser(_updateUser);
                             }
                         }
                     }
-                    this.Dispose();
+                    Dispose();
                 }
                 else
                 {

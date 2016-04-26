@@ -3,12 +3,10 @@ using System.Windows.Forms;
 
 namespace BeheerSysteem
 {
-    public partial class AdminCP : Form
+    public partial class AdminCp : Form
     {
-        private EventClasses.Login val;
-        public AdminCP(EventClasses.Login val)
+        public AdminCp(EventClasses.Login val)
         {
-            this.val = val;
             InitializeComponent();
             if (val.AccessLevel == 1)
             {
@@ -21,37 +19,37 @@ namespace BeheerSysteem
 
         private void btnGebruiker_Click(object sender, EventArgs e)
         {
-            FormGebruikersBeheer gb = new FormGebruikersBeheer(val);
+            FormGebruikersBeheer gb = new FormGebruikersBeheer();
             gb.Show();
         }
 
         private void btnEvent_Click(object sender, EventArgs e)
         {
-            EventBeheer eb = new EventBeheer(val);
+            EventBeheer eb = new EventBeheer();
             eb.Show();
         }
 
         private void btnMateriaal_Click(object sender, EventArgs e)
         {
-            Materiaalbeheer mb = new Materiaalbeheer(val);
+            Materiaalbeheer mb = new Materiaalbeheer();
             mb.Show();
         }
 
         private void btnVerhuur_Click(object sender, EventArgs e)
         {
-            Beheerverhuur vb = new Beheerverhuur(val);
+            Beheerverhuur vb = new Beheerverhuur();
             vb.Show();
         }
 
         private void btnGroep_Click(object sender, EventArgs e)
         {
-            Beheergroep bg = new Beheergroep(val);
+            Beheergroep bg = new Beheergroep();
             bg.Show();
         }
 
         private void btnReservering_Click(object sender, EventArgs e)
         {
-            Beheerreservering br = new Beheerreservering(val);
+            Beheerreservering br = new Beheerreservering();
             br.Show();
         }
     }

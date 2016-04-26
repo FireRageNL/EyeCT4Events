@@ -4,16 +4,16 @@ namespace EventClasses
 {
     public class GroepControl
     {
-        private DBAdmin db = new DBAdmin();
+        private readonly DbAdmin _db = new DbAdmin();
 
         public List<User> GetUsers()
         {
-            return db.BeheerUser();
+            return _db.BeheerUser();
         }
 
         public void AddGroup(List<User> groupUsers, string text)
         {
-            db.AddGroup(groupUsers, text);
+            _db.AddGroup(groupUsers, text);
         }
     }
 }

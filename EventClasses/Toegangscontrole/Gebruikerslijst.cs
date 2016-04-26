@@ -5,12 +5,12 @@ namespace Toegangscontrole
 {
     public partial class Gebruikerslijst : Form
     {
-        private EventClasses.Toegangscontrole tc = new EventClasses.Toegangscontrole();
+        private readonly EventClasses.Toegangscontrole _tc = new EventClasses.Toegangscontrole();
 
         public Gebruikerslijst(int evt)
         {
             InitializeComponent();
-            List<string> aanwezig = tc.GetAanwezigheid(evt);
+            List<string> aanwezig = _tc.GetAanwezigheid(evt);
             lbAanwezigheid.DataSource = aanwezig;
         }
     }

@@ -1,11 +1,14 @@
-﻿namespace BeheerSysteem
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+
+namespace BeheerSysteem
 {
     partial class Login
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -104,10 +107,10 @@
 
         #endregion
 
-        private System.Windows.Forms.Button BtnInloggen;
-        private System.Windows.Forms.TextBox TbPassword;
-        private System.Windows.Forms.TextBox TbEmail;
-        private System.Windows.Forms.Label LbLEmail;
-        private System.Windows.Forms.Label LblWachtwoord;
+        private Button BtnInloggen;
+        private TextBox TbPassword;
+        private TextBox TbEmail;
+        private Label LbLEmail;
+        private Label LblWachtwoord;
     }
 }

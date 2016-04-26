@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace EventClasses
+﻿namespace EventClasses
 {
     public class User
     {
-        public int UserID { get;  private set; }
+        public int UserId { get; }
 
         public string Name { get; private set; }
 
@@ -13,27 +10,13 @@ namespace EventClasses
 
         public string Emailadres { get; private set; }
 
-        public List<TicketReservation> Reserve { get; private set; }
-
         public string Date { get; private set; }
 
-        public Decimal Budget { get; private set; }
-
-        public User(int uid, string uname, Adress add, string uemail, TicketReservation tickreserve = null)
-        {
-            UserID = uid;
-            Name = uname;
-            Adress = add;
-            Emailadres = uemail;
-            if (tickreserve != null)
-            {
-                Reserve.Add(tickreserve);
-            }
-        }
+        public decimal Budget { get; private set; }
 
         public User (int id, string naam , string email , string datum)
         {
-            UserID = id;
+            UserId = id;
             Name = naam;
             Emailadres = email;
             Date = datum;
@@ -41,14 +24,14 @@ namespace EventClasses
 
         public User(int uid, string uname, string uemail)
         {
-            UserID = uid;
+            UserId = uid;
             Name = uname;
             Emailadres = uemail;
         }
 
         public User(int id, string naam, string email, string datum, decimal budget, Adress uadres)
         {
-            UserID = id;
+            UserId = id;
             Name = naam;
             Emailadres = email;
             Date = datum;
@@ -58,9 +41,10 @@ namespace EventClasses
 
         public override string ToString()
         {
-            return "   ID: " + UserID + "   Naam: " + Name + "   Email: " + Emailadres + "   Geboortedatum: " + Date;
+            return "   ID: " + UserId + "   Naam: " + Name + "   Email: " + Emailadres + "   Geboortedatum: " + Date;
         }
 
+        // ReSharper disable once UnusedMember.Global used in winform
         public string GroupName => Name + " " + Emailadres;
 
         public void Update(string naam,string email, string datum, decimal budget)

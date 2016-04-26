@@ -7,13 +7,11 @@ namespace BeheerSysteem
 {
     public partial class FormGebruikersBeheer : Form
     {
-        private EventClasses.Login val;
-        private Gebruikercontrole mc = new Gebruikercontrole();
+        private readonly Gebruikercontrole _mc = new Gebruikercontrole();
 
-        public FormGebruikersBeheer(EventClasses.Login val)
+        public FormGebruikersBeheer()
         {
             InitializeComponent();
-            this.val = val;
         }
         private void BtnZoeken_Click(object sender, EventArgs e)
         {
@@ -24,44 +22,44 @@ namespace BeheerSysteem
 
             if (TbAchternaam.Text == "" && TbEmail.Text != "" && TbDatum.Text != "")
             {
-                List<User> geenachternaam = mc.Geenachternaam(email, datum);
+                List<User> geenachternaam = _mc.Geenachternaam(email, datum);
                 dataGridView1.DataSource = geenachternaam;
             }
 
             else if (TbEmail.Text == "" && TbDatum.Text != "" && TbAchternaam.Text != "")
             {
-                List<User> Geenachternaam = mc.Geenemail(achternaam, datum);
-                dataGridView1.DataSource = Geenachternaam;
+                List<User> geenachternaam = _mc.Geenemail(achternaam, datum);
+                dataGridView1.DataSource = geenachternaam;
             }
 
             else if (TbDatum.Text == "" && TbEmail.Text != "" && TbAchternaam.Text != "")
             {
-                List<User> Geendatum = mc.Geendatum(achternaam, email);
-                dataGridView1.DataSource = Geendatum;
+                List<User> geendatum = _mc.Geendatum(achternaam, email);
+                dataGridView1.DataSource = geendatum;
             }
 
             else if (TbEmail.Text == "" && TbDatum.Text == "" && TbAchternaam.Text != "")
             {
-                List<User> Alleenachternaam = mc.Alleenachternaam(achternaam);
-                dataGridView1.DataSource = Alleenachternaam;
+                List<User> alleenachternaam = _mc.Alleenachternaam(achternaam);
+                dataGridView1.DataSource = alleenachternaam;
             }
 
             else if (TbEmail.Text == "" && TbDatum.Text != "" && TbAchternaam.Text == "")
             {
-                List<User> Alleendatum = mc.Alleendatum(datum);
-                dataGridView1.DataSource = Alleendatum;
+                List<User> alleendatum = _mc.Alleendatum(datum);
+                dataGridView1.DataSource = alleendatum;
             }
 
             else if (TbEmail.Text != "" && TbDatum.Text == "" && TbAchternaam.Text == "")
             {
-                List<User> Alleenachternaam = mc.Alleenemail(email);
-                dataGridView1.DataSource = Alleenachternaam;
+                List<User> alleenachternaam = _mc.Alleenemail(email);
+                dataGridView1.DataSource = alleenachternaam;
             }
 
             else if (TbEmail.Text != "" && TbDatum.Text != "" && TbAchternaam.Text != "")
             {
-                List<User> Alles = mc.Alles(achternaam, email, datum);
-                dataGridView1.DataSource = Alles;
+                List<User> alles = _mc.Alles(achternaam, email, datum);
+                dataGridView1.DataSource = alles;
             }
         }
 
@@ -75,7 +73,7 @@ namespace BeheerSysteem
 
         private void BtnBeheer_Click(object sender, EventArgs e)
         {
-            Beheergebruiker bg = new Beheergebruiker(val);
+            Beheergebruiker bg = new Beheergebruiker();
             bg.Show();
         }
     }

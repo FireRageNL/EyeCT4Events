@@ -1,11 +1,14 @@
-﻿namespace BeheerSysteem
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+
+namespace BeheerSysteem
 {
     partial class UserDialog
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -282,28 +285,28 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox tbLand;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox tbPost;
-        private System.Windows.Forms.TextBox tbPlaats;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox tbToev;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox tbNr;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox tbStraat;
-        private System.Windows.Forms.TextBox tbNaam;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox tbWachtwoord;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox tbEmail;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox tbBudget;
-        private System.Windows.Forms.Button button1;
+        private TextBox tbLand;
+        private Label label9;
+        private Label label8;
+        private TextBox tbPost;
+        private TextBox tbPlaats;
+        private Label label6;
+        private Label label5;
+        private TextBox tbToev;
+        private Label label4;
+        private TextBox tbNr;
+        private Label label7;
+        private TextBox tbStraat;
+        private TextBox tbNaam;
+        private Label label1;
+        private Label label2;
+        private TextBox tbWachtwoord;
+        private Label label3;
+        private TextBox tbEmail;
+        private DateTimePicker dateTimePicker1;
+        private Label label10;
+        private Label label11;
+        private TextBox tbBudget;
+        private Button button1;
     }
 }

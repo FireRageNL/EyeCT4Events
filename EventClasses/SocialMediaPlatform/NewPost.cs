@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Windows.Forms;
 using EventClasses;
+
 namespace SocialMediaPlatform
 {
     public partial class NewPost : Form
     {
-        private EventClasses.Login val;
-        private EventClasses.SocialControl sc = new SocialControl();
+        private readonly EventClasses.Login _val;
+        private readonly SocialControl _sc = new SocialControl();
         public NewPost(EventClasses.Login val)
         {
-            this.val = val;
+            _val = val;
             InitializeComponent();
         }
 
@@ -27,9 +28,9 @@ namespace SocialMediaPlatform
             if (richTextBox1.Text != "")
             {
                 //Send the post data to the controller
-                sc.NewPost(message, url, mtype, val);
+                _sc.NewPost(message, url, mtype, _val);
             }
-            this.Dispose();
+            Dispose();
         }
     }
 }

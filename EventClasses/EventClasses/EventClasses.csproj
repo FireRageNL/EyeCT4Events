@@ -58,9 +58,7 @@
     <Compile Include="Object.cs" />
     <Compile Include="ObjectReservation.cs" />
     <Compile Include="ReserveringControl.cs" />
-    <Compile Include="RFID.cs" />
     <Compile Include="SocialControl.cs" />
-    <Compile Include="TicketReservation.cs" />
     <Compile Include="Toegangscontrole.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

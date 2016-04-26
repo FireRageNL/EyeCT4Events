@@ -2,68 +2,67 @@
 using System.Collections.Generic;
 using System.Windows.Forms;
 using EventClasses;
+using Object = EventClasses.Object;
 
 namespace BeheerSysteem
 {
     public partial class Materiaalbeheer : Form
     {
-        private EventClasses.Login val;
-        private Materiaalcontrole mc = new Materiaalcontrole();
+        private readonly Materiaalcontrole _mc = new Materiaalcontrole();
 
-        public Materiaalbeheer(EventClasses.Login val)
+        public Materiaalbeheer()
         {
             InitializeComponent();
-            this.val = val;
         }
 
         private void BtnZoeken_Click(object sender, EventArgs e)
         {
-            string Merk = TbMerk.Text;
-            string Productnaam = TbProductnaam.Text;
+            string merk = TbMerk.Text;
+            string productnaam = TbProductnaam.Text;
 
-            int Type;
-            int.TryParse(TbType.Text, out Type);
+            int type;
+            int.TryParse(TbType.Text, out type);
 
             if (TbMerk.Text == "" && TbProductnaam.Text != "" && TbType.Text != "")
             {
-                List<EventClasses.Object> geenmerk = mc.Geenmerk(Productnaam, Type);
+                List<Object> geenmerk = _mc.Geenmerk(productnaam, type);
                 dataGridView1.DataSource = geenmerk;
             }
 
             else if (TbProductnaam.Text == "" && TbType.Text != "" && TbMerk.Text != "")
             {
-            List<EventClasses.Object> Geenproductnaam = mc.Geenproductnaam(Merk, Type);
-            dataGridView1.DataSource = Geenproductnaam;
+            List<Object> geenproductnaam = _mc.Geenproductnaam(merk, type);
+            dataGridView1.DataSource = geenproductnaam;
             }
 
             else if (TbType.Text == "" && TbProductnaam.Text != "" && TbMerk.Text != "")
             {
-                List<EventClasses.Object> Geentype = mc.Geentype(Merk, Productnaam);
-                dataGridView1.DataSource = Geentype;
+                List<Object> geentype = _mc.Geentype(merk, productnaam);
+                dataGridView1.DataSource = geentype;
             }
 
             else if (TbProductnaam.Text == "" && TbType.Text == "" && TbMerk.Text != "")
             {
-                List<EventClasses.Object> Alleenmerk = mc.Alleenmerk(Merk);
-                dataGridView1.DataSource = Alleenmerk;
+                List<Object> alleenmerk = _mc.Alleenmerk(merk);
+                dataGridView1.DataSource = alleenmerk;
             }
 
             else if (TbProductnaam.Text == "" && TbType.Text != "" && TbMerk.Text == "")
             {
-                List<EventClasses.Object> Alleentype = mc.Alleentype(Type);
-                dataGridView1.DataSource = Alleentype;
+                List<Object> alleentype = _mc.Alleentype(type);
+                dataGridView1.DataSource = alleentype;
             }
 
             else if (TbProductnaam.Text != "" && TbType.Text == "" && TbMerk.Text == "")
             {
-                List<EventClasses.Object> Alleenproductnaam = mc.Alleenproductnaam(Productnaam);
-                dataGridView1.DataSource = Alleenproductnaam;
+                List<Object> alleenproductnaam = _mc.Alleenproductnaam(productnaam);
+                dataGridView1.DataSource = alleenproductnaam;
             }
 
             else if (TbProductnaam.Text != "" && TbType.Text != "" && TbMerk.Text != "")
             {
-                List<EventClasses.Object> Alles = mc.Alles(Productnaam , Merk , Type);
-                dataGridView1.DataSource = Alles;
+                List<Object> alles = _mc.Alles(productnaam , merk , type);
+                dataGridView1.DataSource = alles;
             }
 
         }
@@ -78,7 +77,7 @@ namespace BeheerSysteem
 
         private void BtnBeheer_Click(object sender, EventArgs e)
         {
-            Beheermateriaal bm = new Beheermateriaal(val);
+            Beheermateriaal bm = new Beheermateriaal();
             bm.Show();
 
     }

@@ -7,8 +7,8 @@ namespace SocialMediaPlatform
 {
     public partial class PostOverview : Form
     {
-        private EventClasses.Login val;
-        private EventClasses.SocialControl sc = new SocialControl();
+        private readonly EventClasses.Login _val;
+        private readonly SocialControl _sc = new SocialControl();
 
         public PostOverview()
         {
@@ -18,25 +18,23 @@ namespace SocialMediaPlatform
         public PostOverview(EventClasses.Login val)
         {
             InitializeComponent();
-            this.val = val;
-            List<string> list = new List<string>();
-            list = sc.GetPosts();
+            _val = val;
+            List<string> list = _sc.GetPosts();
             LbOverview.DataSource = list;
         }
 
         private void LbOverview_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             int postid = Convert.ToInt32(LbOverview.SelectedItem.ToString());
-            Form1 form = new Form1(val,postid);
+            Form1 form = new Form1(_val,postid);
             form.Show();
         }
 
         private void BtnAddPost_Click(object sender, EventArgs e)
         {
-            NewPost post = new NewPost(val);
+            NewPost post = new NewPost(_val);
             post.ShowDialog();
-            List<string> list = new List<string>();
-            list = sc.GetPosts();
+            List<string> list = _sc.GetPosts();
             LbOverview.DataSource = list;
         }
     }

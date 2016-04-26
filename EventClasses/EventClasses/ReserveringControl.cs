@@ -4,21 +4,21 @@ namespace EventClasses
 {
     public class ReserveringControl
     {
-        private DBAdmin db = new DBAdmin();
+        private readonly DbAdmin _db = new DbAdmin();
 
         public List<Group> GetEmptyGroups()
         {
-            return db.GetEmptyGroups();
+            return _db.GetEmptyGroups();
         }
 
         public List<Location> GetFreeLocations(int count)
         {
-            return db.GetFreeLocations(count);
+            return _db.GetFreeLocations(count);
         }
 
         public void ReserveLocation(Group searchgroup, Location reserve)
         {
-            db.ReserveLocation(searchgroup, reserve);
+            _db.ReserveLocation(searchgroup, reserve);
         }
     }
 }

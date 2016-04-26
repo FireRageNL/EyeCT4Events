@@ -1,11 +1,14 @@
-﻿namespace BeheerSysteem
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+
+namespace BeheerSysteem
 {
     partial class FormGebruikersBeheer
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -165,16 +168,16 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox TbAchternaam;
-        private System.Windows.Forms.Label LblRFID;
-        private System.Windows.Forms.Label LbLEmail;
-        private System.Windows.Forms.Label LblAchternaam;
-        private System.Windows.Forms.TextBox TbEmail;
-        private System.Windows.Forms.TextBox TbDatum;
-        private System.Windows.Forms.Button BtnZoeken;
-        private System.Windows.Forms.Button BtnWissen;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Button BtnBeheer;
+        private TextBox TbAchternaam;
+        private Label LblRFID;
+        private Label LbLEmail;
+        private Label LblAchternaam;
+        private TextBox TbEmail;
+        private TextBox TbDatum;
+        private Button BtnZoeken;
+        private Button BtnWissen;
+        private DataGridView dataGridView1;
+        private Button BtnBeheer;
     }
 }
 

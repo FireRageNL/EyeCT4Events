@@ -6,14 +6,10 @@ namespace BeheerSysteem
 {
     public partial class EventDialog : Form
     {
-        private EventClasses.Login val;
-        private bool newevent;
-        private EventBeheerder em = new EventBeheerder();
-        public EventDialog(EventClasses.Login val, bool b)
+        private readonly EventBeheerder _em = new EventBeheerder();
+        public EventDialog()
         {
             InitializeComponent();
-            this.val = val;
-            newevent = b;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -41,11 +37,9 @@ namespace BeheerSysteem
                 DateTime begin = dateTimePicker1.Value.Date;
                 DateTime end = dateTimePicker2.Value.Date;
 
-                if (nr != 0)
-                {
-                    em.AddEvent(straat, nr, toe, plaats, postcode, land, naam, begin, end);
-                    this.Dispose();
-                }
+                if (nr == 0) return;
+                _em.AddEvent(straat, nr, toe, plaats, postcode, land, naam, begin, end);
+                Dispose();
             }
 
         }

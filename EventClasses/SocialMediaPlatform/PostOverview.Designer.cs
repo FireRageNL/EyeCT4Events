@@ -1,11 +1,14 @@
-﻿namespace SocialMediaPlatform
+﻿using System.ComponentModel;
+using System.Windows.Forms;
+
+namespace SocialMediaPlatform
 {
     partial class PostOverview
     {
         /// <summary>
         /// Required designer variable.
         /// </summary>
-        private System.ComponentModel.IContainer components = null;
+        private IContainer components = null;
 
         /// <summary>
         /// Clean up any resources being used.
@@ -67,7 +70,7 @@
 
         #endregion
 
-        private System.Windows.Forms.ListBox LbOverview;
-        private System.Windows.Forms.Button BtnAddPost;
+        private ListBox LbOverview;
+        private Button BtnAddPost;
     }
 }

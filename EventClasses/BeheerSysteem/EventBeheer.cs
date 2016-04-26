@@ -7,22 +7,20 @@ namespace BeheerSysteem
 {
     public partial class EventBeheer : Form
     {
-        private EventClasses.Login val;
-        private EventBeheerder em = new EventBeheerder();
-        public EventBeheer(EventClasses.Login val)
+        private readonly EventBeheerder _em = new EventBeheerder();
+        public EventBeheer()
         {
-            this.val = val;
             InitializeComponent();
-            List<Event> evt = em.GetEvents();
+            List<Event> evt = _em.GetEvents();
             listBox1.DataSource = evt;
 
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            EventDialog dia = new EventDialog(val, true);
+            EventDialog dia = new EventDialog();
             dia.ShowDialog();
-            List<Event> evt = em.GetEvents();
+            List<Event> evt = _em.GetEvents();
             listBox1.DataSource = evt;
         }
     }
