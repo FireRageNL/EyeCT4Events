@@ -560,22 +560,22 @@ namespace EventClasses
 
         }
         //Fetch all main posts in the database
-        public List<string> GetPosts()
+        public List<Message> GetPosts()
         {
-            List<string> rtn = new List<string>();
-
+            List<Message> rtn = new List<Message>();
             try
             {
                 _conn.Open();
                 OracleCommand cmd = new OracleCommand
                 {
                     Connection = _conn,
-                    CommandText = "Select Berichtid FROM Bericht WHERE ParentID IS NULL ORDER BY berichtid"
+                    CommandText = "Select Berichtid, titel FROM Bericht WHERE ParentID IS NULL ORDER BY berichtid"
                 };
                 OracleDataReader dr = cmd.ExecuteReader();
                 while (dr.Read())
                 {
-                    rtn.Add(dr.GetInt32(0).ToString());
+                    Message add = new Message(dr.GetInt32(0),dr.GetString(1));
+                    rtn.Add(add);
                 }
                 _conn.Close();
                 return rtn;
@@ -600,7 +600,7 @@ namespace EventClasses
                     Connection = _conn,
                     BindByName = true,
                     CommandText =
-                        "SELECT Gebruikerid, mediaid, inhoud FROM bericht WHERE berichtid =:par ORDER BY BERICHTID"
+                        "SELECT Gebruikerid, mediaid, inhoud, titel FROM bericht WHERE berichtid =:par ORDER BY BERICHTID"
                 };
                 cmd.Parameters.Add("par", postid);
                 OracleDataReader dr = cmd.ExecuteReader();
@@ -620,9 +620,10 @@ namespace EventClasses
                     dr2.Read();
                     floc = dr2.GetString(0);
                 }
-                Message parent = new Media(cont, GetUser(puid, true), postid, floc);
+                string title = dr.GetString(3);
+                Message parent = new Media(cont, GetUser(puid, true), postid,title,floc);
                 rtn.Add(parent);
-                cmd.CommandText = "Select Berichtid, gebruikerid, inhoud FROM Bericht WHERE ParentID = :par";
+                cmd.CommandText = "Select Berichtid, gebruikerid, inhoud, titel FROM Bericht WHERE ParentID = :par";
                 cmd.Parameters.Add("par", postid);
                 OracleDataReader dr3 = cmd.ExecuteReader();
                 while (dr3.Read())
@@ -630,8 +631,13 @@ namespace EventClasses
                     int mid = dr3.GetInt32(0);
                     int uid = dr3.GetInt32(1);
                     string inh = dr3.GetString(2);
+                    string ttl = null;
+                    if (!dr3.IsDBNull(3))
+                    {
+                        ttl = dr3.GetString(3);
+                    }
                     User usr = GetUser(uid, true);
-                    Message msg = new Message(inh, usr, mid, parent);
+                    Message msg = new Message(inh, usr, mid,ttl,parent);
                     rtn.Add(msg);
                 }
                 _conn.Close();
@@ -670,7 +676,7 @@ namespace EventClasses
             }
         }
         //Create a new post in the database
-        public void NewPost(string message, string url, string type, Login val)
+        public void NewPost(string message, string url, string type, Login val, string title)
         {
             try
             {
@@ -697,7 +703,7 @@ namespace EventClasses
                     OracleDataReader dr = cmd.ExecuteReader();
                     dr.Read();
                     int mid = dr.GetInt32(0);
-                    parent = new Media(message, val.User, mid, url);
+                    parent = new Media(message, val.User, mid,title, url);
                 }
                 if (parent != null)
                 {
@@ -708,9 +714,10 @@ namespace EventClasses
                 }
                 else
                 {
-                    cmd.CommandText = "INSERT INTO BERICHT(GEBRUIKERID, INHOUD) VALUES(:usrid,:inh)";
+                    cmd.CommandText = "INSERT INTO BERICHT(GEBRUIKERID, INHOUD,TITEL) VALUES(:usrid,:inh,:titel)";
                     cmd.Parameters.Add("usrid", val.User.UserId);
                     cmd.Parameters.Add("inh", message);
+                    cmd.Parameters.Add("titel", title);
                 }
                 cmd.ExecuteNonQuery();
                 _conn.Close();

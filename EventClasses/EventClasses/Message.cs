@@ -10,7 +10,9 @@
 
         public Message ParentMessage { get; private set; }
 
-        public Message(string mContent, User mUser, int mId, Message mParent = null)
+        private string Title { get; set; }
+
+        public Message(string mContent, User mUser, int mId, string mTitle, Message mParent = null)
         {
             Content = mContent;
             UserMessage = mUser;
@@ -19,13 +21,21 @@
                 ParentMessage = mParent;
             }
             MessageId = mId;
+            Title = mTitle;
         }
 
-        protected Message(string mContent, User mUser, int mId)
+        protected Message(string mContent, User mUser, int mId, string mTitle)
         {
             MessageId = mId;
             Content = mContent;
             UserMessage = mUser;
+            Title = mTitle;
+        }
+
+        public Message(int mId, string mTitle)
+        {
+            MessageId = mId;
+            Title = mTitle;
         }
     }
 }

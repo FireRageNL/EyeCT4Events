@@ -18,6 +18,11 @@ namespace SocialMediaPlatform
         {   //Get the data out of the input fields
             string message = richTextBox1.Text;
             string url = null;
+            string title = "untitled";
+            if (!string.IsNullOrWhiteSpace(textBox2.Text))
+            {
+                title = textBox2.Text;
+            }
             string mtype = comboBox1.Text;
             //If the URL isnt empty, insert an URL into the field else keep the value null
             if (textBox1.Text != "")
@@ -28,7 +33,7 @@ namespace SocialMediaPlatform
             if (richTextBox1.Text != "")
             {
                 //Send the post data to the controller
-                _sc.NewPost(message, url, mtype, _val);
+                _sc.NewPost(message, url, mtype, _val,title);
             }
             Dispose();
         }

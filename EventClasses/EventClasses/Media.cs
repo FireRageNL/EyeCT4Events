@@ -4,7 +4,7 @@
     {
         public string Location { get; private set; }
 
-        public Media(string mContent, User mUser,int mId, string floc) : base(mContent, mUser,mId)
+        public Media(string mContent, User mUser,int mId, string mTitle, string floc) : base(mContent, mUser,mId,mTitle)
         {
             Location = floc;
         }

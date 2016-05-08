@@ -6,7 +6,7 @@ namespace EventClasses
     {
         private readonly DbAdmin _db = new DbAdmin();
 
-        public List<string> GetPosts()
+        public List<Message> GetPosts()
         {
             return _db.GetPosts();
         }
@@ -21,9 +21,9 @@ namespace EventClasses
             _db.PostReply(message, parent, userid);
         }
 
-        public void NewPost(string message, string url,string type, Login val)
+        public void NewPost(string message, string url,string type, Login val, string title)
         {
-            _db.NewPost(message, url, type, val);
+            _db.NewPost(message, url, type, val, title);
         }
     }
 }
