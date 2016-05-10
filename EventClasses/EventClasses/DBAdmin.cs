@@ -11,34 +11,46 @@ namespace EventClasses
 
         public DbAdmin()
         {
+            //Connection string for db access
             _conn.ConnectionString =
                             "Data Source = (DESCRIPTION = (ADDRESS_LIST = (ADDRESS = (PROTOCOL = TCP)(HOST = fhictora01.fhict.local)(PORT = 1521)))(CONNECT_DATA = (SERVER = DEDICATED)(SERVICE_NAME = fhictora))); User ID = dbi347373; PASSWORD = Testpassword1234";
         }
-        //Check if email and password are correct
+        //Check if email and password are correct by returning the password from the oracle database so that the program can verify the user inputted password against the one in the database
         public string CheckLogin(string uname)
         {
             try
             {
+                //Open the connection to the oracle database
                 _conn.Open();
+                //Create a new command
                 OracleCommand cmd = new OracleCommand
                 {
                     BindByName = true,
                     Connection = _conn,
                     CommandText = "SELECT Wachtwoord, Beheerder FROM Gebruiker WHERE Email= :param"
                 };
+                //Populate the parameters inside the SQL query
                 cmd.Parameters.Add("param", uname);
+                //Create a datareader
                 OracleDataReader dr = cmd.ExecuteReader();
+                //Read the next/first line fron the returned results
                 dr.Read();
                 string li = null;
+                //If the username is correctly entered, dr has rows, else the datareader is empty and would return an exception when you try to read from it
                 if (dr.HasRows)
-                {
+                {   
+                    //Store username and password in a string
                     li = dr.GetString(0) + "," + dr.GetInt32(1);
                 }
+                //Close the connection to the oracle database
                 _conn.Close();
+                //Return the fetched data, if no data is fetched the application returns null
                 return li;
             }
+            //Catch the exception if something goes wrong inside the oracle database
             catch (OracleException e)
             {
+                //Return the error message in the console and then close the connection, and return null so that the application knows that no data was fetched
                 Console.WriteLine("Message: " + e.Message);
                 _conn.Close();
                 return null;
@@ -141,13 +153,13 @@ namespace EventClasses
             }
 
         }
-        //Checkin
+        //Checkin fetch
         public CheckIn CheckIn(string rfidtag, int eventid)
         {
             string naam = null;
             bool payment = false;
 
-            //Naam bezoeker checken
+            //Fetch name of visitor
             try
             {
                 _conn.Open();
@@ -176,7 +188,7 @@ namespace EventClasses
             }
 
 
-            // Aanwezigheid checken
+            //Fetch if user is checked in or not
             try
             {
                 _conn.Open();
@@ -221,7 +233,7 @@ namespace EventClasses
             }
 
 
-            //Betaaldstatus checken
+            //Fetch payment status
             try
             {
                 _conn.Open();
@@ -254,14 +266,12 @@ namespace EventClasses
                 return null;
             }
 
-            //return
             CheckIn rtrn = new CheckIn(naam, payment);
             return rtrn;
         }
-
+        //Confirm payment for event
         public bool Betaald(string rfidtag, int eventid)
         {
-            // gebruiker op heeft betaald zetten
             try
             {
                 _conn.Open();
@@ -287,7 +297,7 @@ namespace EventClasses
 
             return true;
         }
-
+        //Fetch all objects when name and type are filled in
         public List<Object> Geenmerk(string productnaam, int type)
         {
 
@@ -326,7 +336,7 @@ namespace EventClasses
             }
 
         }
-
+        //Fetch all objects when brand and type have been filled in
         public List<Object> Geenproductnaam(string merk, int type)
         {
 
@@ -365,7 +375,7 @@ namespace EventClasses
             }
 
         }
-
+        //Fetch all objects when brand and product name have been filled in
         public List<Object> Geentype(string merk, string productnaam)
         {
 
@@ -404,7 +414,7 @@ namespace EventClasses
             }
 
         }
-
+        //Fetch all objects when only the brand has been filled in
         public List<Object> Alleenmerk(string merk)
         {
 
@@ -442,7 +452,7 @@ namespace EventClasses
             }
 
         }
-
+        //Fetch all objects when only the type has been filled in
         public List<Object> Alleentype(int type)
         {
 
@@ -480,7 +490,7 @@ namespace EventClasses
             }
 
         }
-
+        //Fetch all objects when only the product name has been filled in
         public List<Object> Alleenproductnaam(string alleenproductnaam)
         {
 
@@ -518,7 +528,7 @@ namespace EventClasses
             }
 
         }
-
+        //Fetch the objects when everything has been filled in
         public List<Object> Alles(string productnaam, string merk, int type)
         {
 
@@ -607,12 +617,14 @@ namespace EventClasses
                 dr.Read();
                 int puid = dr.GetInt32(0);
                 int mediaid = 0;
+                //Check if a media id is present in the database; 
                 if (!dr.IsDBNull(1))
                 {
                     mediaid = dr.GetInt32(1);
                 }
                 string cont = dr.GetString(2);
                 string floc = null;
+                //If an media ID was present, fetch the file location from te database and save the location
                 if (mediaid != 0)
                 {
                     cmd.CommandText = "SELECT Bestandslocatie FROM media WHERE mediaid=" + mediaid;
@@ -623,6 +635,7 @@ namespace EventClasses
                 string title = dr.GetString(3);
                 Message parent = new Media(cont, GetUser(puid, true), postid,title,floc);
                 rtn.Add(parent);
+                //Fetch all replies
                 cmd.CommandText = "Select Berichtid, gebruikerid, inhoud, titel FROM Bericht WHERE ParentID = :par";
                 cmd.Parameters.Add("par", postid);
                 OracleDataReader dr3 = cmd.ExecuteReader();
@@ -707,10 +720,11 @@ namespace EventClasses
                 }
                 if (parent != null)
                 {
-                    cmd.CommandText = "INSERT INTO BERICHT(GEBRUIKERID, MEDIAID, INHOUD) VALUES(:usrid,:medid,:inh)";
+                    cmd.CommandText = "INSERT INTO BERICHT(GEBRUIKERID, MEDIAID, INHOUD, TITEL) VALUES(:usrid,:medid,:inh,:titel)";
                     cmd.Parameters.Add("usrid", val.User.UserId);
                     cmd.Parameters.Add("medid", parent.MessageId);
                     cmd.Parameters.Add("inh", message);
+                    cmd.Parameters.Add("titel", title);
                 }
                 else
                 {
@@ -728,7 +742,7 @@ namespace EventClasses
                 _conn.Close();
             }
         }
-
+        //Fetch all objects in the database
         public List<Object> BeheerMateriaal()
         {
 
@@ -765,7 +779,7 @@ namespace EventClasses
             }
 
         }
-
+        //Delete an object from the database
         public void DeleteMateriaal(Object deleteMateriaal)
         {
             try
@@ -787,7 +801,7 @@ namespace EventClasses
                 _conn.Close();
             }
         }
-
+        //Add a product to the databse
         public void AddProduct(string brand, string product, int typenr, int price)
         {
             try

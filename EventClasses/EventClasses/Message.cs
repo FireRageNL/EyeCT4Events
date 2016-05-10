@@ -10,7 +10,7 @@
 
         public Message ParentMessage { get; private set; }
 
-        private string Title { get; set; }
+        public string Title { get; private set; }
 
         public Message(string mContent, User mUser, int mId, string mTitle, Message mParent = null)
         {

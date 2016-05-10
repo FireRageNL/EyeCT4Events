@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Windows.Forms;
 using EventClasses;
 
@@ -8,6 +9,7 @@ namespace SocialMediaPlatform
     {
         private readonly EventClasses.Login _val;
         private readonly SocialControl _sc = new SocialControl();
+
         public NewPost(EventClasses.Login val)
         {
             _val = val;
@@ -15,7 +17,8 @@ namespace SocialMediaPlatform
         }
 
         private void BtnSave_Click(object sender, EventArgs e)
-        {   //Get the data out of the input fields
+        {
+            //Get the data out of the input fields
             string message = richTextBox1.Text;
             string url = null;
             string title = "untitled";
@@ -33,9 +36,29 @@ namespace SocialMediaPlatform
             if (richTextBox1.Text != "")
             {
                 //Send the post data to the controller
-                _sc.NewPost(message, url, mtype, _val,title);
+                _sc.NewPost(message, url, mtype, _val, title);
             }
             Dispose();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog ofd = new OpenFileDialog();
+
+            if (ofd.ShowDialog() != DialogResult.OK) return;
+            string sourcefile = ofd.FileName;
+            string fileName = ofd.FileName.Substring(ofd.FileName.LastIndexOf(("\\")) + 1);
+            string destinationfile = @"S:\" + fileName;
+            try
+            {
+                File.Copy(sourcefile, destinationfile);
+                textBox1.Text = destinationfile;
+            }
+            catch (IOException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }
+

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 using EventClasses;
 using Message = EventClasses.Message;
@@ -25,15 +26,7 @@ namespace SocialMediaPlatform
             _parent = (Media)list[0];
             LblNaam.Text = _parent.UserMessage.Name;
             LblDatum.Text = "Vandaag";
-            List<string> cont = new List<string>();
-            foreach (Message msg in list)
-            {
-                if (msg.ParentMessage != null)
-                {
-                    string ms = msg.UserMessage.Name + ": " + msg.Content;
-                    cont.Add(ms);
-                }
-            }
+            List<string> cont = (from msg in list where msg.ParentMessage != null select msg.UserMessage.Name + ": " + msg.Content).ToList();
             listBox1.DataSource = cont;
             LblPost.Text = _parent.Content;
             int reacties = cont.Count;
@@ -47,17 +40,10 @@ namespace SocialMediaPlatform
             string message = RtbReactie.Text;
             _sc.PostReply(message, _parent,_val.User.UserId);
             List<Message> list = _sc.GetContents(_parent.MessageId);
-            List<string> cont = new List<string>();
-            foreach (Message msg in list)
-            {
-                if (msg.ParentMessage != null)
-                {
-                    string ms = msg.UserMessage.Name + ": " + msg.Content;
-                    cont.Add(ms);
-                }
-            }
+            List<string> cont = (from msg in list where msg.ParentMessage != null select msg.UserMessage.Name + ": " + msg.Content).ToList();
             listBox1.DataSource = cont;
             int reacties = cont.Count;
+            RtbReactie.Clear();
             LblReacties.Text = reacties.ToString();
         }
 
@@ -65,7 +51,7 @@ namespace SocialMediaPlatform
         {
             SaveFileDialog saveFileDialog1 = new SaveFileDialog
             {
-                Filter = "JPeg Image|*.jpg|Bitmap Image|*.bmp|Gif Image|*.gif",
+                Filter = "Jpeg Image|*.jpg|Bitmap Image|*.bmp|Gif Image|*.gif",
                 Title = "Save an Image File"
             };
             saveFileDialog1.ShowDialog();
